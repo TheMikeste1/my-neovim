@@ -7,7 +7,6 @@ end
 
 return {
 	"akinsho/toggleterm.nvim",
-
 	config = config,
 	event = "VeryLazy",
 }
