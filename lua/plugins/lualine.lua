@@ -26,6 +26,11 @@ return {
 					},
 				},
 			},
+			winbar = {
+				lualine_c = {
+					{ "aerial", colored = true },
+				},
+			},
 		})
 	end,
 }
