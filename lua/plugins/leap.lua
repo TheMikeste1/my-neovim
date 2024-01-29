@@ -5,7 +5,10 @@ return {
 		"tpope/vim-repeat",
 	},
 	config = function()
-		require("leap").setup({})
+		local leap = require("leap")
+    leap.setup({})
+    leap.opts.safe_labels = "fnut/SFNLHMUGTZ?"
+    leap.opts.labels = 'fnjklhodweimbuyvrgtaqpcxz/SFNJKLHODWEIMBUYVRGTAQPCXZ?'
 	end,
 	keys = {
 		{
