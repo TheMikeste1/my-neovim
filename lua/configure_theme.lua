@@ -34,7 +34,10 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
 		-- GitSigns
 		-- vim.api.nvim_set_hl(0, "GitSignsChange", { fg = "#374752", bg = number_background_string })
 
-		-- Marks
+    -- Leap
+		-- vim.api.nvim_set_hl(0, "LeapBackdrop", { fg = "#777777" })
+
+    -- Marks
 		vim.api.nvim_set_hl(0, "MarkSignHL", { bg = number_background_string })
 
 		-- Neotree Icons
