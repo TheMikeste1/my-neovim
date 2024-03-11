@@ -1,6 +1,6 @@
 vim.opt.wrap = false -- No word wrap
 vim.opt.fillchars = { eob = " " } -- Don't show ~ on none-lines
-vim.opt.colorcolumn = "80,120,240" -- Indicators of line length
+vim.opt.colorcolumn = "81,121,241" -- Indicators of line length
 vim.opt.scrolloff = 3 -- Always keep x rows above/below the cursor
 
 -- Incremental highlight with no leftover highlight
