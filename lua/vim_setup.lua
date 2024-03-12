@@ -24,8 +24,8 @@ if not VSCODE and vim.fn.has("termguicolors") then
 end
 
 -- Use relative numbers in the gutter
-vim.opt.number = not VSCODE
-vim.opt.relativenumber = not VSCODE
+vim.opt.number = true
+vim.opt.relativenumber = true
 
 -- Setup indenting
 vim.opt.smartindent = true
