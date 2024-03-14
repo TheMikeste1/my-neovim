@@ -1,6 +1,6 @@
 return {
 	"Konfekt/vim-CtrlXA",
-	cond = true,
+	cond = false,
 	config = function()
 		vim.cmd([[
       let g:CtrlXA_Toggles = [
