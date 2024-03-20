@@ -1,6 +1,6 @@
 return {
 	"akinsho/bufferline.nvim",
-
+  cond = false,
 	opts = {
 		options = {
 			diagnostics = "nvim_lsp",
