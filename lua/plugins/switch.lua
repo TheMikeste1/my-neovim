@@ -2,7 +2,7 @@ return {
 	"AndrewRadev/switch.vim",
 	cond = true,
 	init = function()
-    vim.g.switch_mapping = ""
+		vim.g.switch_mapping = ""
 		vim.g.speeddating_no_mappings = 1
 	end,
 	config = function()
@@ -11,9 +11,12 @@ return {
       nnoremap <Plug>SpeedDatingFallbackUp <c-a>
       nnoremap <Plug>SpeedDatingFallbackDown <c-x>
     ]])
-    vim.g.switch_custom_definitions = {
-      { "private", "protected", "public",  },
-    }
+		vim.g.switch_custom_definitions = {
+			{ "private", "protected", "public" },
+			{ "==", "!=" },
+			{ "<", ">" },
+			{ "<=", ">=" },
+		}
 	end,
 	keys = {
 		{
