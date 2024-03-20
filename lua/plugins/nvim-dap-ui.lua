@@ -20,6 +20,7 @@ return {
 	end,
 	dependencies = {
 		"mfussenegger/nvim-dap",
+		"nvim-neotest/nvim-nio",
 	},
 	event = "VeryLazy",
 }

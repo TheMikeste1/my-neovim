@@ -21,5 +21,6 @@ return {
 		"alfaix/neotest-gtest",
 		"rcasia/neotest-bash",
 		"nvim-neotest/neotest-python",
+		"nvim-neotest/nvim-nio",
 	},
 }
