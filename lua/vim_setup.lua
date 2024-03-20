@@ -48,3 +48,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
+
+-- Folding
+vim.opt.foldmethod = "indent"
+vim.opt.foldlevelstart = 99

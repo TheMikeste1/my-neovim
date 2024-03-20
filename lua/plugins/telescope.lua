@@ -1,6 +1,12 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	dependencies = { "nvim-lua/plenary.nvim" },
+	config = function()
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = "TelescopeResults",
+			command = "setlocal nofoldenable",
+		})
+	end,
 	keys = {
 		{
 			"<C-p>",
