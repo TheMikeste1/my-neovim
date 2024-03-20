@@ -1,11 +1,5 @@
 return {
 	"nvim-neo-tree/neo-tree.nvim",
-
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		"nvim-tree/nvim-web-devicons",
-		"MunifTanjim/nui.nvim",
-	},
 	keys = {
 		{
 			"<leader><C-e>",
@@ -44,5 +38,11 @@ return {
 				never_show = {},
 			},
 		},
+	},
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"nvim-tree/nvim-web-devicons",
+		"MunifTanjim/nui.nvim",
+		"3rd/image.nvim",
 	},
 }

@@ -15,6 +15,24 @@ vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSi
 vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
 vim.fn.sign_define("DiagnosticSignHint", { text = " ", texthl = "DiagnosticSignHint" })
 
+if vim.fn.has("nvim-0.10") > 0 then
+	vim.diagnostic.config({
+		signs = {
+			text = {
+				[vim.diagnostic.severity.ERROR] = "",
+				[vim.diagnostic.severity.WARN] = "",
+				[vim.diagnostic.severity.INFO] = "",
+				[vim.diagnostic.severity.HINT] = "",
+			},
+			linehl = {},
+			numhl = {
+				[vim.diagnostic.severity.ERROR] = "ErrorMsg",
+				[vim.diagnostic.severity.WARN] = "WarningMsg",
+			},
+		},
+	})
+end
+
 vim.api.nvim_create_autocmd({ "ColorScheme" }, {
 	callback = function()
 		-- Sign column
@@ -34,10 +52,10 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
 		-- GitSigns
 		-- vim.api.nvim_set_hl(0, "GitSignsChange", { fg = "#374752", bg = number_background_string })
 
-    -- Leap
+		-- Leap
 		-- vim.api.nvim_set_hl(0, "LeapBackdrop", { fg = "#777777" })
 
-    -- Marks
+		-- Marks
 		vim.api.nvim_set_hl(0, "MarkSignHL", { bg = number_background_string })
 
 		-- Neotree Icons
@@ -57,3 +75,4 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
 
 require(string.format("themes.%s", theme))
 vim.cmd(string.format("colorscheme %s", theme))
+vim.cmd("set signcolumn=yes:2")
