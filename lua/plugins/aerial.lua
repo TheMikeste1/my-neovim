@@ -3,8 +3,17 @@ return {
 	opts = {
 		attach_mode = "global",
 		autojump = true,
-		backends = { "lsp", "treesitter", "markdown", "man" },
-		filter_kind = false,
+		backends = { "treesitter", "lsp", "markdown", "asciidoc", "man" },
+		filter_kind = {
+			"Class",
+			"Constructor",
+			"Enum",
+			"Function",
+			"Interface",
+			"Module",
+			"Method",
+			"Struct",
+		},
 		show_guides = true,
 	},
 	config = function(_, opts)
