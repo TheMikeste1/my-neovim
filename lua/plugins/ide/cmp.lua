@@ -94,9 +94,9 @@ local function config()
 		sources = cmp.config.sources({
 			-- { name = 'nvim_lsp_signature_help' },
 			{ name = "copilot" },
+			{ name = "nvim_lsp", max_item_count = 10 },
 			{ name = "ctags" },
 			{ name = "omni" },
-			{ name = "nvim_lsp", max_item_count = 10 },
 			{ name = "treesitter", max_item_count = 5 },
 			{ name = "vsnip", max_item_count = 5 },
 		}, {

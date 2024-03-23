@@ -3,6 +3,9 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
+  opts = {
+    cmake_build_directory = "build/${variant:buildType}"
+  },
 	cmd = {
 		"CMakeGenerate",
 		"CMakeBuild",
