@@ -56,7 +56,6 @@ end
 
 return {
 	"Shatur/neovim-session-manager",
-
 	config = function()
 		configure()
 		autosave()
