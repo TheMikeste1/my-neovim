@@ -9,7 +9,7 @@ local function generate_dashboard()
 		dashboard.button("<C-p>", "󰈞  Find file"),
 		dashboard.button("<M-C-F>", "󰊄  Live grep"),
 		dashboard.button("s", "  Open last session", function()
-			require("session_manager").load_last_session()
+			require("session_manager").load_current_dir_session(true)
 		end),
 		dashboard.button("c", "  Configuration", "<cmd>cd ~/.config/nvim/ <CR>"),
 		dashboard.button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),
@@ -20,6 +20,26 @@ end
 
 return {
 	"goolord/alpha-nvim",
+ 	init = function()
+		if vim.fn.argc() == 0 then
+			return
+		end
+
+		-- If the argument is a directory, start the dashboard
+		local arg = vim.fn.argv()[1]
+		if not IsDirectory(arg) then
+			return
+		end
+
+		vim.api.nvim_create_autocmd({ "VimEnter" }, {
+			callback = function()
+				local alpha = require("alpha")
+				if alpha.default_config.opts.autostart then
+					vim.cmd("Alpha")
+				end
+			end,
+		})
+	 end,
 	config = function()
 		local alpha = require("alpha")
 		alpha.setup(generate_dashboard())
@@ -27,6 +47,5 @@ return {
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 		"nvim-lua/plenary.nvim",
-		"Shatur/neovim-session-manager",
 	},
 }
