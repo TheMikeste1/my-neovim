@@ -73,6 +73,5 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
 	end,
 })
 
-require(string.format("themes.%s", theme))
 vim.cmd(string.format("colorscheme %s", theme))
 vim.cmd("set signcolumn=yes:2")
