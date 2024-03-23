@@ -5,37 +5,42 @@ return {
     dap_enabled = true,
 		name = { "venv", ".venv" },
 	},
-	init = function()
-		vim.api.nvim_create_autocmd("VimEnter", {
-			desc = "Auto select virtualenv Nvim open",
-			pattern = "*.py",
-			callback = function()
-				local venv = vim.fn.findfile("pyproject.toml", vim.fn.getcwd() .. ";")
-				if venv ~= "" then
-					require("venv-selector").retrieve_from_cache()
-					return
-				end
-
-				venv = vim.fn.finddir("venv", vim.fn.getcwd() .. ";")
-				if venv ~= "" then
-					require("venv-selector").retrieve_from_cache()
-					return
-				end
-
-				venv = vim.fn.finddir(".venv", vim.fn.getcwd() .. ";")
-				if venv ~= "" then
-					require("venv-selector").retrieve_from_cache()
-					return
-				end
-			end,
-			once = true,
-		})
-	end,
-	event = "VeryLazy", -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
-	keys = {
-		-- Keymap to open VenvSelector to pick a venv.
-		{ "<leader>vs", "<cmd>VenvSelect<cr>" },
-		-- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
-		{ "<leader>vc", "<cmd>VenvSelectCached<cr>" },
-	},
+	-- config = function(_, opts)
+		-- vim.api.nvim_create_autocmd("VimEnter", {
+		-- 	desc = "Auto select virtualenv Nvim open",
+		-- 	pattern = "*.py",
+		-- 	callback = function()
+		-- 		local venv = vim.fn.findfile("pyproject.toml", vim.fn.getcwd() .. ";")
+		-- 		if venv ~= "" then
+		-- 			require("venv-selector").retrieve_from_cache()
+		-- 			return
+		-- 		end
+		--
+		-- 		venv = vim.fn.finddir("venv", vim.fn.getcwd() .. ";")
+		-- 		if venv ~= "" then
+		-- 			require("venv-selector").retrieve_from_cache()
+		-- 			return
+		-- 		end
+		--
+		-- 		venv = vim.fn.finddir(".venv", vim.fn.getcwd() .. ";")
+		-- 		if venv ~= "" then
+		-- 			require("venv-selector").retrieve_from_cache()
+		-- 			return
+		-- 		end
+		-- 	end,
+		-- 	once = true,
+		-- })
+	-- end,
+	-- event = "VeryLazy", -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
+	-- keys = {
+	-- 	-- Keymap to open VenvSelector to pick a venv.
+	-- 	{ "<leader>vs", "<cmd>VenvSelect<cr>" },
+	-- 	-- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
+	-- 	{ "<leader>vc", "<cmd>VenvSelectCached<cr>" },
+ --  },
+  cmd = {
+    "VenvSelect",
+    "VenvSelectCached",
+    "VenvSelectCurrent",
+  }
 }

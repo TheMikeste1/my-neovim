@@ -60,7 +60,7 @@ return {
 	config = function()
 		configure()
 		autosave()
-		autoload()
+		-- autoload()
 	end,
 	dependencies = {
 		"nvim-lua/plenary.nvim",
