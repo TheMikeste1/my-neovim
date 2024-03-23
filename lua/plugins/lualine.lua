@@ -26,7 +26,11 @@ return {
 					},
 				},
 			},
+			inactive_winbar = {
+				lualine_b = { { "windows", show_filename_only = false } },
+			},
 			winbar = {
+				lualine_b = { { "windows", show_filename_only = false } },
 				lualine_c = {
 					{ "aerial", colored = true },
 				},
