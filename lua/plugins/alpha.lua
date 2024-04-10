@@ -9,7 +9,17 @@ local function generate_dashboard()
 		dashboard.button("<C-p>", "󰈞  Find file"),
 		dashboard.button("<M-C-F>", "󰊄  Live grep"),
 		dashboard.button("s", "  Open last session", function()
-			require("session_manager").load_current_dir_session(true)
+			local cwd = vim.loop.cwd()
+			if cwd then
+				local session = require("session_manager.config").dir_to_session_filename(cwd)
+				if session:exists() then
+					require("session_manager").load_current_dir_session(true)
+				else
+					print("No session found for " .. cwd)
+				end
+			else
+				print("Cannot load session; no cwd found")
+			end
 		end),
 		dashboard.button("c", "  Configuration", "<cmd>cd ~/.config/nvim/ <CR>"),
 		dashboard.button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),
@@ -20,7 +30,7 @@ end
 
 return {
 	"goolord/alpha-nvim",
- 	init = function()
+	init = function()
 		if vim.fn.argc() == 0 then
 			return
 		end
@@ -39,7 +49,7 @@ return {
 				end
 			end,
 		})
-	 end,
+	end,
 	config = function()
 		local alpha = require("alpha")
 		alpha.setup(generate_dashboard())
