@@ -1,7 +1,20 @@
 return {
 	"nvim-telescope/telescope.nvim",
+	event = "VeryLazy",
 	dependencies = { "nvim-lua/plenary.nvim" },
 	config = function()
+		require("telescope").setup({
+			defaults = {
+				mappings = {
+					i = {
+						["<M-C-q>"] = require("telescope.actions").smart_send_to_qflist,
+					},
+					n = {
+						["<M-C-q>"] = require("telescope.actions").smart_send_to_qflist,
+					},
+				},
+			},
+		})
 		vim.api.nvim_create_autocmd("FileType", {
 			pattern = "TelescopeResults",
 			command = "setlocal nofoldenable",
@@ -10,8 +23,22 @@ return {
 	keys = {
 		{
 			"<C-p>",
+			"<cmd>lua require('telescope.builtin').git_files()<CR>",
+			desc = "Quick jump to git files",
+		},
+		{
+			"<leader><leader>f",
 			"<cmd>lua require('telescope.builtin').find_files()<CR>",
-			desc = "Quick jump to files",
+			desc = "Quick jump to all files",
+		},
+    {
+			"<leader>ps",
+      function()
+        require("telescope.builtin").grep_string({
+          search = vim.fn.input("Grep > "),
+        })
+      end,
+			desc = "Search for word in files",
 		},
 		{
 			"<M-C-F>",
