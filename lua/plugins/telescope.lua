@@ -14,6 +14,28 @@ return {
 					},
 				},
 			},
+			extensions = {
+				cmdline = {
+					picker = {
+						border = true,
+						borderchars = {
+							preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+							prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
+							results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
+						},
+						layout_config = {
+							preview_cutoff = 1,
+						},
+						theme = "dropdown",
+						layout_strategy = "center",
+						results_title = false,
+						sorting_strategy = "ascending",
+						cache_picker = {
+							disabled = true,
+						},
+					},
+				},
+			},
 		})
 		vim.api.nvim_create_autocmd("FileType", {
 			pattern = "TelescopeResults",
@@ -31,13 +53,13 @@ return {
 			"<cmd>lua require('telescope.builtin').find_files()<CR>",
 			desc = "Quick jump to all files",
 		},
-    {
+		{
 			"<leader>ps",
-      function()
-        require("telescope.builtin").grep_string({
-          search = vim.fn.input("Grep > "),
-        })
-      end,
+			function()
+				require("telescope.builtin").grep_string({
+					search = vim.fn.input("Grep > "),
+				})
+			end,
 			desc = "Search for word in files",
 		},
 		{

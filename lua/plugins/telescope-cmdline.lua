@@ -7,6 +7,6 @@ return {
 		"nvim-telescope/telescope.nvim",
 	},
 	keys = {
-		{ ":", "<cmd>Telescope cmdline theme=dropdown<cr>", desc = "Cmdline" },
+		{ ":", "<cmd>Telescope cmdline<cr>", desc = "Cmdline" },
 	},
 }
