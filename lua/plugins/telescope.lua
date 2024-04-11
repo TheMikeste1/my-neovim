@@ -7,10 +7,16 @@ return {
 			defaults = {
 				mappings = {
 					i = {
-						["<M-C-q>"] = require("telescope.actions").smart_send_to_qflist,
+						["<M-C-q>"] = function(prompt_bufnr)
+							require("telescope.actions").smart_send_to_qflist(prompt_bufnr)
+							require("telescope.builtin").quickfix()
+						end,
 					},
 					n = {
-						["<M-C-q>"] = require("telescope.actions").smart_send_to_qflist,
+						["<M-C-q>"] = function(prompt_bufnr)
+							require("telescope.actions").smart_send_to_qflist(prompt_bufnr)
+							require("telescope.builtin").quickfix()
+						end,
 					},
 				},
 			},
