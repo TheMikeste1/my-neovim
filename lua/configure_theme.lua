@@ -49,23 +49,13 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
 		vim.api.nvim_set_hl(0, "DapLogPoint", { fg = "#61afef", bg = number_background_string })
 		vim.api.nvim_set_hl(0, "DapStopped", { fg = "#98c379", bg = number_background_string })
 
-		-- GitSigns
-		-- vim.api.nvim_set_hl(0, "GitSignsChange", { fg = "#374752", bg = number_background_string })
-
-		-- Leap
-		-- vim.api.nvim_set_hl(0, "LeapBackdrop", { fg = "#777777" })
+		-- treesitter-context
+		vim.api.nvim_set_hl(0, "TreesitterContext", { fg = "#61afef", bg = number_background_string })
+		vim.api.nvim_set_hl(0, "TreesitterContextBottom", { underline = true })
+		vim.api.nvim_set_hl(0, "TreesitterContextLineNumberBottom", { underline = true })
 
 		-- Marks
 		vim.api.nvim_set_hl(0, "MarkSignHL", { bg = number_background_string })
-
-		-- Neotree Icons
-		-- local fg_color = string.format("#%06x", vim.api.nvim_get_hl_by_name("DiagnosticSignError", true).fg)
-		-- vim.api.nvim_set_hl(0, "DiagnosticSignError", { fg = fg_color, bg = number_background_string })
-		-- fg_color = string.format("#%06x", vim.api.nvim_get_hl_by_name("DiagnosticSignWarn", true).fg)
-		-- vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { fg = fg_color, bg = number_background_string })
-		-- fg_color = string.format("#%06x", vim.api.nvim_get_hl_by_name("DiagnosticSignInfo", true).foreground)
-		-- vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { fg = fg_color, bg = number_background_string })
-		-- vim.api.nvim_set_hl(0, "DiagnosticSignHint", { fg = "#fff68f", bg = number_background_string })
 
 		-- QuickScope
 		vim.api.nvim_set_hl(0, "QuickScopePrimary", { fg = "#a6f25a", underline = true })
