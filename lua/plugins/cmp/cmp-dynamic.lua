@@ -1,5 +1,4 @@
 return {
-	"delphinus/cmp-ctags",
-
+	"uga-rosa/cmp-dynamic",
 	event = "VeryLazy",
 }

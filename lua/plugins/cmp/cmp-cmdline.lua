@@ -1,5 +1,4 @@
 return {
-	"f3fora/cmp-spell",
-
+	"hrsh7th/cmp-cmdline",
 	event = "VeryLazy",
 }

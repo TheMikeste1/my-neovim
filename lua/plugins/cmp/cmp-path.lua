@@ -1,5 +1,4 @@
 return {
-	"ray-x/cmp-treesitter",
-
+	"FelipeLema/cmp-async-path",
 	event = "VeryLazy",
 }

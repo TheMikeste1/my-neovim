@@ -1,5 +1,4 @@
 return {
-	"uga-rosa/cmp-dynamic",
-
+	"hrsh7th/cmp-omni",
 	event = "VeryLazy",
 }

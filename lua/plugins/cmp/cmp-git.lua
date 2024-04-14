@@ -1,6 +1,5 @@
 return {
 	"petertriho/cmp-git",
-
 	ft = {
 		"git",
 	},

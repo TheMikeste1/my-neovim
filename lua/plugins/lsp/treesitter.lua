@@ -14,11 +14,25 @@ function config(_, opts)
 	require("nvim-treesitter.configs").setup(opts)
 end
 
+local keys = {
+	{
+		"[c",
+		function()
+			require("treesitter-context").go_to_context(vim.v.count1)
+		end,
+		desc = "Jump to top of current context",
+	},
+}
+
 return {
 	"nvim-treesitter/nvim-treesitter",
 	cond = true,
 	build = ":TSUpdate",
 	cmd = { "TSUpdateSync" },
+	depends = {
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		"nvim-treesitter/nvim-treesitter-context",
+	},
 	event = { "BufReadPost", "BufNewFile" },
 	opts = {
 		highlight = { enable = not VSCODE },
@@ -257,6 +271,16 @@ return {
 			-- "yang",
 			-- "yuck",
 			-- "zig",
+		},
+		autotag = { enable = true },
+		textsubjects = {
+			enable = true,
+			prev_selection = ",", -- (Optional) keymap to select the previous selection
+			keymaps = {
+				["."] = "textsubjects-smart",
+				[";"] = "textsubjects-container-outer",
+				["i;"] = "textsubjects-container-inner",
+			},
 		},
 	},
 	config = config,

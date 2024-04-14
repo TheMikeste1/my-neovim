@@ -1,5 +1,4 @@
 return {
-	"FelipeLema/cmp-async-path",
-
+	"f3fora/cmp-spell",
 	event = "VeryLazy",
 }

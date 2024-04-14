@@ -1,5 +1,4 @@
 return {
-	"hrsh7th/cmp-buffer",
-
+	"delphinus/cmp-ctags",
 	event = "VeryLazy",
 }

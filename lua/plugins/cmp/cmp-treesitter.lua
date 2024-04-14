@@ -1,5 +1,4 @@
 return {
-	"hrsh7th/cmp-vsnip",
-
+	"ray-x/cmp-treesitter",
 	event = "VeryLazy",
 }

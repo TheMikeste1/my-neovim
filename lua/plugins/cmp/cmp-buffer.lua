@@ -1,5 +1,4 @@
 return {
-	"hrsh7th/cmp-omni",
-
+	"hrsh7th/cmp-buffer",
 	event = "VeryLazy",
 }

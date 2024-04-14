@@ -14,13 +14,10 @@ vim.opt.rtp:prepend(lazypath)
 local plugin_folders = {
 	{ import = "plugins" },
 	{ import = "plugins.cmp" },
-	{ import = "plugins.cmp.cmp-plugins" },
 	{ import = "plugins.dap" },
-	{ import = "plugins.dap.dap-adapters" },
 	{ import = "plugins.languages" },
 	{ import = "plugins.lint" },
 	{ import = "plugins.lsp" },
-	{ import = "plugins.lsp.treesitter-extensions" },
 	{ import = "plugins.tools" },
   { import = "plugins.ui" },
 	{ import = "plugins.vim-dev" },

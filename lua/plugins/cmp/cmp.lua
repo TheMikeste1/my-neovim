@@ -142,9 +142,6 @@ return {
 	config = config,
 	event = { "InsertEnter", "CmdlineEnter" },
 	dependencies = {
-		{
-			"onsails/lspkind.nvim",
-			lazy = true,
-		},
+		{ "onsails/lspkind.nvim", lazy = true },
 	},
 }
