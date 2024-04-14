@@ -15,4 +15,5 @@ return {
 		"OverseerTaskAction",
 		"OverseerClearCache",
 	},
+  config = function() require("overseer").setup() end
 }
