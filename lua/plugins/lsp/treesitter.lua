@@ -29,8 +29,9 @@ return {
 	cond = true,
 	build = ":TSUpdate",
 	cmd = { "TSUpdateSync" },
-	depends = {
+	dependencies = {
 		"nvim-treesitter/nvim-treesitter-textobjects",
+		"RRethy/nvim-treesitter-textsubjects",
 		"nvim-treesitter/nvim-treesitter-context",
 	},
 	event = { "BufReadPost", "BufNewFile" },
@@ -284,4 +285,5 @@ return {
 		},
 	},
 	config = config,
+	keys = keys,
 }
