@@ -1,3 +1,6 @@
+local mod = {}
+
+-- Search for a word in files.
 local function grep_search()
 	require("telescope.builtin").grep_string({
 		search = vim.fn.input("Grep > "),
@@ -7,7 +10,6 @@ end
 -- If the current directory is a git repository, use `git_files` otherwise use `find_files`
 local function project_files()
 	local ret = vim.system({ "git", "status" }):wait()
-  print(vim.inspect(ret))
 	if ret.code == 0 then
 		require("telescope.builtin").git_files()
 	else
@@ -15,7 +17,23 @@ local function project_files()
 	end
 end
 
-return {
+-- Send the selected entry to the quickfix list and open the list.
+-- @param prompt_buffer_number number: The prompt buffer number.
+local function send_to_quickfix_list(prompt_buffer_number)
+	require("telescope.actions").smart_send_to_qflist(prompt_buffer_number)
+	require("telescope.builtin").quickfix()
+end
+
+mod.mappings = {
+  i = {
+    ["<M-C-q>"] = send_to_quickfix_list,
+  },
+  n = {
+    ["<M-C-q>"] = send_to_quickfix_list,
+  },
+}
+
+mod.lazy_keys = {
 	{
 		":",
 		"<cmd>Telescope cmdline<cr>",
@@ -77,3 +95,5 @@ return {
 		desc = "Search in marks",
 	},
 }
+
+return mod
