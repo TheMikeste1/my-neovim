@@ -1,7 +1,6 @@
 -- <https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#safely-select-entries-with-cr>
 local function on_enter(fallback)
 	local cmp = require("cmp")
-
 	if cmp.visible() and cmp.get_active_entry() then
 		cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
 	else
@@ -12,7 +11,6 @@ end
 -- <https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#intellij-like-mapping>
 local function on_tab(fallback)
 	local cmp = require("cmp")
-
 	-- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
 	if cmp.visible() then
 		local entry = cmp.get_selected_entry()
@@ -34,7 +32,7 @@ local function config()
 
 	cmp.setup({
 		enabled = function()
-			return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
+			return vim.api.nvim_get_option_value("buftype", {}) ~= "prompt" or require("cmp_dap").is_dap_buffer()
 		end,
 		experimental = {
 			ghost_text = true,
@@ -141,10 +139,12 @@ end
 
 return {
 	"hrsh7th/nvim-cmp",
-
 	config = config,
 	event = { "InsertEnter", "CmdlineEnter" },
 	dependencies = {
-		"onsails/lspkind.nvim",
+		{
+			"onsails/lspkind.nvim",
+			lazy = true,
+		},
 	},
 }
