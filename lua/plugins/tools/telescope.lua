@@ -16,6 +16,11 @@ local opts = {
 	defaults = {
 		mappings = keymaps.mappings,
 	},
+	pickers = {
+		git_files = {
+			recurse_submodules = true,
+		},
+	},
 	extensions = {
 		cmdline = {
 			picker = {
