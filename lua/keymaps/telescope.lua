@@ -34,11 +34,11 @@ mod.mappings = {
 }
 
 mod.lazy_keys = {
-	{
-		":",
-		"<cmd>Telescope cmdline<cr>",
-		desc = "Cmdline",
-	},
+	-- {
+	-- 	":",
+	-- 	"<cmd>Telescope cmdline<cr>",
+	-- 	desc = "Cmdline",
+	-- },
 	{
 		"<C-p>",
 		project_files,
