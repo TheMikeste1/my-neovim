@@ -90,14 +90,17 @@ local function config()
 		preselect = cmp.PreselectMode.None,
 		sources = cmp.config.sources({
 			{ name = "nvim_lsp_signature_help" },
+			{ name = "vsnip", max_item_count = 5 },
 			{ name = "copilot" },
-			{ name = "nvim_lsp" },
 			{
 				name = "omni",
 				option = {
 					disable_omnifuncs = { "v:lua.vim.lsp.omnifunc" },
 				},
 			},
+			{ name = "nvim_lsp" },
+			{ name = "doxygen" },
+		}, {
 			{
 				name = "ctags",
 				option = {
@@ -107,8 +110,6 @@ local function config()
 				},
 			},
 			{ name = "treesitter", max_item_count = 5 },
-			{ name = "doxygen" },
-			{ name = "vsnip", max_item_count = 5 },
 		}, {
 			{ name = "path", max_item_count = 5 },
 			{ name = "buffer", max_item_count = 5 },
