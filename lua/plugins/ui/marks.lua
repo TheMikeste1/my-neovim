@@ -1,5 +1,8 @@
 return {
 	"chentoast/marks.nvim",
-	config = true,
 	event = "VeryLazy",
+	config = true,
+	opts = {
+		builtin_marks = { ".", "<", ">", "^", "`", "[", "]" },
+	},
 }
