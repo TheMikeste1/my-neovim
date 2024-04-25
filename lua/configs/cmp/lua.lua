@@ -7,7 +7,6 @@ function mod.sources()
 
 	local config = cmp.get_config()
 	local file_sources = cmp.config.sources({
-		{ name = "plugins" },
 		{ name = "nvim_lua" },
 	})
 	local new_sources = TableConcat(config.sources, file_sources)

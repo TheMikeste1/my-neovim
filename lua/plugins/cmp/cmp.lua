@@ -51,9 +51,8 @@ local function config()
 					dynamic = "[Dynamic]",
 					nvim_lsp = "[LSP]",
 					nvim_lsp_document_symbol = "[DocSymbol]",
-					nvim_lua = "[NvimLua]",
+					nvim_lua = "[NVim]",
 					omni = "[Omni]",
-					plugins = "[Plug]",
 					spell = "[Spell]",
 					treesitter = "[Tree]",
 					vsnip = "[Snip]",
@@ -90,21 +89,31 @@ local function config()
 		}),
 		preselect = cmp.PreselectMode.None,
 		sources = cmp.config.sources({
-			-- { name = 'nvim_lsp_signature_help' },
+			{ name = "nvim_lsp_signature_help" },
 			{ name = "copilot" },
-			{ name = "nvim_lsp", max_item_count = 10 },
-			{ name = "ctags" },
-			{ name = "omni" },
+			{ name = "nvim_lsp" },
+			{
+				name = "omni",
+				option = {
+					disable_omnifuncs = { "v:lua.vim.lsp.omnifunc" },
+				},
+			},
+			{
+				name = "ctags",
+				option = {
+					executable = "ctags",
+					trigger_characters = { "." },
+					trigger_characters_ft = {},
+				},
+			},
 			{ name = "treesitter", max_item_count = 5 },
+			{ name = "doxygen" },
 			{ name = "vsnip", max_item_count = 5 },
 		}, {
-			{ name = "async_path", max_item_count = 5 },
+			{ name = "path", max_item_count = 5 },
 			{ name = "buffer", max_item_count = 5 },
-			{ name = "buffer-lines", max_item_count = 5 },
-			{ name = "spell", keyword_length = 4, max_item_count = 5 },
-			{ name = "doxygen" },
-			--{name = "dynamic"},
-			-- {name = "cmp_yanky"},
+			-- { name = "dynamic" },
+			-- { name = "cmp_yanky" },
 		}),
 	})
 
@@ -113,7 +122,6 @@ local function config()
 		mapping = cmp.mapping.preset.cmdline(),
 		sources = cmp.config.sources({
 			{ name = "nvim_lsp_document_symbol" },
-		}, {
 			{ name = "buffer" },
 		}),
 	})
@@ -125,15 +133,20 @@ local function config()
 			autocomplete = false,
 		},
 		sources = cmp.config.sources({
-			{ name = "cmdline" },
-			{ name = "nvim_lsp_document_symbol" },
+			{ name = "cmdline", option = { ignore_cmds = { "Man", "!" } } },
 			{ name = "path" },
+			{ name = "nvim_lsp_document_symbol" },
 		}),
 	})
 
-	require("configs.cmp.dap").sources()
+	require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+		sources = {
+			{ name = "dap" },
+		},
+	})
+
+	-- require("configs.cmp.dap").sources()
 	require("configs.cmp.disabled").sources()
-	require("configs.cmp.git").sources()
 	require("configs.cmp.lua").sources()
 end
 
@@ -143,5 +156,30 @@ return {
 	event = { "InsertEnter", "CmdlineEnter" },
 	dependencies = {
 		{ "onsails/lspkind.nvim", lazy = true },
+		"hrsh7th/cmp-omni",
+		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-buffer",
+		"hrsh7th/cmp-path",
+		"hrsh7th/cmp-cmdline",
+		"hrsh7th/cmp-vsnip",
+		"hrsh7th/cmp-nvim-lsp-document-symbol",
+		"hrsh7th/cmp-nvim-lsp-signature-help",
+		{
+			"hrsh7th/cmp-nvim-lua",
+			ft = {
+				"lua",
+			},
+		},
+		"delphinus/cmp-ctags",
+		{
+			"paopaol/cmp-doxygen",
+			dependencies = {
+				"nvim-treesitter/nvim-treesitter",
+				"nvim-treesitter/nvim-treesitter-textobjects",
+			},
+		},
+		"rcarriga/cmp-dap",
+		"ray-x/cmp-treesitter",
+		-- "chrisgrieser/cmp_yanky",
 	},
 }
