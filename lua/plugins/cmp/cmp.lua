@@ -68,7 +68,7 @@ local function config()
 			end,
 		},
 		window = {
-			completion = cmp.config.window.bordered(),
+			-- completion = cmp.config.window.bordered(),
 			documentation = cmp.config.window.bordered(),
 		},
 		mapping = cmp.mapping.preset.insert({
@@ -89,7 +89,7 @@ local function config()
 		}),
 		preselect = cmp.PreselectMode.None,
 		sources = cmp.config.sources({
-			{ name = "nvim_lsp_signature_help" },
+			{ { name = "nvim_lsp_signature_help" } },
 			{ name = "vsnip", max_item_count = 5 },
 			{ name = "copilot" },
 			{
