@@ -16,6 +16,9 @@ return {
 	end,
 	opts = {
 		ensure_installed = {
+			"editorconfig-checker",
+			-- Ansible
+			"ansible-lint",
 			-- C++
 			"clangd",
 			"clang-format",
@@ -24,11 +27,36 @@ return {
 			"cmakelang",
 			"cmakelint",
 			"neocmakelsp",
+			-- CSS
+			"stylelint",
+			-- Docker
+			"hadolint",
 			-- Lua
 			"lua-language-server",
+			"selene",
+			"stylua",
+			-- -- Make
+			"checkmake",
 			-- Python
+			"blackd-client",
+			"black",
+			"isort",
 			"pyright",
 			"debugpy",
+			"mypy",
+			"pylint",
+			-- Shell/Bash
+			"shellharden",
+			"shfmt",
+			-- SQL
+			"sqlfluff",
+			-- Web
+			"biome",
+			"prettier",
+			-- YAML
+			"yamllint",
+			"yamlfix",
+			"yamlfmt",
 		},
 		ui = {
 			icons = {
