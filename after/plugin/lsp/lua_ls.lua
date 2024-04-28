@@ -1,4 +1,4 @@
-if VSCODE then
+if VSCODE or true then
   return
 end
 

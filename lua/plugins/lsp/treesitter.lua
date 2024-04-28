@@ -1,3 +1,5 @@
+require("utilities.state")
+
 ---@class opts TSConfig
 function config(_, opts)
 	if type(opts.ensure_installed) == "table" then

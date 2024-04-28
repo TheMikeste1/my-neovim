@@ -1,6 +1,5 @@
 return {
 	"aznhe21/actions-preview.nvim",
-
 	keys = {
 		{
 			"<C-N>", -- <C-.> is being sent as ^N

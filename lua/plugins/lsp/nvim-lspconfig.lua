@@ -1,12 +1,4 @@
 local function config()
-	require("neoconf")
-	require("configs.lsp.ansible").setup()
-	require("configs.lsp.clangd").setup()
-	require("configs.lsp.cmake").setup()
-	require("configs.lsp.lua_ls").setup()
-	require("configs.lsp.pyright").setup()
-	require("configs.lsp.rust").setup()
-
 	-- Global mappings.
 	-- See `:help vim.diagnostic.*` for documentation on any of the below functions
 	vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
@@ -49,6 +41,7 @@ return {
 	dependencies = {
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
+		"folke/neoconf.nvim",
 		"nvim-telescope/telescope.nvim",
 	},
 }
