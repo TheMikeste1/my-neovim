@@ -1,9 +1,5 @@
 return {
 	"nvim-lualine/lualine.nvim",
-
-	dependencies = {
-		{ "nvim-tree/nvim-web-devicons", lazy = true },
-	},
 	config = function()
 		require("lualine").setup({
 			extensions = {
@@ -13,12 +9,11 @@ return {
 			sections = {
 				lualine_x = {
 					{
-						require("noice").api.status.message.get,
-						cond = require("noice").api.status.message.has,
+            "overseer"
 					},
 					{
-						require("noice").api.status.mode.get,
-						cond = require("noice").api.status.mode.has,
+						require("noice").api.status.message.get,
+						cond = require("noice").api.status.message.has,
 					},
 					{
 						require("noice").api.status.command.get,
@@ -37,4 +32,7 @@ return {
 			},
 		})
 	end,
+	dependencies = {
+		{ "nvim-tree/nvim-web-devicons", lazy = true },
+	},
 }

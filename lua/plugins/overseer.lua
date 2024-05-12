@@ -1,5 +1,26 @@
 return {
 	"stevearc/overseer.nvim",
+	config = function()
+		require("overseer").setup({
+			task_list = {
+				direction = "bottom",
+			},
+		})
+	end,
+	keys = {
+		{
+			"<C-t>",
+			function()
+				require("overseer").toggle()
+			end,
+		},
+		{
+			"<C-M-t>",
+			function()
+				require("overseer").run_template()
+			end,
+		},
+	},
 	cmd = {
 		"OverseerOpen",
 		"OverseerClose",
@@ -15,5 +36,4 @@ return {
 		"OverseerTaskAction",
 		"OverseerClearCache",
 	},
-  config = function() require("overseer").setup() end
 }

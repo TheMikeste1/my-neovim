@@ -10,6 +10,9 @@ return {
 				require("neotest-bash"),
 				require("neotest-python"),
 			},
+			consumers = {
+				overseer = require("neotest.consumers.overseer"),
+			},
 		})
 	end,
 	dependencies = {
@@ -22,5 +25,6 @@ return {
 		"rcasia/neotest-bash",
 		"nvim-neotest/neotest-python",
 		"nvim-neotest/nvim-nio",
+		"stevearc/overseer.nvim",
 	},
 }
