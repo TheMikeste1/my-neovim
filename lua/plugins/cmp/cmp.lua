@@ -99,16 +99,21 @@ local function config()
 				},
 			},
 			{ name = "nvim_lsp" },
-			{ name = "doxygen" },
+			-- {
+			-- 	name = "doxygen",
+			-- 	option = {
+			-- 		trigger_characters = { "@" },
+			-- 	},
+			-- },
 		}, {
-			{
-				name = "ctags",
-				option = {
-					executable = "ctags",
-					trigger_characters = { "." },
-					trigger_characters_ft = {},
-				},
-			},
+			-- {
+			-- 	name = "ctags",
+			-- 	option = {
+			-- 		executable = "ctags",
+			-- 		trigger_characters = { "." },
+			-- 		trigger_characters_ft = {},
+			-- 	},
+			-- },
 			{ name = "treesitter", max_item_count = 5 },
 		}, {
 			{ name = "path", max_item_count = 5 },
@@ -171,7 +176,7 @@ return {
 				"lua",
 			},
 		},
-		"delphinus/cmp-ctags",
+		-- "delphinus/cmp-ctags",
 		{
 			"paopaol/cmp-doxygen",
 			dependencies = {
