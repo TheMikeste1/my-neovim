@@ -62,6 +62,7 @@ return {
 				-- null_ls.builtins.formatting.shellharden,
 				-- null_ls.builtins.formatting.shfmt,
 				null_ls.builtins.hover.printenv,
+				null_ls.builtins.diagnostics.zsh,
 
 				-- SQL
 				null_ls.builtins.diagnostics.sqlfluff.with({

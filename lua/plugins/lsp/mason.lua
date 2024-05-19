@@ -35,7 +35,7 @@ return {
 			"lua-language-server",
 			"selene",
 			"stylua",
-			-- -- Make
+			-- Make
 			"checkmake",
 			-- Python
 			"blackd-client",
@@ -48,6 +48,9 @@ return {
 			-- Shell/Bash
 			"shellharden",
 			"shfmt",
+			"beautysh",
+			"shellcheck",
+			"bash-language-server",
 			-- SQL
 			"sqlfluff",
 			-- Web

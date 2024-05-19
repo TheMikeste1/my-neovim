@@ -26,7 +26,8 @@ return {
 	config = function()
 		local lspconfig = require("lspconfig")
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
-		require("mason-lspconfig").setup({
+		local mason_lspconfig = require("mason-lspconfig")
+		mason_lspconfig.setup({
 			automatic_installation = true,
 			handlers = {
 				-- Default
@@ -43,6 +44,12 @@ return {
 								},
 							},
 						},
+					})
+				end,
+				["bashls"] = function()
+					lspconfig.bashls.setup({
+						capabilities = capabilities,
+						filetypes = { "bash", "zsh" },
 					})
 				end,
 				["clangd"] = function()
