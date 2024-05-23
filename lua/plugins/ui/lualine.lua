@@ -2,6 +2,14 @@ return {
 	"nvim-lualine/lualine.nvim",
 	config = function()
 		require("lualine").setup({
+			options = {
+				globalstatus = true,
+				disabled_filetypes = {
+					statusline = {
+						"alpha",
+					},
+				},
+			},
 			extensions = {
 				"neo-tree",
 				"trouble",
