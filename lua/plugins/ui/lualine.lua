@@ -34,10 +34,10 @@ return {
 				},
 			},
 			inactive_winbar = {
-				lualine_b = { { "filename", path = 0 } },
+				lualine_b = { { "filename", path = 1 } },
 			},
 			winbar = {
-				lualine_b = { { "filename", path = 0 } },
+				lualine_b = { { "filename", path = 1 } },
 				lualine_c = {
 					{ "aerial", colored = true },
 				},

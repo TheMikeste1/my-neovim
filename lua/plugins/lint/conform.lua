@@ -33,7 +33,7 @@ return {
 			-- Shell
 			fish = { "fish_indent" },
 			sh = { { "beautysh", "shfmt" }, "shellharden" },
-      zsh = { "beautysh", "shellharden" },
+			zsh = { "beautysh", "shellharden" },
 			-- Web
 			javascript = { "biome", { "prettierd", "prettier" } },
 			typescript = { "biome", { "prettierd", "prettier" } },
@@ -45,8 +45,9 @@ return {
 			less = { "stylelint" },
 			css = { "stylelint" },
 			sass = { "stylelint" },
+			xml = { "xmllint", "xmlformat" },
 			-- Config Files
-      toml = { "taplo" },
+			toml = { "taplo" },
 			yaml = { "yamlfix", "yamlfmt" },
 		},
 		-- Set up format-on-save

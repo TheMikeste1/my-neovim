@@ -49,7 +49,7 @@ return {
 				["bashls"] = function()
 					lspconfig.bashls.setup({
 						capabilities = capabilities,
-						filetypes = { "bash", "zsh" },
+						filetypes = { "bash", "sh",  "zsh" },
 					})
 				end,
 				["clangd"] = function()

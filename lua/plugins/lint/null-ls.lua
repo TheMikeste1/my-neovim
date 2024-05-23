@@ -39,8 +39,8 @@ return {
 				-- null_ls.builtins.formatting.fish_indent,
 
         -- Groovy/Jenkins
-        null_ls.builtins.diagnostics.npm_groovy_lint,
-        null_ls.builtins.formatting.npm_groovy_lint,
+        -- null_ls.builtins.diagnostics.npm_groovy_lint,
+        -- null_ls.builtins.formatting.npm_groovy_lint,
 
 				-- HTML/XML
 				null_ls.builtins.diagnostics.tidy,

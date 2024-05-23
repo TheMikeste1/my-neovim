@@ -4,7 +4,7 @@ return {
 		"nvim-lua/plenary.nvim",
 	},
   opts = {
-    cmake_build_directory = "build/${variant:buildType}"
+    cmake_build_directory = "build"
   },
 	cmd = {
 		"CMakeGenerate",
