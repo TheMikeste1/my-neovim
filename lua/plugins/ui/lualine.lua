@@ -7,9 +7,13 @@ return {
 				"trouble",
 			},
 			sections = {
+				lualine_c = {
+					"filetype",
+					"filename",
+				},
 				lualine_x = {
 					{
-            "overseer"
+						"overseer",
 					},
 					{
 						require("noice").api.status.message.get,

@@ -9,12 +9,7 @@ end
 
 -- If the current directory is a git repository, use `git_files` otherwise use `find_files`
 local function project_files()
-	local ret = vim.system({ "git", "status" }):wait()
-	if ret.code == 0 then
-		require("telescope.builtin").git_files()
-	else
-		require("telescope.builtin").find_files()
-	end
+	require("telescope.builtin").find_files({ hidden = false })
 end
 
 -- Send the selected entry to the quickfix list and open the list.
@@ -25,12 +20,12 @@ local function send_to_quickfix_list(prompt_buffer_number)
 end
 
 mod.mappings = {
-  i = {
-    ["<M-C-q>"] = send_to_quickfix_list,
-  },
-  n = {
-    ["<M-C-q>"] = send_to_quickfix_list,
-  },
+	i = {
+		["<M-C-q>"] = send_to_quickfix_list,
+	},
+	n = {
+		["<M-C-q>"] = send_to_quickfix_list,
+	},
 }
 
 mod.lazy_keys = {
@@ -46,7 +41,7 @@ mod.lazy_keys = {
 	},
 	{
 		"<leader><leader>f",
-		"<cmd>lua require('telescope.builtin').find_files()<CR>",
+		"<cmd>lua require('telescope.builtin').find_files({ no_ignore = true })<CR>",
 		desc = "Quick jump to all files",
 	},
 	{
