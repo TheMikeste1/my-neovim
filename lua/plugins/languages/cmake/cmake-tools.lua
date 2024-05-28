@@ -2,10 +2,13 @@ return {
 	"Civitasv/cmake-tools.nvim",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
+		"stevearc/overseer.nvim",
 	},
-  opts = {
-    cmake_build_directory = "build"
-  },
+	opts = {
+    cmake_regenerate_on_save = false,
+		cmake_build_directory = "build",
+		cmake_kits_path = "~/.local/share/CMakeTools/cmake-tools-kits.json",
+	},
 	cmd = {
 		"CMakeGenerate",
 		"CMakeBuild",

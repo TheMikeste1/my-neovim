@@ -115,7 +115,7 @@ return {
 			-- "gosum",
 			-- "gowork",
 			"gpg",
-			-- "groovy",
+			"groovy",
 			-- "graphql",
 			-- "gstlaunch",
 			-- "hack",
