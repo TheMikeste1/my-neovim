@@ -1,3 +1,22 @@
+local FILE_NONTYPES = {
+	"fugitive",
+	"TelescopePrompt",
+	"OverseerForm",
+	"OverseerList",
+  "lazy"
+}
+
+---@return boolean
+local function is_enabled_file()
+	local filetype = vim.bo.filetype
+	for _, nontype in ipairs(FILE_NONTYPES) do
+		if filetype == nontype then
+			return false
+		end
+	end
+	return true
+end
+
 return {
 	"nvim-lualine/lualine.nvim",
 	config = function()
@@ -16,8 +35,8 @@ return {
 			},
 			sections = {
 				lualine_c = {
-					"filetype",
-					"filename",
+					{ "filetype", cond = is_enabled_file },
+					{ "filename", cond = is_enabled_file },
 				},
 				lualine_x = {
 					{
