@@ -5,8 +5,15 @@ return {
 			task_list = {
 				direction = "bottom",
 			},
+			templates = {
+				"builtin",
+				"cmakeseer",
+			},
 		})
 	end,
+	dependencies = {
+		"cmakeseer",
+	},
 	keys = {
 		{
 			"<C-t>",
