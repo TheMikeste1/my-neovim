@@ -16,34 +16,29 @@ function config(_, opts)
 	require("nvim-treesitter.configs").setup(opts)
 end
 
-local keys = {
-	{
-		"[c",
-		function()
-			require("treesitter-context").go_to_context(vim.v.count1)
-		end,
-		desc = "Jump to top of current context",
-	},
-}
-
 return {
 	"nvim-treesitter/nvim-treesitter",
 	cond = true,
 	build = ":TSUpdate",
 	cmd = { "TSUpdateSync" },
 	dependencies = {
-		"nvim-treesitter/nvim-treesitter-textobjects",
 		"RRethy/nvim-treesitter-textsubjects",
-		{
-			"nvim-treesitter/nvim-treesitter-context",
-			cond = not VSCODE,
-			opts = { mode = "cursor", max_lines = 3 },
-		},
+		"nvim-treesitter/nvim-treesitter-context",
 	},
 	event = { "BufReadPost", "BufNewFile" },
 	opts = {
 		highlight = { enable = not VSCODE },
 		indent = { enable = true },
+		autotag = { enable = true },
+		textsubjects = {
+			enable = true,
+			prev_selection = ",", -- (Optional) keymap to select the previous selection
+			keymaps = {
+				["."] = "textsubjects-smart",
+				[";"] = "textsubjects-container-outer",
+				["i;"] = "textsubjects-container-inner",
+			},
+		},
 		ensure_installed = {
 			-- "ada",
 			-- "agda",
@@ -279,17 +274,6 @@ return {
 			-- "yuck",
 			-- "zig",
 		},
-		autotag = { enable = true },
-		textsubjects = {
-			enable = true,
-			prev_selection = ",", -- (Optional) keymap to select the previous selection
-			keymaps = {
-				["."] = "textsubjects-smart",
-				[";"] = "textsubjects-container-outer",
-				["i;"] = "textsubjects-container-inner",
-			},
-		},
 	},
 	config = config,
-	keys = keys,
 }
