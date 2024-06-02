@@ -34,7 +34,11 @@ return {
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		"RRethy/nvim-treesitter-textsubjects",
-		"nvim-treesitter/nvim-treesitter-context",
+		{
+			"nvim-treesitter/nvim-treesitter-context",
+			cond = not VSCODE,
+			opts = { mode = "cursor", max_lines = 3 },
+		},
 	},
 	event = { "BufReadPost", "BufNewFile" },
 	opts = {
