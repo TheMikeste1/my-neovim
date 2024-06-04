@@ -2,6 +2,7 @@
 --  https://github.com/nvim-treesitter/nvim-treesitter-textobjects?tab=readme-ov-file#built-in-textobjects
 return {
 	"nvim-treesitter/nvim-treesitter-textobjects",
+	cond = true,
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 	},
@@ -24,17 +25,32 @@ return {
 					keymaps = {
 						["aa"] = { query = "@assignment.outer", desc = "Select outer part of a assignment" },
 						["ia"] = { query = "@assignment.inner", desc = "Select inner part of a assignment" },
-						["la"] = { query = "@assignment.lhs", desc = "Select left side of a assignment" },
-						["ra"] = { query = "@assignment.rhs", desc = "Select right side of a assignment" },
+						["hh"] = { query = "@assignment.lhs", desc = "Select left side of a assignment" },
+						["ll"] = { query = "@assignment.rhs", desc = "Select right side of a assignment" },
+						["ab"] = { query = "@block.outer", desc = "Select outer part of a block" },
+						["ib"] = { query = "@block.inner", desc = "Select inner part of a block" },
+						["aca"] = { query = "@call.outer", desc = "Select outer part of a call" },
+						["ica"] = { query = "@call.inner", desc = "Select inner part of a call" },
+						["acl"] = { query = "@class.outer", desc = "Select outer part of a class" },
+						["icl"] = { query = "@class.inner", desc = "Select inner part of a class" },
 						["af"] = { query = "@function.outer", desc = "Select outer part of a function" },
 						["if"] = { query = "@function.inner", desc = "Select inner part of a function" },
-						["ac"] = { query = "@class.outer", desc = "Select outer part of a class" },
-						["ic"] = { query = "@class.inner", desc = "Select inner part of a class" },
+						["al"] = { query = "@loop.outer", desc = "Select outer part of a loop" },
+						["il"] = { query = "@loop.inner", desc = "Select inner part of a loop" },
+						["ap"] = { query = "@parameter.outer", desc = "Select outer part of a parameter" },
+						["ip"] = { query = "@parameter.inner", desc = "Select inner part of a parameter" },
 					},
 					selection_modes = {
-						["@parameter.outer"] = "v", -- charwise
-						["@function.outer"] = "V", -- linewise
-						["@class.outer"] = "<c-v>", -- blockwise
+						-- "v" -- charwise
+						-- "V" -- linewise
+						-- "<C-v>" -- blockwise
+						["@assignment"] = "v",
+						["@block"] = "V",
+						["@call"] = "v",
+						["@class"] = "V",
+						["@function"] = "V",
+						["@loop"] = "V",
+						["@parameter"] = "v",
 					},
 					include_surrounding_whitespace = false,
 				},
