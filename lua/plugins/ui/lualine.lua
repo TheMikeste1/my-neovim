@@ -3,7 +3,7 @@ local FILE_NONTYPES = {
 	"TelescopePrompt",
 	"OverseerForm",
 	"OverseerList",
-  "lazy"
+	"lazy",
 }
 
 ---@return boolean
@@ -34,6 +34,18 @@ return {
 				"trouble",
 			},
 			sections = {
+				lualine_b = {
+					{
+						"branch",
+						fmt = function(str, context)
+							if #str > 15 then
+								return str:sub(1, 15)
+							end
+							return str
+						end,
+					},
+					"diagnostics",
+				},
 				lualine_c = {
 					{ "filetype", cond = is_enabled_file },
 					{ "filename", cond = is_enabled_file },
