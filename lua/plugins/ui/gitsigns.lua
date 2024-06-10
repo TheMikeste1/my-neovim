@@ -3,14 +3,15 @@ return {
 	config = true,
 	opts = {
 		signs = {
-			add = { text = "+" },
+			add = { text = "┃" },
 			delete = { text = "-" },
 		},
 		current_line_blame = true,
 		current_line_blame_opts = {
 			delay = 250,
 		},
-		-- numhl = true,
+		signcolumn = false,
+		numhl = true,
 	},
 	event = "VeryLazy",
 }
