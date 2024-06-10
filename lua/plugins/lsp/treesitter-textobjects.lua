@@ -25,8 +25,8 @@ return {
 					keymaps = {
 						["aa"] = { query = "@assignment.outer", desc = "Select outer part of a assignment" },
 						["ia"] = { query = "@assignment.inner", desc = "Select inner part of a assignment" },
-						["hh"] = { query = "@assignment.lhs", desc = "Select left side of a assignment" },
-						["ll"] = { query = "@assignment.rhs", desc = "Select right side of a assignment" },
+						["aah"] = { query = "@assignment.lhs", desc = "Select left side of a assignment" },
+						["aal"] = { query = "@assignment.rhs", desc = "Select right side of a assignment" },
 						["ab"] = { query = "@block.outer", desc = "Select outer part of a block" },
 						["ib"] = { query = "@block.inner", desc = "Select inner part of a block" },
 						["aca"] = { query = "@call.outer", desc = "Select outer part of a call" },
