@@ -41,7 +41,9 @@ mod.lazy_keys = {
 	},
 	{
 		"<leader><leader>f",
-		"<cmd>lua require('telescope.builtin').find_files({ no_ignore = true })<CR>",
+		function()
+			require("telescope.builtin").find_files({ no_ignore = true, hidden = true })
+		end,
 		desc = "Quick jump to all files",
 	},
 	{
@@ -51,42 +53,58 @@ mod.lazy_keys = {
 	},
 	{
 		"<M-C-F>",
-		"<cmd>lua require('telescope.builtin').live_grep()<CR>",
+		function()
+			require("telescope.builtin").live_grep()
+		end,
 		desc = "Search in files",
 	},
 	{
 		"<C-f>",
-		"<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>",
+		function()
+			require("telescope.builtin").current_buffer_fuzzy_find()
+		end,
 		desc = "Search in current buffer",
 	},
 	{
 		"<leader><leader>h",
-		"<cmd>lua require('telescope.builtin').help_tags()<CR>",
+		function()
+			require("telescope.builtin").help_tags()
+		end,
 		desc = "Search in help tags",
 	},
 	{
 		"<leader><leader>g",
-		"<cmd>lua require('telescope.builtin').git_files()<CR>",
+		function()
+			require("telescope.builtin").git_files()
+		end,
 		desc = "Search in git files",
 	},
 	{
 		"<leader><leader>s",
-		"<cmd>lua require('telescope.builtin').spell_suggest()<CR>",
+		function()
+			require("telescope.builtin").spell_suggest()
+		end,
 		desc = "Search in spell suggest",
 	},
 	{
 		"<leader><leader>c",
-		"<cmd>lua require('telescope.builtin').commands()<CR>",
+		function()
+			require("telescope.builtin").commands()
+		end,
 		desc = "Search in commands",
 	},
 	{
 		"<leader><leader>t",
-		"<cmd>lua require('telescope.builtin').treesitter()<CR>",
+		function()
+			require("telescope.builtin").treesitter()
+		end,
 		desc = "Search in treesitter",
 	},
 	{
 		"<leader><leader>m",
-		"<cmd>lua require('telescope.builtin').marks()<CR>",
+		function()
+			require("telescope.builtin").marks()
+		end,
 		desc = "Search in marks",
 	},
 }
