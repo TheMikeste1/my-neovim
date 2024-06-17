@@ -5,6 +5,7 @@ return {
 	},
 	opts = {
 		library = {
+			"neoconf",
 			"neotest",
 			"nvim-dap-ui",
 		},
