@@ -28,6 +28,7 @@ end
 
 local function config()
 	local cmp = require("cmp")
+	cmp.types = require("cmp.types")
 	local lspkind = require("lspkind")
 
 	cmp.setup({
@@ -38,6 +39,8 @@ local function config()
 			ghost_text = true,
 		},
 		formatting = {
+      expandable_indicator = true,
+      fields = { 'abbr', 'kind', 'menu' },
 			format = lspkind.cmp_format({
 				ellipsis_char = "...",
 				maxwidth = 50,
@@ -98,7 +101,13 @@ local function config()
 					disable_omnifuncs = { "v:lua.vim.lsp.omnifunc" },
 				},
 			},
-			{ name = "nvim_lsp" },
+			{
+				name = "nvim_lsp",
+				entry_filter = function(entry)
+					local kind = cmp.types.lsp.CompletionItemKind[entry:get_kind()]
+					return kind ~= "Text"
+				end,
+			},
 			-- {
 			-- 	name = "doxygen",
 			-- 	option = {
