@@ -1,6 +1,8 @@
+require("utilities.state")
+
 return {
 	"airblade/vim-rooter",
-	cond = true,
+	cond = VSCODE,
 	event = "VeryLazy",
 	config = function()
 		vim.g.rooter_patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", "*.sln" }
