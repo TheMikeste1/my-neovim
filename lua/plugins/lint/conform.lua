@@ -25,6 +25,7 @@ return {
 			cuda = { "clang-format" },
 			java = { "uncrustify", "clang-format" },
 			proto = { "clang-format" },
+			rust = { "rustfmt" },
 			-- Scripting
 			lua = { "stylua" },
 			python = { "isort", { "blackd", "black" } },
