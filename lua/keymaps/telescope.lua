@@ -52,6 +52,14 @@ mod.lazy_keys = {
 		desc = "Search for word in files",
 	},
 	{
+		"<leader>rr",
+		function()
+			require("telescope").extensions.refactoring.refactors()
+		end,
+		desc = "Show refactors",
+		mode = { "n", "x" },
+	},
+	{
 		"<M-C-F>",
 		function()
 			require("telescope.builtin").live_grep()

@@ -6,6 +6,7 @@ local keymaps = require("keymaps.telescope")
 local function config(_, opts)
 	require("telescope").setup(opts)
 	require("telescope").load_extension("cmdline")
+	require("telescope").load_extension("refactoring")
 	vim.api.nvim_create_autocmd("FileType", {
 		pattern = "TelescopeResults",
 		command = "setlocal nofoldenable",
