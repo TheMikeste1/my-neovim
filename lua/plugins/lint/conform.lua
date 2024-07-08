@@ -50,6 +50,8 @@ return {
 			-- Config Files
 			toml = { "taplo" },
 			yaml = { "yamlfix", "yamlfmt" },
+      -- Writing
+      markdown = { "mdslw", "markdownlint" }
 		},
 		-- Set up format-on-save
 		-- format_on_save = { timeout_ms = 500, lsp_fallback = true },
@@ -57,6 +59,11 @@ return {
 		formatters = {
 			shfmt = {
 				prepend_args = { "-i", "2" },
+			},
+			uncrustify = {
+				env = {
+					UNCRUSTIFY_CONFIG = vim.fn.expand("~") .. "/.githooks/config/precommit/uncrustify.cfg",
+				},
 			},
 		},
 	},
