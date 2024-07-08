@@ -1,3 +1,5 @@
+require("utilities.state")
+
 if VSCODE then
 	return
 end
@@ -43,6 +45,8 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
 		if number_backgroud ~= nil then
 			number_background_string = string.format("#%06x", number_backgroud)
 		end
+
+		vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { fg = "#993939" })
 
 		-- DAP
 		vim.api.nvim_set_hl(0, "DapBreakpoint", { fg = "#993939", bg = number_background_string })
