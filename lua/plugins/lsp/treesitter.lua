@@ -106,7 +106,7 @@ return {
 			"gitignore",
 			-- "gleam",
 			-- "glimmer",
-			-- "glsl",
+			"glsl",
 			-- "gn",
 			-- "go",
 			-- "godot_resource",
