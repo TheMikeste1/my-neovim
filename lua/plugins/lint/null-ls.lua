@@ -5,13 +5,7 @@ return {
 		local null_ls = require("null-ls")
 		null_ls.setup({
 			sources = {
-				null_ls.builtins.code_actions.gitsigns.with({
-					config = {
-						filter_actions = function(title)
-							return title:lower():match("blame") == nil -- filter out blame actions
-						end,
-					},
-				}),
+        null_ls.builtins.code_actions.gitrebase,
 				null_ls.builtins.code_actions.refactoring,
 				null_ls.builtins.completion.vsnip,
 
@@ -61,6 +55,7 @@ return {
 				null_ls.builtins.diagnostics.checkmake,
 
 				-- Markdown
+        null_ls.builtins.diagnostics.markdownlint,
 				null_ls.builtins.hover.dictionary,
 
 				-- Python
