@@ -82,7 +82,7 @@ mod.lazy_keys = {
 		desc = "Set conditional breakpoint",
 	},
 	{
-		"<F57>", -- <C-F9>
+		"<F57>", -- <M-F9>
 		function()
 			vim.fn.inputsave()
 			local log = vim.fn.input({
