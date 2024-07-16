@@ -23,8 +23,8 @@ return {
 					enable = true,
 					lookahead = true,
 					keymaps = {
-						["aa"] = { query = "@assignment.outer", desc = "Select outer part of a assignment" },
-						["ia"] = { query = "@assignment.inner", desc = "Select inner part of a assignment" },
+						["a="] = { query = "@assignment.outer", desc = "Select outer part of a assignment" },
+						["i="] = { query = "@assignment.inner", desc = "Select inner part of a assignment" },
 						["aah"] = { query = "@assignment.lhs", desc = "Select left side of a assignment" },
 						["aal"] = { query = "@assignment.rhs", desc = "Select right side of a assignment" },
 						["ab"] = { query = "@block.outer", desc = "Select outer part of a block" },
@@ -37,6 +37,7 @@ return {
 						["if"] = { query = "@function.inner", desc = "Select inner part of a function" },
 						["al"] = { query = "@loop.outer", desc = "Select outer part of a loop" },
 						["il"] = { query = "@loop.inner", desc = "Select inner part of a loop" },
+            -- FIXME: These conflict with paragraph motions
 						["ap"] = { query = "@parameter.outer", desc = "Select outer part of a parameter" },
 						["ip"] = { query = "@parameter.inner", desc = "Select inner part of a parameter" },
 					},
