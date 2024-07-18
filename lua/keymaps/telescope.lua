@@ -115,6 +115,13 @@ mod.lazy_keys = {
 		end,
 		desc = "Search in marks",
 	},
+  {
+		"<leader><leader>q",
+		function()
+			require("telescope.builtin").quickfix()
+		end,
+		desc = "Open quickfix list",
+  }
 }
 
 return mod
