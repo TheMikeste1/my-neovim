@@ -17,6 +17,14 @@ local function is_enabled_file()
 	return true
 end
 
+local function get_recording_status()
+	local reg = vim.fn.reg_recording()
+	if reg == "" then
+		return ""
+	end
+	return "Recording to " .. reg
+end
+
 return {
 	"nvim-lualine/lualine.nvim",
 	config = function()
@@ -34,6 +42,14 @@ return {
 				"trouble",
 			},
 			sections = {
+				lualine_a = {
+					{ "mode", separator = { right = "" } },
+					{
+						get_recording_status,
+						separator = { right = "" },
+						color = { bg = "#f39660" },
+					},
+				},
 				lualine_b = {
 					{
 						"branch",
