@@ -2,9 +2,10 @@ local mod = {}
 
 -- Search for a word in files.
 local function grep_search()
-	require("telescope.builtin").grep_string({
-		search = vim.fn.input("Grep > "),
-	})
+	local input = vim.fn.input("Grep > ")
+	if input ~= "" then
+		require("telescope.builtin").grep_string({ search = input })
+	end
 end
 
 -- If the current directory is a git repository, use `git_files` otherwise use `find_files`
@@ -123,13 +124,13 @@ mod.lazy_keys = {
 		end,
 		desc = "Search in marks",
 	},
-  {
+	{
 		"<leader><leader>q",
 		function()
 			require("telescope.builtin").quickfix()
 		end,
 		desc = "Open quickfix list",
-  }
+	},
 }
 
 return mod
