@@ -29,7 +29,6 @@ return {
 	opts = {
 		highlight = { enable = not VSCODE },
 		indent = { enable = true },
-		autotag = { enable = true },
 		textsubjects = {
 			enable = true,
 			prev_selection = ",", -- (Optional) keymap to select the previous selection
