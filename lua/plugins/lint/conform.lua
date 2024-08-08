@@ -47,11 +47,12 @@ return {
 			css = { "stylelint" },
 			sass = { "stylelint" },
 			xml = { "xmllint", "xmlformat" },
+			xsd = { "xmllint", "xmlformat" },
 			-- Config Files
 			toml = { "taplo" },
 			yaml = { "yamlfix", "yamlfmt" },
       -- Writing
-      markdown = { "mdslw", "markdownlint" }
+      markdown = { "mdslw", "markdownlint", "mdformat" }
 		},
 		-- Set up format-on-save
 		-- format_on_save = { timeout_ms = 500, lsp_fallback = true },
