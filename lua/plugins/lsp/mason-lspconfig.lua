@@ -1,7 +1,28 @@
 local function on_lua_init(client)
 	local path = client.workspace_folders[1].name
 	if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
-		return true
+		if not vim.loop.fs_stat(path .. "/vim.toml") then
+			-- We're not working on a vim project; go finish now
+			return true
+		end
+
+		local file_path = nil
+		if vim.loop.fs_stat(path .. "/.luarc.json") then
+			file_path = path .. "/.luarc.json"
+		elseif vim.loop.fs_stat(path .. "/.luarc.jsonc") then
+			file_path = path .. "/.luarc.jsonc"
+		end
+		assert(file_path ~= nil, "file_path was nil; this should not happen")
+
+		local file = io.open(file_path, "r")
+		if file == nil then
+			vim.notify("Unable to read luarc file `" .. file_path .. "`", vim.log.levels.ERROR)
+		else
+			local file_contents = file:read("a")
+			file:close()
+
+			client.config.settings.Lua = vim.json.decode(file_contents)
+		end
 	end
 
 	client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua or {}, {
