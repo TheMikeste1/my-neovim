@@ -23,4 +23,5 @@ end
 require("vim_setup")
 require("plugin_setup")
 require("keymap")
+require("filetype")
 require("configure_theme")

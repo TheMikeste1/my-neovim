@@ -47,6 +47,7 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
 		end
 
 		vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { fg = "#993939" })
+		vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { fg = "#ff942f" })
 
 		-- DAP
 		vim.api.nvim_set_hl(0, "DapBreakpoint", { fg = "#993939", bg = number_background_string })
