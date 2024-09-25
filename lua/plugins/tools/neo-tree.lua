@@ -17,6 +17,7 @@ return {
 			},
 			use_libuv_file_watcher = true,
 		},
+    use_popups_for_input = false,
 	},
 	dependencies = {
 		"nvim-lua/plenary.nvim",
