@@ -47,10 +47,6 @@ return {
 				null_ls.builtins.diagnostics.tidy,
 				-- null_ls.builtins.formatting.tidy,
 
-				-- Lua
-				null_ls.builtins.diagnostics.selene,
-				-- null_ls.builtins.formatting.stylua,
-
 				-- Make
 				null_ls.builtins.diagnostics.checkmake,
 

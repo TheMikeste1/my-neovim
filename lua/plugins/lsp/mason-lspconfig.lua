@@ -1,27 +1,26 @@
-local function on_lua_init(client)
-	local path = client.workspace_folders[1].name
-	if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
-		if not vim.loop.fs_stat(path .. "/vim.toml") then
-			-- We're not working on a vim project; go finish now
-			return true
-		end
+local function on_lua_nonvim_init(client, path)
+	return true
+end
 
+local function on_lua_vim_init(client, path)
+	if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
 		local file_path = nil
 		if vim.loop.fs_stat(path .. "/.luarc.json") then
 			file_path = path .. "/.luarc.json"
 		elseif vim.loop.fs_stat(path .. "/.luarc.jsonc") then
 			file_path = path .. "/.luarc.jsonc"
 		end
-		assert(file_path ~= nil, "file_path was nil; this should not happen")
 
-		local file = io.open(file_path, "r")
-		if file == nil then
-			vim.notify("Unable to read luarc file `" .. file_path .. "`", vim.log.levels.ERROR)
-		else
-			local file_contents = file:read("a")
-			file:close()
+		if file_path ~= nil then
+			local file = io.open(file_path, "r")
+			if file == nil then
+				vim.notify("Unable to read luarc file `" .. file_path .. "`", vim.log.levels.ERROR)
+			else
+				local file_contents = file:read("a")
+				file:close()
 
-			client.config.settings.Lua = vim.json.decode(file_contents)
+				client.config.settings.Lua = vim.json.decode(file_contents)
+			end
 		end
 	end
 
@@ -30,6 +29,7 @@ local function on_lua_init(client)
 			version = "LuaJIT",
 		},
 		diagnostics = {
+			disabled = { "mixed_table" },
 			globals = {
 				"vim",
 				"require",
@@ -49,6 +49,16 @@ local function on_lua_init(client)
 
 	client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
 	return true
+end
+
+local function on_lua_init(client)
+	local path = client.workspace_folders[1].name
+	local config_path = vim.fn.stdpath("config")[1]
+	if path == config_path then
+		return on_lua_nonvim_init(client, path)
+	else
+		return on_lua_vim_init(client, path)
+	end
 end
 
 return {
