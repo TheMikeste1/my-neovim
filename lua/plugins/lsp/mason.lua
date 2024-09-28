@@ -33,12 +33,10 @@ return {
 			"hadolint",
 			-- Lua
 			"lua-language-server",
-			"selene",
 			"stylua",
 			-- Make
 			"checkmake",
 			-- Python
-			"blackd-client",
 			"black",
 			"isort",
 			"pyright",
@@ -47,7 +45,6 @@ return {
 			"pylint",
 			-- Shell/Bash
 			"shellharden",
-			"shfmt",
 			"beautysh",
 			"shellcheck",
 			"bash-language-server",

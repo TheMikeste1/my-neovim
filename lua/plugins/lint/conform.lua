@@ -8,7 +8,7 @@ return {
 			function()
 				require("conform").format({ async = true, lsp_fallback = true })
 			end,
-			mode = "",
+			mode = "n",
 			desc = "Format buffer",
 		},
 	},
@@ -28,20 +28,20 @@ return {
 			rust = { "rustfmt" },
 			-- Scripting
 			lua = { "stylua" },
-			python = { "isort", { "blackd", "black" } },
+			python = { "isort", "black" },
 			-- Data
 			sql = { "sqlfluff" },
 			-- Shell
 			fish = { "fish_indent" },
-			sh = { { "beautysh", "shfmt" }, "shellharden" },
+			sh = { "beautysh", "shellharden" },
 			zsh = { "beautysh", "shellharden" },
 			-- Web
-			javascript = { "biome", { "prettierd", "prettier" } },
-			typescript = { "biome", { "prettierd", "prettier" } },
-			javascriptreact = { "biome", { "prettierd", "prettier" } },
-			typescriptreact = { "biome", { "prettierd", "prettier" } },
-			json = { "biome", { "prettierd", "prettier" } },
-			jsonc = { "biome", { "prettierd", "prettier" } },
+			javascript = { "biome", "prettier" },
+			typescript = { "biome", "prettier" },
+			javascriptreact = { "biome", { "prettier" } },
+			typescriptreact = { "biome", "prettier" },
+			json = { "biome", "prettier" },
+			jsonc = { "biome", "prettier" },
 			scss = { "stylelint" },
 			less = { "stylelint" },
 			css = { "stylelint" },
@@ -51,8 +51,8 @@ return {
 			-- Config Files
 			toml = { "taplo" },
 			yaml = { "yamlfix", "yamlfmt" },
-      -- Writing
-      markdown = { "mdslw", "markdownlint", "mdformat" }
+			-- Writing
+			markdown = { "mdslw", "markdownlint", "mdformat" },
 		},
 		-- Set up format-on-save
 		-- format_on_save = { timeout_ms = 500, lsp_fallback = true },
@@ -70,6 +70,6 @@ return {
 	},
 	init = function()
 		-- If you want the formatexpr, here is the place to set it
-		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+		vim.o.formatexpr = "v:lua.require('conform').formatexpr()"
 	end,
 }
