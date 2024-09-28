@@ -39,8 +39,8 @@ local function config()
 			ghost_text = true,
 		},
 		formatting = {
-      expandable_indicator = true,
-      fields = { 'abbr', 'kind', 'menu' },
+			expandable_indicator = true,
+			fields = { "abbr", "kind", "menu" },
 			format = lspkind.cmp_format({
 				ellipsis_char = "...",
 				maxwidth = 50,
@@ -94,13 +94,6 @@ local function config()
 		sources = cmp.config.sources({
 			{ { name = "nvim_lsp_signature_help" } },
 			{ name = "vsnip", max_item_count = 5 },
-			{ name = "copilot" },
-			{
-				name = "omni",
-				option = {
-					disable_omnifuncs = { "v:lua.vim.lsp.omnifunc" },
-				},
-			},
 			{
 				name = "nvim_lsp",
 				entry_filter = function(entry)
@@ -108,27 +101,11 @@ local function config()
 					return kind ~= "Text"
 				end,
 			},
-			-- {
-			-- 	name = "doxygen",
-			-- 	option = {
-			-- 		trigger_characters = { "@" },
-			-- 	},
-			-- },
 		}, {
-			-- {
-			-- 	name = "ctags",
-			-- 	option = {
-			-- 		executable = "ctags",
-			-- 		trigger_characters = { "." },
-			-- 		trigger_characters_ft = {},
-			-- 	},
-			-- },
 			{ name = "treesitter", max_item_count = 5 },
 		}, {
 			{ name = "path", max_item_count = 5 },
 			{ name = "buffer", max_item_count = 5 },
-			-- { name = "dynamic" },
-			-- { name = "cmp_yanky" },
 		}),
 	})
 
@@ -150,7 +127,6 @@ local function config()
 		sources = cmp.config.sources({
 			{ name = "cmdline", option = { ignore_cmds = { "Man", "!" } } },
 			{ name = "path" },
-			{ name = "nvim_lsp_document_symbol" },
 		}),
 	})
 
@@ -171,7 +147,6 @@ return {
 	event = { "InsertEnter", "CmdlineEnter" },
 	dependencies = {
 		{ "onsails/lspkind.nvim", lazy = true },
-		"hrsh7th/cmp-omni",
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
@@ -185,16 +160,7 @@ return {
 				"lua",
 			},
 		},
-		-- "delphinus/cmp-ctags",
-		{
-			"paopaol/cmp-doxygen",
-			dependencies = {
-				"nvim-treesitter/nvim-treesitter",
-				"nvim-treesitter/nvim-treesitter-textobjects",
-			},
-		},
 		"rcarriga/cmp-dap",
 		"ray-x/cmp-treesitter",
-		-- "chrisgrieser/cmp_yanky",
 	},
 }

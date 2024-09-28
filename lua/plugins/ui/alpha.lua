@@ -22,7 +22,7 @@ local function generate_dashboard()
 			end
 		end),
 		dashboard.button("c", "  Configuration", function()
-			vim.cmd.cd(vim.fn.stdpath("config"))
+			vim.cmd.tcd(vim.fn.stdpath("config"))
 		end),
 		dashboard.button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),
 		dashboard.button("q", "󰅚  Quit", "<cmd>qa<CR>"),

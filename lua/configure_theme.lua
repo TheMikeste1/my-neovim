@@ -17,23 +17,21 @@ vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSi
 vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
 vim.fn.sign_define("DiagnosticSignHint", { text = " ", texthl = "DiagnosticSignHint" })
 
-if vim.fn.has("nvim-0.10") > 0 then
-	vim.diagnostic.config({
-		signs = {
-			text = {
-				[vim.diagnostic.severity.ERROR] = "",
-				[vim.diagnostic.severity.WARN] = "",
-				[vim.diagnostic.severity.INFO] = "",
-				[vim.diagnostic.severity.HINT] = "",
-			},
-			linehl = {},
-			numhl = {
-				[vim.diagnostic.severity.ERROR] = "ErrorMsg",
-				[vim.diagnostic.severity.WARN] = "WarningMsg",
-			},
+vim.diagnostic.config({
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.INFO] = "",
+			[vim.diagnostic.severity.HINT] = "",
 		},
-	})
-end
+		linehl = {},
+		numhl = {
+			[vim.diagnostic.severity.ERROR] = "ErrorMsg",
+			[vim.diagnostic.severity.WARN] = "WarningMsg",
+		},
+	},
+})
 
 vim.api.nvim_create_autocmd({ "ColorScheme" }, {
 	callback = function()
@@ -67,6 +65,9 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
 		-- QuickScope
 		vim.api.nvim_set_hl(0, "QuickScopePrimary", { fg = "#a6f25a", underline = true })
 		vim.api.nvim_set_hl(0, "QuickScopeSecondary", { fg = "#5af2f2", underline = true })
+
+		-- Cmp
+		vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = "#7E8294", bg = "NONE", strikethrough = true })
 	end,
 })
 

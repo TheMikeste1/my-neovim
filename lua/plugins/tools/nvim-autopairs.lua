@@ -2,7 +2,6 @@ require("utilities.file_utilities")
 
 return {
 	"windwp/nvim-autopairs",
-
 	event = "InsertEnter",
 	opts = {},
 	config = function()
