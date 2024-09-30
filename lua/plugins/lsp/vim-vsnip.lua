@@ -3,5 +3,6 @@ return {
 	event = "VeryLazy",
 	dependencies = {
 		"hrsh7th/vim-vsnip-integ",
+		{ "rafamadriz/friendly-snippets" },
 	},
 }
