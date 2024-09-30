@@ -12,7 +12,7 @@ local keys = {
 
 return {
 	"nvim-treesitter/nvim-treesitter-context",
-	cond = not VSCODE,
+  cond = true,
 	opts = { mode = "cursor", max_lines = 3 },
 	keys = keys,
 }
