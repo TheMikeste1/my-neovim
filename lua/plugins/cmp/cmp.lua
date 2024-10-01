@@ -59,6 +59,7 @@ local function config()
 					spell = "[Spell]",
 					treesitter = "[Tree]",
 					vsnip = "[Snip]",
+					snippets = "[Snip]",
 				},
 				mode = "symbol_text",
 				symbol_map = { Copilot = "" },
@@ -66,8 +67,18 @@ local function config()
 		},
 		snippet = {
 			-- REQUIRED - you must specify a snippet engine
-			expand = function(args)
-				vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+			expand = function(item)
+				local snippet = item.body
+				-- <https://github.com/LazyVim/LazyVim/blob/a1c3ec4cd43fe61e3b614237a46ac92771191c81/lua/lazyvim/util/cmp.lua#L101>
+				local session = vim.snippet.active() and vim.snippet._session or nil
+				local ok, err = pcall(vim.snippet.expand, snippet)
+				if not ok then
+					vim.notify("Snippet failed to expand: " .. err)
+				end
+				-- Restore top-level session when needed
+				if session then
+					vim.snippet._session = session
+				end
 			end,
 		},
 		window = {
@@ -93,7 +104,7 @@ local function config()
 		preselect = cmp.PreselectMode.None,
 		sources = cmp.config.sources({
 			{ { name = "nvim_lsp_signature_help" } },
-			{ name = "vsnip", max_item_count = 5 },
+			{ name = "snippets", max_item_count = 5 },
 			{
 				name = "nvim_lsp",
 				entry_filter = function(entry)
@@ -151,7 +162,6 @@ return {
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-cmdline",
-		"hrsh7th/cmp-vsnip",
 		"hrsh7th/cmp-nvim-lsp-document-symbol",
 		"hrsh7th/cmp-nvim-lsp-signature-help",
 		{
@@ -162,5 +172,6 @@ return {
 		},
 		"rcarriga/cmp-dap",
 		"ray-x/cmp-treesitter",
+		"garymjr/nvim-snippets",
 	},
 }

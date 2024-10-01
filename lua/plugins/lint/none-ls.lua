@@ -7,7 +7,6 @@ return {
 			sources = {
         null_ls.builtins.code_actions.gitrebase,
 				null_ls.builtins.code_actions.refactoring,
-				null_ls.builtins.completion.vsnip,
 
 				null_ls.builtins.completion.spell,
 				null_ls.builtins.diagnostics.dotenv_linter,
