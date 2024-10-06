@@ -1,26 +1,29 @@
+local function open_session()
+	local cwd = vim.loop.cwd()
+	if cwd then
+		local session = require("session_manager.config").dir_to_session_filename(cwd)
+		if session:exists() then
+			require("session_manager").load_current_dir_session(true)
+		else
+			print("No session found for " .. cwd)
+		end
+	else
+		print("Cannot load session; no cwd found")
+	end
+end
+
 local function generate_dashboard()
 	local screen = require("alpha.themes.theta")
 	local dashboard = require("alpha.themes.dashboard")
 
+  screen.leader = "\\"
 	screen.buttons.val = {
 		{ type = "text", val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
 		{ type = "padding", val = 1 },
 		dashboard.button("e", "  New file", "<cmd>ene<CR>"),
 		dashboard.button("<C-p>", "󰈞  Find file"),
 		dashboard.button("<M-C-F>", "󰊄  Live grep"),
-		dashboard.button("s", "  Open last session", function()
-			local cwd = vim.loop.cwd()
-			if cwd then
-				local session = require("session_manager.config").dir_to_session_filename(cwd)
-				if session:exists() then
-					require("session_manager").load_current_dir_session(true)
-				else
-					print("No session found for " .. cwd)
-				end
-			else
-				print("Cannot load session; no cwd found")
-			end
-		end),
+		dashboard.button("s", "  Open last session", open_session),
 		dashboard.button("c", "  Configuration", function()
 			vim.cmd.tcd(vim.fn.stdpath("config"))
 		end),

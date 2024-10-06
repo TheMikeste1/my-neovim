@@ -1,3 +1,29 @@
+local function format(entry, vim_item)
+	return require("lspkind").cmp_format({
+		ellipsis_char = "...",
+		maxwidth = 50,
+		menu = {
+			copilot = "[Copilot]",
+			async_path = "[Path]",
+			buffer = "[Buffer]",
+			bufferlines = "[BufferLine]",
+			ctags = "[CTags]",
+			doxygen = "[Doxygen]",
+			dynamic = "[Dynamic]",
+			nvim_lsp = "[LSP]",
+			nvim_lsp_document_symbol = "[DocSymbol]",
+			nvim_lua = "[NVim]",
+			omni = "[Omni]",
+			spell = "[Spell]",
+			treesitter = "[Tree]",
+			vsnip = "[Snip]",
+			snippets = "[Snip]",
+		},
+		mode = "symbol",
+		symbol_map = { Copilot = "" },
+	})(entry, vim_item)
+end
+
 -- <https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#safely-select-entries-with-cr>
 local function on_enter(fallback)
 	local cmp = require("cmp")
@@ -29,7 +55,6 @@ end
 local function config()
 	local cmp = require("cmp")
 	cmp.types = require("cmp.types")
-	local lspkind = require("lspkind")
 
 	cmp.setup({
 		enabled = function()
@@ -41,29 +66,7 @@ local function config()
 		formatting = {
 			expandable_indicator = true,
 			fields = { "abbr", "kind", "menu" },
-			format = lspkind.cmp_format({
-				ellipsis_char = "...",
-				maxwidth = 50,
-				menu = {
-					copilot = "[Copilot]",
-					async_path = "[Path]",
-					buffer = "[Buffer]",
-					bufferlines = "[BufferLine]",
-					ctags = "[CTags]",
-					doxygen = "[Doxygen]",
-					dynamic = "[Dynamic]",
-					nvim_lsp = "[LSP]",
-					nvim_lsp_document_symbol = "[DocSymbol]",
-					nvim_lua = "[NVim]",
-					omni = "[Omni]",
-					spell = "[Spell]",
-					treesitter = "[Tree]",
-					vsnip = "[Snip]",
-					snippets = "[Snip]",
-				},
-				mode = "symbol_text",
-				symbol_map = { Copilot = "" },
-			}),
+			format = format,
 		},
 		snippet = {
 			-- REQUIRED - you must specify a snippet engine
@@ -173,5 +176,6 @@ return {
 		"rcarriga/cmp-dap",
 		"ray-x/cmp-treesitter",
 		"garymjr/nvim-snippets",
+		"nvim-tree/nvim-web-devicons",
 	},
 }
