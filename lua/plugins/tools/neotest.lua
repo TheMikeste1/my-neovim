@@ -39,6 +39,15 @@ return {
 			},
 		})
 	end,
+	keys = {
+		{
+			"<leader><leader>t",
+			function()
+				require("neotest").summary.toggle()
+			end,
+			desc = "Toggle Neotest summary",
+		},
+	},
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"antoinemadec/FixCursorHold.nvim",

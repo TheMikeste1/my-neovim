@@ -20,12 +20,14 @@ return {
 			function()
 				require("overseer").toggle()
 			end,
+			desc = "Toggle Overseer",
 		},
 		{
 			"<C-M-t>",
 			function()
 				require("overseer").run_template()
 			end,
+			desc = "Run Overseer template",
 		},
 	},
 	cmd = {
