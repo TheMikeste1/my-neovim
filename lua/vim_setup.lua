@@ -49,12 +49,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- Folding
-vim.opt.foldenable = true
-vim.opt.foldmethod = "indent"
-vim.opt.foldlevelstart = 99
-vim.opt.foldcolumn = "1"
-
 -- Prepend mise shims to PATH
 vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 

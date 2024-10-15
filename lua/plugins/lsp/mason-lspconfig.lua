@@ -66,6 +66,10 @@ return {
 	config = function()
 		local lspconfig = require("lspconfig")
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		capabilities.textDocument.foldingRange = { -- Used by nvim-ufo
+			dynamicRegistration = false,
+			lineFoldingOnly = true,
+		}
 		local mason_lspconfig = require("mason-lspconfig")
 		mason_lspconfig.setup({
 			automatic_installation = true,

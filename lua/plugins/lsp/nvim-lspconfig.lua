@@ -1,3 +1,10 @@
+local function hover()
+	local winid = require("ufo").peekFoldedLinesUnderCursor()
+	if not winid then
+		vim.lsp.buf.hover()
+	end
+end
+
 local function config()
 	-- Global mappings.
 	-- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -17,7 +24,7 @@ local function config()
 			-- See `:help vim.lsp.*` for documentation on any of the below functions
 			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = ev.buf, desc = "Go to declaration" })
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = ev.buf, desc = "Go to definition" })
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Hover info" })
+			vim.keymap.set("n", "K", hover, { buffer = ev.buf, desc = "Hover info" })
 			vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = ev.buf, desc = "Go to implementation" })
 			vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { buffer = ev.buf, desc = "Get signature help" })
 			vim.keymap.set(
