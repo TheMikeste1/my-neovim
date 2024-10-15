@@ -131,6 +131,20 @@ mod.lazy_keys = {
 		end,
 		desc = "Open quickfix list",
 	},
+	{
+		"<leader>xx",
+		function()
+			require("telescope.builtin").diagnostics(require("telescope.themes").get_ivy({}))
+		end,
+		desc = "Diagnostics",
+	},
+	{
+		"<leader>xX",
+		function()
+			require("telescope.builtin").diagnostics(require("telescope.themes").get_ivy({ bufnr = 0 }))
+		end,
+		desc = "Buffer Diagnostics",
+	},
 }
 
 return mod
