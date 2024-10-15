@@ -53,6 +53,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 
 vim.opt.autoread = true
+vim.opt.autowrite = true
 
 vim.opt.signcolumn = "yes:2"
 vim.opt.statuscolumn = "%=%l%s%C"
+
