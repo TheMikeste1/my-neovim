@@ -25,4 +25,7 @@ return {
 			desc = "Buffer Diagnostics (Trouble)",
 		},
 	},
+  cmd = {
+    "Trouble"
+  }
 }
