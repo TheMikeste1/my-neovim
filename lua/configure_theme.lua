@@ -4,7 +4,7 @@ if VSCODE then
 	return
 end
 
-local theme = "sonokai"
+local theme = "everforest"
 
 vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DapBreakpoint" })
 vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "DapBreakpoint" })
