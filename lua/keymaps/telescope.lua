@@ -111,7 +111,7 @@ mod.lazy_keys = {
 		desc = "Search in commands",
 	},
 	{
-		"<leader><leader>t",
+		"<leader><leader>T",
 		function()
 			require("telescope.builtin").treesitter()
 		end,
