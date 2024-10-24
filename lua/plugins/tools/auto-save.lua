@@ -4,6 +4,7 @@ return {
 		execution_message = {
 			message = "", -- Disable the message output
 		},
+		trigger_events = { "InsertLeave", "TextChanged" },
 	},
 	lazy = false,
 }

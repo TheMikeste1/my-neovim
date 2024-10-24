@@ -79,17 +79,17 @@ return {
 					lspconfig[server_name].setup({ capabilities = capabilities })
 				end,
 				["rust_analyzer"] = function()
-					lspconfig.rust_analyzer.setup({
-						capabilities = capabilities,
-						settings = {
-							["rust-analyzer"] = {
-								checkOnSave = true,
-								check = {
-									command = "clippy",
-								},
-							},
-						},
-					})
+					-- lspconfig.rust_analyzer.setup({
+					-- 	capabilities = capabilities,
+					-- 	settings = {
+					-- 		["rust-analyzer"] = {
+					-- 			checkOnSave = true,
+					-- 			check = {
+					-- 				command = "clippy",
+					-- 			},
+					-- 		},
+					-- 	},
+					-- })
 				end,
 				["bashls"] = function()
 					lspconfig.bashls.setup({

@@ -8,7 +8,8 @@ return {
 	config = function()
 		require("neotest").setup({
 			adapters = {
-				require("neotest-rust"),
+				-- require("neotest-rust"),
+        require('rustaceanvim.neotest'),
 				require("neotest-dotnet"),
 				require("neotest-gtest").setup({
 					is_test_file = function(file)
