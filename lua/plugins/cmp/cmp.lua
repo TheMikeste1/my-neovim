@@ -45,11 +45,32 @@ local function on_tab(fallback)
 		else
 			cmp.confirm()
 		end
-
-		return
+	elseif vim.snippet.active({ direction = 1 }) then
+		vim.schedule(function()
+			vim.snippet.jump(1)
+		end)
+	else
+		fallback()
 	end
+end
 
-	fallback()
+local function on_back_tab(fallback)
+	local cmp = require("cmp")
+	-- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
+	if cmp.visible() then
+		local entry = cmp.get_selected_entry()
+		if not entry then
+			cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+		else
+			cmp.confirm()
+		end
+	elseif vim.snippet.active({ direction = -1 }) then
+		vim.schedule(function()
+			vim.snippet.jump(-1)
+		end)
+	else
+		fallback()
+	end
 end
 
 local function config()
@@ -98,6 +119,7 @@ local function config()
 			["<M-n>"] = cmp.mapping.scroll_docs(4),
 			["<C-e>"] = cmp.mapping.abort(),
 			["<TAB>"] = cmp.mapping(on_tab, { "i", "s", "c" }),
+			["<S-TAB>"] = cmp.mapping(on_back_tab, { "i", "s", "c" }),
 			["<CR>"] = cmp.mapping({
 				i = on_enter,
 				s = cmp.mapping.confirm({ select = false }),
