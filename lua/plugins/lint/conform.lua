@@ -26,6 +26,7 @@ return {
 			java = { "uncrustify", "clang-format" },
 			proto = { "clang-format" },
 			rust = { "rustfmt" },
+			zig = { "zigfmt" },
 			-- Scripting
 			lua = { "stylua" },
 			python = { "isort", "black" },
