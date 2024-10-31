@@ -2,7 +2,7 @@ return {
 	"sainnhe/everforest",
 	priority = 1000,
 	lazy = true,
-	opts = {
-		transparent_background_level = 2,
-	},
+	init = function()
+		-- vim.g.everforest_transparent_background = 1
+	end,
 }

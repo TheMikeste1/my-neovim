@@ -106,6 +106,8 @@ return {
 							"--header-insertion=iwyu",
 							"--header-insertion-decorators",
 							"--import-insertions",
+							"-j=8",
+							"--malloc-trim",
 						},
 					})
 				end,
