@@ -68,3 +68,6 @@ vim.api.nvim_create_autocmd("TabNewEntered", {
 })
 
 vim.cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh({ bufnr = 0 })]])
+
+vim.opt.list = true
+vim.opt.listchars = "tab:!·,trail:·,nbsp:+"
