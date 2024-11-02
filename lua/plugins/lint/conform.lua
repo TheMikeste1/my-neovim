@@ -67,6 +67,11 @@ return {
 					UNCRUSTIFY_CONFIG = vim.fn.expand("~") .. "/.githooks/config/precommit/uncrustify.cfg",
 				},
 			},
+			cmake_format = {
+				args = {
+					"-c=~/.githooks/config/precommit/cmake-format.yaml",
+				},
+			},
 		},
 	},
 	init = function()
