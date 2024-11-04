@@ -1,5 +1,5 @@
 return {
-	"sainnhe/sonokai",
-	priority = 1000,
-	lazy = true,
+  "sainnhe/sonokai",
+  priority = 1000,
+  lazy = true,
 }

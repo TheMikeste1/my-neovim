@@ -1,8 +1,8 @@
 return {
-	"mfussenegger/nvim-lint",
+  "mfussenegger/nvim-lint",
   enabled = false,
-	opts = {},
-	config = function()
-		-- TODO: Add lint configurations
-	end,
+  opts = {},
+  config = function()
+    -- TODO: Add lint configurations
+  end,
 }

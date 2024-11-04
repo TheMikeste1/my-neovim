@@ -1,5 +1,5 @@
 return {
-	"romainl/Apprentice",
-	priority = 1000,
-	lazy = true,
+  "romainl/Apprentice",
+  priority = 1000,
+  lazy = true,
 }

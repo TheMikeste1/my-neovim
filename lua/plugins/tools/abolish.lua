@@ -1,4 +1,4 @@
 return {
-	"tpope/vim-abolish",
-	cond = true,
+  "tpope/vim-abolish",
+  cond = true,
 }

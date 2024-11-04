@@ -13,14 +13,14 @@ vim.opt.undofile = true
 
 -- Use system clipboard
 if vim.fn.has("unamedplus") then
-	vim.opt.clipboard = "unnamedplus"
+  vim.opt.clipboard = "unnamedplus"
 else
-	vim.opt.clipboard = "unnamed"
+  vim.opt.clipboard = "unnamed"
 end
 
 -- Set GUI colors if in the terminal
 if not VSCODE and vim.fn.has("termguicolors") then
-	vim.opt.termguicolors = true
+  vim.opt.termguicolors = true
 end
 
 -- Use relative numbers in the gutter
@@ -41,12 +41,12 @@ vim.opt.spelllang = { "en_us" }
 
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-	group = vim.api.nvim_create_augroup("highlight_yank", {}),
-	desc = "Hightlight selection on yank",
-	pattern = "*",
-	callback = function()
-		vim.highlight.on_yank()
-	end,
+  group = vim.api.nvim_create_augroup("highlight_yank", {}),
+  desc = "Hightlight selection on yank",
+  pattern = "*",
+  callback = function()
+    vim.highlight.on_yank()
+  end,
 })
 
 -- Prepend mise shims to PATH
@@ -59,12 +59,12 @@ vim.opt.signcolumn = "yes:2"
 vim.opt.statuscolumn = "%=%l%s%C"
 
 vim.api.nvim_create_autocmd("TabNewEntered", {
-	group = vim.api.nvim_create_augroup("default_tab", {}),
-	desc = "Open Alpha on new tab",
-	pattern = "*",
-	callback = function()
-		vim.cmd("Alpha")
-	end,
+  group = vim.api.nvim_create_augroup("default_tab", {}),
+  desc = "Open Alpha on new tab",
+  pattern = "*",
+  callback = function()
+    vim.cmd("Alpha")
+  end,
 })
 
 vim.cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh({ bufnr = 0 })]])

@@ -1,5 +1,5 @@
 return {
-	"folke/neoconf.nvim",
-	opts = {},
-	event = "VeryLazy",
+  "folke/neoconf.nvim",
+  opts = {},
+  event = "VeryLazy",
 }

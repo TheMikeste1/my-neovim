@@ -1,5 +1,5 @@
 return {
-	"doums/darcula",
-	priority = 1000,
-	lazy = true,
+  "doums/darcula",
+  priority = 1000,
+  lazy = true,
 }

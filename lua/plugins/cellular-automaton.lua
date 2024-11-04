@@ -1,9 +1,9 @@
 return {
-	"Eandrju/cellular-automaton.nvim",
+  "Eandrju/cellular-automaton.nvim",
   cmd = {
-    "CellularAutomaton"
+    "CellularAutomaton",
   },
   dependencies = {
-    "nvim-treesitter/nvim-treesitter"
-  }
+    "nvim-treesitter/nvim-treesitter",
+  },
 }
