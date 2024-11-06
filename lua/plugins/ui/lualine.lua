@@ -1,4 +1,7 @@
 local FILE_NONTYPES = {
+  "alpha",
+  "notify",
+  "noice",
   "fugitive",
   "TelescopePrompt",
   "OverseerForm",
@@ -32,9 +35,8 @@ return {
       options = {
         globalstatus = true,
         disabled_filetypes = {
-          statusline = {
-            "alpha",
-          },
+          statusline = {},
+          winbar = FILE_NONTYPES,
         },
       },
       extensions = {
