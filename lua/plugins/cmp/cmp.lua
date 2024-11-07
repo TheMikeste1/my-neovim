@@ -28,7 +28,7 @@ end
 local function on_enter(fallback)
   local cmp = require("cmp")
   if cmp.visible() and cmp.get_active_entry() then
-    cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+    cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = false })
   else
     fallback()
   end
