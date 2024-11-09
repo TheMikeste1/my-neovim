@@ -1,8 +1,26 @@
+require("utilities.state")
+
 local function hover()
   local winid = require("ufo").peekFoldedLinesUnderCursor()
   if not winid then
     vim.lsp.buf.hover()
   end
+end
+
+local function lsp_gdscript()
+  local capabilities = require("cmp_nvim_lsp").default_capabilities()
+  capabilities.textDocument.foldingRange = { -- Used by nvim-ufo
+    dynamicRegistration = false,
+    lineFoldingOnly = true,
+  }
+  local opts = {
+    capabilities = capabilities,
+    filetypes = { "gd", "gdscript", "gdscript3" },
+  }
+  if IS_WSL then
+    opts.cmd = { "godot-wsl-lsp", "--useMirroredNetworking" }
+  end
+  require("lspconfig").gdscript.setup(opts)
 end
 
 local function config()
@@ -13,15 +31,7 @@ local function config()
   vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
   vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, { desc = "Set location list" })
 
-  local capabilities = require("cmp_nvim_lsp").default_capabilities()
-  capabilities.textDocument.foldingRange = { -- Used by nvim-ufo
-    dynamicRegistration = false,
-    lineFoldingOnly = true,
-  }
-  require("lspconfig").gdscript.setup({
-    capabilities = capabilities,
-    filetypes = { "gd", "gdscript", "gdscript3" },
-  })
+  lsp_gdscript()
 
   -- Use LspAttach autocommand to only map the following keys
   -- after the language server attaches to the current buffer
