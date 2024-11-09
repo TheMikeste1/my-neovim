@@ -10,7 +10,7 @@ return {
 
         null_ls.builtins.completion.spell,
         null_ls.builtins.diagnostics.dotenv_linter,
-        null_ls.builtins.diagnostics.editorconfig_checker,
+        -- null_ls.builtins.diagnostics.editorconfig_checker,
         null_ls.builtins.diagnostics.trail_space,
         null_ls.builtins.code_actions.refactoring,
 
@@ -31,6 +31,9 @@ return {
 
         -- Fish
         null_ls.builtins.diagnostics.fish,
+
+        -- Godot
+        null_ls.builtins.diagnostics.gdlint,
 
         -- HTML/XML
         null_ls.builtins.diagnostics.tidy,

@@ -13,6 +13,7 @@ return {
     },
   },
   opts = {
+    -- log_level = vim.log.levels.DEBUG,
     -- Conform will run multiple formatters sequentially
     -- Use a sub-list to run only the first available formatter
     formatters_by_ft = {
@@ -23,6 +24,7 @@ return {
       cpp = { "uncrustify", "clang-format" },
       cs = { "uncrustify", "clang-format" },
       cuda = { "clang-format" },
+      gdscript = { "gdformat" },
       java = { "uncrustify", "clang-format" },
       proto = { "clang-format" },
       rust = { "rustfmt" },
@@ -70,6 +72,12 @@ return {
       cmake_format = {
         args = {
           "-c=~/.githooks/config/precommit/cmake-format.yaml",
+        },
+      },
+      gdformat = {
+        args = {
+          "--use-spaces=2",
+          "-",
         },
       },
     },

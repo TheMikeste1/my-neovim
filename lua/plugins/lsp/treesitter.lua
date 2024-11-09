@@ -88,7 +88,7 @@ return {
       -- "fsh",
       -- "func",
       -- "fusion",
-      -- "gdscript",
+      "gdscript",
       "git_rebase",
       "gitattributes",
       "gitcommit",

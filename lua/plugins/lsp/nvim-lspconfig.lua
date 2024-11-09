@@ -13,6 +13,16 @@ local function config()
   vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
   vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, { desc = "Set location list" })
 
+  local capabilities = require("cmp_nvim_lsp").default_capabilities()
+  capabilities.textDocument.foldingRange = { -- Used by nvim-ufo
+    dynamicRegistration = false,
+    lineFoldingOnly = true,
+  }
+  require("lspconfig").gdscript.setup({
+    capabilities = capabilities,
+    filetypes = { "gd", "gdscript", "gdscript3" },
+  })
+
   -- Use LspAttach autocommand to only map the following keys
   -- after the language server attaches to the current buffer
   vim.api.nvim_create_autocmd("LspAttach", {
