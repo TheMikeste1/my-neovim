@@ -1,4 +1,4 @@
-require("utilities.file_utilities")
+local FileUtilities = require("utilities.file_utilities")
 
 return {
   "mbbill/undotree",
@@ -8,7 +8,7 @@ return {
       local target_path = vim.fn.expand("~/.undodir")
 
       -- Create the directory and any parent directories if the location does not exist.
-      if not IsDirectory(target_path) then
+      if not FileUtilities.isDirectory(target_path) then
         vim.fn.mkdir(target_path, "p", tonumber("700", 8))
       end
 

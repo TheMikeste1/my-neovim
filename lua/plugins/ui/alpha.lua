@@ -41,8 +41,9 @@ return {
     end
 
     -- If the argument is a directory, start the dashboard
+    local FileUtilities = require("utilities.file_utilities")
     local arg = vim.fn.argv()[1]
-    if not IsDirectory(arg) then
+    if not FileUtilities.isDirectory(arg) then
       return
     end
 

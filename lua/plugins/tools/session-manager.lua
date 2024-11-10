@@ -24,7 +24,8 @@ local function autoload()
 
       -- If a file is provided, don't load the session
       -- However, load the session if a directory is provided
-      if not IsDirectory(vim.fn.expand("%:p:h")) then
+      local FileUtilities = require("utilities.file_utilities")
+      if not FileUtilities.isDirectory(vim.fn.expand("%:p:h")) then
         return
       end
 

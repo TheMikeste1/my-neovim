@@ -8,7 +8,7 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 -- More undos
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undodir = (os.getenv("HOME") or os.getenv("UserProfile")) .. "/.vim/undodir"
 vim.opt.undofile = true
 
 -- Use system clipboard
@@ -71,3 +71,9 @@ vim.cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.
 
 vim.opt.list = true
 vim.opt.listchars = "tab:!·,trail:·,nbsp:+"
+
+vim.filetype.add({
+  extension = {
+    godot = "gdresource",
+  },
+})
