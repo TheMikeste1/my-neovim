@@ -1,6 +1,10 @@
 -- We won't use the default style
 vim.g.gdscript_recommended_style = false
 
+if VSCODE then
+  return
+end
+
 local dap = require("dap")
 dap.adapters.godot = {
   type = "server",
