@@ -4,11 +4,20 @@ return {
   dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
   keys = {
     {
-      "<leader>a",
+      "<leader>ah",
       function()
         require("harpoon"):list():add()
+        vim.notify("Added file to harpoon")
       end,
       desc = "Add file to harpoon",
+    },
+    {
+      "<leader>dh",
+      function()
+        require("harpoon"):list():remove()
+        vim.notify("Removed file from harpoon")
+      end,
+      desc = "Remove file from harpoon",
     },
     {
       "<M-Esc>", -- <C-M-[>
@@ -81,6 +90,41 @@ return {
         harpoon:list():select(4)
       end,
       desc = "Fourth harpoon file",
+    },
+    {
+      "<leader>d1",
+      function()
+        local harpoon = require("harpoon")
+        harpoon:list():remove_at(1)
+        vim.notify("Removed harpoon 2")
+      end,
+      desc = "Remove first harpoon file",
+    },
+    {
+      "<leader>d2",
+      function()
+        local harpoon = require("harpoon")
+        harpoon:list():remove_at(2)
+      end,
+      desc = "Remove second harpoon file",
+    },
+    {
+      "<leader>d3",
+      function()
+        local harpoon = require("harpoon")
+        harpoon:list():remove_at(3)
+        vim.notify("Removed harpoon 3")
+      end,
+      desc = "Remove third harpoon file",
+    },
+    {
+      "<leader>d4",
+      function()
+        local harpoon = require("harpoon")
+        harpoon:list():remove_at(4)
+        vim.notify("Removed harpoon 4")
+      end,
+      desc = "Remove fourth harpoon file",
     },
   },
 }
