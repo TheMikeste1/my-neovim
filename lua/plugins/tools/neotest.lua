@@ -49,6 +49,9 @@ return {
       desc = "Toggle Neotest summary",
     },
   },
+  cmd = {
+    "Neotest",
+  },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "antoinemadec/FixCursorHold.nvim",

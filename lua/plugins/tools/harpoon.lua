@@ -20,6 +20,14 @@ return {
       desc = "Remove file from harpoon",
     },
     {
+      "<leader>ch",
+      function()
+        require("harpoon"):list():clear()
+        vim.notify("Cleared harpoon")
+      end,
+      desc = "Clear harpoon",
+    },
+    {
       "<M-Esc>", -- <C-M-[>
       function()
         local harpoon = require("harpoon")
