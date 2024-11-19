@@ -61,45 +61,49 @@ local function on_lua_init(client)
   end
 end
 
+local function setup_lsp(server, opts)
+  local lspconfig = require("lspconfig")
+  local capabilities = require("cmp_nvim_lsp").default_capabilities()
+  capabilities.textDocument.foldingRange = { -- Used by nvim-ufo
+    dynamicRegistration = false,
+    lineFoldingOnly = true,
+  }
+
+  opts = opts or {}
+  opts.capabilities = capabilities
+  lspconfig[server].setup(opts)
+end
+
 return {
   "williamboman/mason-lspconfig.nvim",
   config = function()
-    local lspconfig = require("lspconfig")
-    local capabilities = require("cmp_nvim_lsp").default_capabilities()
-    capabilities.textDocument.foldingRange = { -- Used by nvim-ufo
-      dynamicRegistration = false,
-      lineFoldingOnly = true,
-    }
     local mason_lspconfig = require("mason-lspconfig")
     mason_lspconfig.setup({
       automatic_installation = true,
       handlers = {
         -- Default
         function(server_name)
-          lspconfig[server_name].setup({ capabilities = capabilities })
+          setup_lsp(server_name)
         end,
         ["rust_analyzer"] = function()
-          -- lspconfig.rust_analyzer.setup({
-          -- 	capabilities = capabilities,
-          -- 	settings = {
-          -- 		["rust-analyzer"] = {
-          -- 			checkOnSave = true,
-          -- 			check = {
-          -- 				command = "clippy",
-          -- 			},
-          -- 		},
-          -- 	},
+          -- setup_lsp("rust_analyzer", {
+          --   settings = {
+          --     ["rust-analyzer"] = {
+          --       checkOnSave = true,
+          --       check = {
+          --         command = "clippy",
+          --       },
+          --     },
+          --   },
           -- })
         end,
         ["bashls"] = function()
-          lspconfig.bashls.setup({
-            capabilities = capabilities,
+          setup_lsp("bashls", {
             filetypes = { "bash", "sh", "zsh" },
           })
         end,
         ["clangd"] = function()
-          lspconfig.clangd.setup({
-            capabilities = capabilities,
+          setup_lsp("clangd", {
             cmd = {
               "clangd",
               "--offset-encoding=utf-16",
@@ -111,14 +115,12 @@ return {
           })
         end,
         ["lua_ls"] = function()
-          lspconfig.lua_ls.setup({
-            capabilities = capabilities,
+          setup_lsp("lua_ls", {
             on_init = on_lua_init,
           })
         end,
         ["zls"] = function()
-          lspconfig.zls.setup({
-            capabilities = capabilities,
+          setup_lsp("zls", {
             settings = {
               enable_build_on_save = true,
               inlay_hints_hide_redundant_param_names = true,
@@ -131,8 +133,6 @@ return {
   end,
   dependencies = {
     "williamboman/mason.nvim",
-    "neovim/nvim-lspconfig",
-    "hrsh7th/cmp-nvim-lsp",
     "folke/neoconf.nvim",
   },
 }

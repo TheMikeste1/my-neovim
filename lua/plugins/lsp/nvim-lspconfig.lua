@@ -78,6 +78,7 @@ return {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "folke/neoconf.nvim",
+    "hrsh7th/cmp-nvim-lsp",
     "nvim-telescope/telescope.nvim",
   },
 }
