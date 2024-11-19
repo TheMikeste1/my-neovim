@@ -1,3 +1,4 @@
+-- https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md
 return {
   "nvimtools/none-ls.nvim",
   config = function()
@@ -18,7 +19,26 @@ return {
         null_ls.builtins.diagnostics.ansiblelint,
 
         -- C++
-        null_ls.builtins.diagnostics.cppcheck,
+        null_ls.builtins.diagnostics.cppcheck.with({
+          args = {
+            "--enable=warning,performance,portability,information",
+            "--template=gcc",
+            "--disable=missingInclude",
+            "--suppress=unknownMacro",
+            "--suppress=checkersReport",
+            "--suppress=normalCheckLevelMaxBranches",
+            "--suppress=unmatchedSuppression",
+            "--language=c++",
+            "--inline-suppr",
+            "--force",
+            "--library=googletest",
+            "-j",
+            "8",
+            "--cppcheck-build-dir=./.cache/cppcheck",
+            -- "--project=./build/compile_commands.json",
+            "$FILENAME",
+          },
+        }),
 
         -- CMake
         null_ls.builtins.diagnostics.cmake_lint,
