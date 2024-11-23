@@ -1,5 +1,9 @@
 return {
   "cmakeseer",
   dir = "~/projects/cmakeseer",
-  config = function() end,
+  opts = {
+    kit_paths = {
+      vim.fn.expand("~/.local/share/CMakeTools/cmake-tools-kits.json"),
+    },
+  },
 }
