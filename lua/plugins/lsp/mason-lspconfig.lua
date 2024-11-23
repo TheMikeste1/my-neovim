@@ -1,29 +1,8 @@
-local function on_lua_nonvim_init(client, path)
+local function on_lua_nonvim_init(_client, _path)
   return true
 end
 
-local function on_lua_vim_init(client, path)
-  if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
-    local file_path = nil
-    if vim.loop.fs_stat(path .. "/.luarc.json") then
-      file_path = path .. "/.luarc.json"
-    elseif vim.loop.fs_stat(path .. "/.luarc.jsonc") then
-      file_path = path .. "/.luarc.jsonc"
-    end
-
-    if file_path ~= nil then
-      local file = io.open(file_path, "r")
-      if file == nil then
-        vim.notify("Unable to read luarc file `" .. file_path .. "`", vim.log.levels.ERROR)
-      else
-        local file_contents = file:read("a")
-        file:close()
-
-        client.config.settings.Lua = vim.json.decode(file_contents)
-      end
-    end
-  end
-
+local function on_lua_vim_init(client, _path)
   client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua or {}, {
     runtime = {
       version = "LuaJIT",
@@ -39,26 +18,67 @@ local function on_lua_vim_init(client, path)
       checkThirdParty = true,
       library = vim.api.nvim_get_runtime_file("", true),
     },
-    doc = {
-      privateName = { "^_" },
-    },
-    telemetry = {
-      enable = false,
-    },
   })
 
   client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
   return true
 end
 
+---@param path string The path to the project.
+---@return boolean is_project If the current project is for Neovim or a Neovim plugin.
+local function lua_is_vim_project(path)
+  -- Sometimes I'm naughty and symlink my config folder 🤐
+  path = vim.fn.resolve(vim.fn.expand(path))
+  local config_paths = vim.fn.stdpath("config")
+  if type(config_paths) ~= "table" then
+    config_paths = { config_paths }
+  end
+
+  for _, config_path in ipairs(config_paths) do
+    config_path = vim.fn.resolve(vim.fn.expand(config_path))
+    if path == config_path then
+      return true
+    end
+  end
+  return false
+end
+
 local function on_lua_init(client)
+  client.config.settings.Lua = client.config.settings.Lua or {}
+
+  ---@type string
   local path = client.workspace_folders[1].name
-  local config_path = vim.fn.stdpath("config")[1]
-  if path == config_path then
-    return on_lua_nonvim_init(client, path)
-  else
+
+  -- Load settings
+  local luarc_exists = vim.loop.fs_stat(path .. "/.luarc.json")
+  local luarc_c_exists = vim.loop.fs_stat(path .. "/.luarc.jsonc")
+  if luarc_exists or luarc_c_exists then
+    local file_path = nil
+    if luarc_exists then
+      file_path = path .. "/.luarc.json"
+    elseif luarc_c_exists then
+      file_path = path .. "/.luarc.jsonc"
+    end
+
+    assert(file_path, "file_path is nil, but one of the configs exists???")
+
+    local file = io.open(file_path, "r")
+    if file == nil then
+      vim.notify("Unable to read luarc file `" .. file_path .. "`", vim.log.levels.ERROR)
+    else
+      local file_contents = file:read("a")
+      file:close()
+
+      local file_settings = vim.json.decode(file_contents)
+      client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, file_settings)
+    end
+  end
+
+  -- Load additional settings
+  if lua_is_vim_project(path) then
     return on_lua_vim_init(client, path)
   end
+  return on_lua_nonvim_init(client, path)
 end
 
 local function setup_lsp(server, opts)
@@ -117,6 +137,16 @@ return {
         ["lua_ls"] = function()
           setup_lsp("lua_ls", {
             on_init = on_lua_init,
+            settings = {
+              Lua = {
+                telemetry = {
+                  enable = false,
+                },
+                doc = {
+                  privateName = { "^_" },
+                },
+              },
+            },
           })
         end,
         ["zls"] = function()
