@@ -21,6 +21,19 @@ local function config()
     },
     routes = {
       {
+        -- Silence constant "code_action" messages from null-ls
+        filter = {
+          event = "lsp",
+          kind = "progress",
+          cond = function(message)
+            local client = vim.tbl_get(message.opts, "progress", "client")
+            local title = vim.tbl_get(message.opts, "progress", "title")
+            return client == "null-ls" and title == "code_action"
+          end,
+        },
+        opts = { skip = true },
+      },
+      {
         -- NeoVim messages
         filter = {
           any = {

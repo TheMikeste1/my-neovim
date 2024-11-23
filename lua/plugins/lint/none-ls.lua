@@ -13,7 +13,6 @@ return {
         null_ls.builtins.diagnostics.dotenv_linter,
         -- null_ls.builtins.diagnostics.editorconfig_checker,
         null_ls.builtins.diagnostics.trail_space,
-        null_ls.builtins.code_actions.refactoring,
 
         -- Ansible
         null_ls.builtins.diagnostics.ansiblelint,
