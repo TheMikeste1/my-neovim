@@ -124,18 +124,19 @@ local function config()
     mapping = cmp.mapping.preset.insert({
       ["<C-Space>"] = cmp.mapping(function()
         cmp.complete()
-      end, { "i", "c" }),
+      end, { "i" }),
       ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
       ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
       ["<M-p>"] = cmp.mapping.scroll_docs(-4),
       ["<M-n>"] = cmp.mapping.scroll_docs(4),
       ["<C-e>"] = cmp.mapping.abort(),
-      ["<TAB>"] = cmp.mapping(on_tab, { "i", "s", "c" }),
-      ["<S-TAB>"] = cmp.mapping(on_back_tab, { "i", "s", "c" }),
+      ["<TAB>"] = cmp.mapping(on_tab, { "i", "s", c = cmp.config.disable }),
+      ["<S-TAB>"] = cmp.mapping(on_back_tab, { "i", "s", c = cmp.config.disable }),
       ["<CR>"] = cmp.mapping({
         i = on_enter,
         s = cmp.mapping.confirm({ select = false }),
-        c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+        c = cmp.config.disable
+        -- c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
       }),
     }),
     preselect = cmp.PreselectMode.None,
@@ -163,18 +164,6 @@ local function config()
     sources = cmp.config.sources({
       { name = "nvim_lsp_document_symbol" },
       { name = "buffer" },
-    }),
-  })
-
-  -- Use cmdline & path source for ":" (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline(":", {
-    mapping = cmp.mapping.preset.cmdline(),
-    completion = {
-      autocomplete = false,
-    },
-    sources = cmp.config.sources({
-      { name = "cmdline", option = { ignore_cmds = { "Man", "!" } } },
-      { name = "path" },
     }),
   })
 
