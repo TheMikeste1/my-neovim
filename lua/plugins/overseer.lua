@@ -12,7 +12,7 @@ return {
     })
   end,
   dependencies = {
-    "cmakeseer",
+    "cmakeseer.nvim",
   },
   keys = {
     {
