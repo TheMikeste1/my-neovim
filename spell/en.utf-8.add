@@ -15,3 +15,6 @@ uplinked
 boolean
 cmake
 CMake
+emissive
+deserialize
+deserialized
