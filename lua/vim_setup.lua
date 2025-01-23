@@ -77,3 +77,5 @@ vim.filetype.add({
     godot = "gdresource",
   },
 })
+
+vim.o.timeout = false
