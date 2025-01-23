@@ -71,7 +71,7 @@ return {
       },
       cmake_format = {
         args = {
-          "-c=~/.githooks/config/precommit/cmake-format.yaml",
+          "-c=" .. vim.fn.expand("~") .. "/.githooks/config/precommit/cmake-format.yaml",
         },
       },
       gdformat = {
