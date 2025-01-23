@@ -6,6 +6,7 @@ local FILE_NONTYPES = {
   "TelescopePrompt",
   "OverseerForm",
   "OverseerList",
+  "neo-tree",
   "lazy",
 }
 
