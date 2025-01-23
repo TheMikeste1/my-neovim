@@ -18,3 +18,5 @@ CMake
 emissive
 deserialize
 deserialized
+namespace
+mutex
