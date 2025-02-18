@@ -1,3 +1,19 @@
+local FILE_NONTYPES = {
+  "alpha",
+  "notify",
+  "noice",
+  "fugitive",
+  "TelescopePrompt",
+  "OverseerForm",
+  "OverseerList",
+  "neo-tree",
+  "lazy",
+}
+
+local BUFFER_NONTYPES = {
+  "terminal",
+}
+
 -- https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md
 return {
   "nvimtools/none-ls.nvim",
@@ -82,6 +98,27 @@ return {
         -- YAML
         null_ls.builtins.diagnostics.yamllint,
       },
+      should_attach = function(bufnr)
+        local filetype = vim.fn.getbufvar(bufnr, "&filetype")
+        if filetype ~= nil then
+          for _, nontype in ipairs(FILE_NONTYPES) do
+            if filetype == nontype then
+              return false
+            end
+          end
+        end
+
+        local bufferType = vim.fn.getbufvar(bufnr, "&buftype")
+        if bufferType ~= nil then
+          for _, nontype in ipairs(BUFFER_NONTYPES) do
+            if bufferType == nontype then
+              return false
+            end
+          end
+        end
+
+        return true
+      end,
     })
   end,
   dependencies = {
