@@ -42,10 +42,7 @@ local function config()
       vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
       -- Buffer local mappings.
       -- See `:help vim.lsp.*` for documentation on any of the below functions
-      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = ev.buf, desc = "Go to declaration" })
-      vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = ev.buf, desc = "Go to definition" })
       vim.keymap.set("n", "K", hover, { buffer = ev.buf, desc = "Hover info" })
-      vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = ev.buf, desc = "Go to implementation" })
       vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { buffer = ev.buf, desc = "Get signature help" })
       vim.keymap.set(
         "n",
@@ -62,14 +59,19 @@ local function config()
       vim.keymap.set("n", "<space>wl", function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
       end, { buffer = ev.buf, desc = "List workspace folders" })
-      vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, { buffer = ev.buf, desc = "Lookup type definition" })
+      vim.keymap.set("n", "<space>D", require("telescope.builtin").lsp_type_definitions, { buffer = ev.buf, desc = "List LSP type definition" })
       vim.keymap.set("n", "<space>rn", function()
         vim.lsp.buf.rename()
         vim.cmd.wall({ mods = { silent = true } })
       end, { buffer = ev.buf, desc = "Rename variable" })
-      vim.keymap.set("n", "gr", function()
-        require("telescope.builtin").lsp_references()
-      end, { buffer = ev.buf, desc = "List LSP references" })
+
+      local telescope_builtin = require("telescope.builtin")
+      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = ev.buf, desc = "Go to declaration" })
+      vim.keymap.set("n", "gd", telescope_builtin.lsp_definitions, { buffer = ev.buf, desc = "Go to definition" })
+      vim.keymap.set("n", "gr", telescope_builtin.lsp_references, { buffer = ev.buf, desc = "List LSP references" })
+      vim.keymap.set("n", "gi", telescope_builtin.lsp_implementations, { buffer = ev.buf, desc = "List LSP implementations" })
+      vim.keymap.set("n", "gci", telescope_builtin.lsp_incoming_calls, { buffer = ev.buf, desc = "List LSP incoming calls" })
+      vim.keymap.set("n", "gco", telescope_builtin.lsp_outgoing_calls, { buffer = ev.buf, desc = "List LSP outgoing calls" })
     end,
   })
 end
