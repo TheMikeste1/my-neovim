@@ -29,6 +29,7 @@ return {
     "3rd/image.nvim",
     "s1n7ax/nvim-window-picker",
     "jackielii/neo-tree-harpoon.nvim",
+    "folke/snacks.nvim",
   },
   keys = {
     {
@@ -56,62 +57,79 @@ return {
     },
   },
   cmd = { "Neotree" },
-  opts = {
-    sources = {
-      "filesystem",
-      "buffers",
-      "git_status",
-      "document_symbols",
-      "harpoon-buffers",
-    },
-    event_handlers = {
-      {
-        event = "neo_tree_buffer_enter",
-        handler = function()
-          vim.opt_local.relativenumber = true
-        end,
-      },
-    },
-    filesystem = {
-      components = {
-        harpoon_index = harpoon_index,
-      },
-      filtered_items = {
-        visible = true,
-        show_hidden_count = true,
-        hide_dotfiles = false,
-        hide_gitignored = true,
-        hide_by_name = {
-          ".git",
-        },
-        never_show = {},
-      },
-      follow_current_file = {
-        enabled = true,
-      },
-      use_libuv_file_watcher = true,
-      renderers = {
-        file = {
-          { "icon" },
-          { "name", use_git_status_colors = true },
-          { "harpoon_index" }, --> This is what actually adds the component in where you want it
-          { "diagnostics" },
-          { "git_status", highlight = "NeoTreeDimText" },
-        },
-      },
-    },
-    source_selector = {
-      winbar = true,
-      statusline = false,
+  opts = function(_, opts)
+    Snacks = require("snacks")
+
+    local function on_move(data)
+      Snacks.rename.on_rename_file(data.source, data.destination)
+    end
+
+    opts = {
       sources = {
-        { source = "filesystem" },
-        { source = "harpoon-buffers" },
-        { source = "buffers" },
-        { source = "git_status" },
-        { source = "document_symbols" },
+        "filesystem",
+        "buffers",
+        "git_status",
+        "document_symbols",
+        "harpoon-buffers",
       },
-    },
-    use_popups_for_input = false,
-    open_files_do_not_replace_types = { "terminal", "Trouble", "qf", "edgy", "OverseerList", "nofile" }
-  },
+      event_handlers = {
+        {
+          event = "neo_tree_buffer_enter",
+          handler = function()
+            vim.opt_local.relativenumber = true
+          end,
+        },
+      },
+      filesystem = {
+        components = {
+          harpoon_index = harpoon_index,
+        },
+        filtered_items = {
+          visible = true,
+          show_hidden_count = true,
+          hide_dotfiles = false,
+          hide_gitignored = true,
+          hide_by_name = {
+            ".git",
+          },
+          never_show = {},
+        },
+        follow_current_file = {
+          enabled = true,
+        },
+        use_libuv_file_watcher = true,
+        renderers = {
+          file = {
+            { "icon" },
+            { "name", use_git_status_colors = true },
+            { "harpoon_index" }, --> This is what actually adds the component in where you want it
+            { "diagnostics" },
+            { "git_status", highlight = "NeoTreeDimText" },
+          },
+        },
+      },
+      source_selector = {
+        winbar = true,
+        statusline = false,
+        sources = {
+          { source = "filesystem" },
+          { source = "harpoon-buffers" },
+          { source = "buffers" },
+          { source = "git_status" },
+          { source = "document_symbols" },
+        },
+      },
+      use_popups_for_input = false,
+      open_files_do_not_replace_types = { "terminal", "Trouble", "qf", "edgy", "OverseerList", "nofile" },
+    }
+
+    local events = require("neo-tree.events")
+    opts.event_handlers = opts.event_handlers or {}
+    vim.list_extend(opts.event_handlers, {
+      { event = events.FILE_MOVED, handler = on_move },
+      { event = events.FILE_RENAMED, handler = on_move },
+    })
+
+    return opts
+  end,
 }
