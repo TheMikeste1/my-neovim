@@ -8,7 +8,7 @@ return {
     indent = {
       enabled = true,
       animate = {
-        enabled = false,
+        enabled = true,
       },
     },
     input = { enabled = true },

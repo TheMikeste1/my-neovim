@@ -1,4 +1,5 @@
 return {
+  -- TODO: check on dial.nvim
   "AndrewRadev/switch.vim",
   cond = true,
   init = function()
