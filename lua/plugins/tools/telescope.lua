@@ -5,7 +5,6 @@ local keymaps = require("keymaps.telescope")
 -- @param opts table: The telescope plugin options.
 local function config(_, opts)
   require("telescope").setup(opts)
-  require("telescope").load_extension("cmdline")
   require("telescope").load_extension("refactoring")
   vim.api.nvim_create_autocmd("FileType", {
     pattern = "TelescopeResults",
@@ -49,7 +48,7 @@ local opts = {
 return {
   "nvim-telescope/telescope.nvim",
   event = "VeryLazy",
-  dependencies = { "nvim-lua/plenary.nvim", "jonarrien/telescope-cmdline.nvim" },
+  dependencies = { "nvim-lua/plenary.nvim" },
   config = config,
   keys = keymaps.lazy_keys,
   opts = opts,

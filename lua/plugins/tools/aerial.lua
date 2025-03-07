@@ -1,5 +1,6 @@
 return {
   "stevearc/aerial.nvim",
+  cond = false,
   opts = {
     attach_mode = "global",
     autojump = true,

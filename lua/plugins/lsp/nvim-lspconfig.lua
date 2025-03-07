@@ -38,6 +38,9 @@ local function config()
   vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
     callback = function(ev)
+      local Snacks = require("snacks")
+      local telescope_builtin = require("telescope.builtin")
+
       -- Enable completion triggered by <c-x><c-o>
       vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
       -- Buffer local mappings.
@@ -59,17 +62,22 @@ local function config()
       vim.keymap.set("n", "<space>wl", function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
       end, { buffer = ev.buf, desc = "List workspace folders" })
-      vim.keymap.set("n", "<space>D", require("telescope.builtin").lsp_type_definitions, { buffer = ev.buf, desc = "List LSP type definition" })
+      vim.keymap.set(
+        "n",
+        "<space>D",
+        Snacks.picker.lsp_type_definitions,
+        { buffer = ev.buf, desc = "List LSP type definition" }
+      )
       vim.keymap.set("n", "<space>rn", function()
         vim.lsp.buf.rename()
         vim.cmd.wall({ mods = { silent = true } })
       end, { buffer = ev.buf, desc = "Rename variable" })
 
-      local telescope_builtin = require("telescope.builtin")
-      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = ev.buf, desc = "Go to declaration" })
-      vim.keymap.set("n", "gd", telescope_builtin.lsp_definitions, { buffer = ev.buf, desc = "Go to definition" })
-      vim.keymap.set("n", "gr", telescope_builtin.lsp_references, { buffer = ev.buf, desc = "List LSP references" })
-      vim.keymap.set("n", "gi", telescope_builtin.lsp_implementations, { buffer = ev.buf, desc = "List LSP implementations" })
+      vim.keymap.set("n", "gD", Snacks.picker.lsp_declarations, { buffer = ev.buf, desc = "Go to declaration" })
+      vim.keymap.set("n", "gd", Snacks.picker.lsp_definitions, { buffer = ev.buf, desc = "Go to definition" })
+      vim.keymap.set("n", "gr", Snacks.picker.lsp_references, { buffer = ev.buf, desc = "List LSP references" })
+      vim.keymap.set("n", "gi", Snacks.picker.lsp_implementations, { buffer = ev.buf, desc = "List LSP implementations" })
+      vim.keymap.set("n", "<M-C-O>", Snacks.picker.lsp_symbols, { buffer = ev.buf, desc = "List LSP current file symbols" })
       vim.keymap.set("n", "gci", telescope_builtin.lsp_incoming_calls, { buffer = ev.buf, desc = "List LSP incoming calls" })
       vim.keymap.set("n", "gco", telescope_builtin.lsp_outgoing_calls, { buffer = ev.buf, desc = "List LSP outgoing calls" })
     end,

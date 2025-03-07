@@ -4,20 +4,15 @@ local mod = {}
 local function grep_search()
   local input = vim.fn.input("Grep > ")
   if input ~= "" then
-    require("telescope.builtin").grep_string({ search = input })
+    require("snacks").picker.grep_word({ search = input })
   end
-end
-
--- If the current directory is a git repository, use `git_files` otherwise use `find_files`
-local function project_files()
-  require("telescope.builtin").find_files({ hidden = false })
 end
 
 -- Send the selected entry to the quickfix list and open the list.
 -- @param prompt_buffer_number number: The prompt buffer number.
 local function send_to_quickfix_list(prompt_buffer_number)
   require("telescope.actions").smart_send_to_qflist(prompt_buffer_number)
-  require("telescope.builtin").quickfix()
+  require("snacks").picker.qflist()
 end
 
 mod.mappings = {
@@ -30,20 +25,17 @@ mod.mappings = {
 }
 
 mod.lazy_keys = {
-  -- {
-  -- 	":",
-  -- 	"<cmd>Telescope cmdline<cr>",
-  -- 	desc = "Cmdline",
-  -- },
   {
     "<C-p>",
-    project_files,
+    function()
+      require("snacks").picker.smart({ hidden = false })
+    end,
     desc = "Quick jump to project files",
   },
   {
     "<leader><leader>f",
     function()
-      require("telescope.builtin").find_files({ no_ignore = true, hidden = true })
+      require("snacks").picker.smart({ ignored = true, hidden = true })
     end,
     desc = "Quick jump to all files",
   },
@@ -55,7 +47,7 @@ mod.lazy_keys = {
   {
     "<leader><leader>r",
     function()
-      require("telescope.builtin").registers()
+      require("snacks").picker.registers()
     end,
     desc = "Show registers",
     mode = { "n", "x" },
@@ -71,77 +63,77 @@ mod.lazy_keys = {
   {
     "<M-C-F>",
     function()
-      require("telescope.builtin").live_grep()
+      require("snacks").picker.grep()
     end,
     desc = "Search in files",
   },
   {
     "<C-f>",
     function()
-      require("telescope.builtin").current_buffer_fuzzy_find()
+      require("snacks").picker.lines()
     end,
     desc = "Search in current buffer",
   },
   {
     "<leader><leader>h",
     function()
-      require("telescope.builtin").help_tags()
+      require("snacks").picker.help()
     end,
     desc = "Search in help tags",
   },
   {
     "<leader><leader>g",
     function()
-      require("telescope.builtin").git_files()
+      require("snacks").picker.git_files()
     end,
     desc = "Search in git files",
   },
   {
     "<leader><leader>s",
     function()
-      require("telescope.builtin").spell_suggest()
+      require("snacks").picker.spelling()
     end,
     desc = "Search in spell suggest",
   },
   {
     "<leader><leader>c",
     function()
-      require("telescope.builtin").commands()
+      require("snacks").picker.commands()
     end,
     desc = "Search in commands",
   },
   {
     "<leader><leader>T",
     function()
-      require("telescope.builtin").treesitter()
+      require("snacks").picker.treesitter()
     end,
     desc = "Search in treesitter",
   },
   {
     "<leader><leader>m",
     function()
-      require("telescope.builtin").marks()
+      require("snacks").picker.marks()
     end,
     desc = "Search in marks",
   },
   {
     "<leader><leader>q",
     function()
-      require("telescope.builtin").quickfix()
+      require("snacks").picker.qflist()
     end,
     desc = "Open quickfix list",
   },
   {
     "<leader>xx",
     function()
-      require("telescope.builtin").diagnostics(require("telescope.themes").get_ivy({}))
+      require("snacks").picker.diagnostics({ layout = { preset = "ivy" } })
     end,
     desc = "Diagnostics",
   },
   {
     "<leader>xX",
     function()
-      require("telescope.builtin").diagnostics(require("telescope.themes").get_ivy({ bufnr = 0 }))
+      require("snacks").picker.diagnostics_buffer({ layout = { preset = "ivy" } })
     end,
     desc = "Buffer Diagnostics",
   },
