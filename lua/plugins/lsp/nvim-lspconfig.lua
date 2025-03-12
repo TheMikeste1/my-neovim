@@ -76,10 +76,33 @@ local function config()
       vim.keymap.set("n", "gD", Snacks.picker.lsp_declarations, { buffer = ev.buf, desc = "Go to declaration" })
       vim.keymap.set("n", "gd", Snacks.picker.lsp_definitions, { buffer = ev.buf, desc = "Go to definition" })
       vim.keymap.set("n", "gr", Snacks.picker.lsp_references, { buffer = ev.buf, desc = "List LSP references" })
-      vim.keymap.set("n", "gi", Snacks.picker.lsp_implementations, { buffer = ev.buf, desc = "List LSP implementations" })
-      vim.keymap.set("n", "<M-C-O>", Snacks.picker.lsp_symbols, { buffer = ev.buf, desc = "List LSP current file symbols" })
-      vim.keymap.set("n", "gci", telescope_builtin.lsp_incoming_calls, { buffer = ev.buf, desc = "List LSP incoming calls" })
-      vim.keymap.set("n", "gco", telescope_builtin.lsp_outgoing_calls, { buffer = ev.buf, desc = "List LSP outgoing calls" })
+      vim.keymap.set(
+        "n",
+        "gi",
+        Snacks.picker.lsp_implementations,
+        { buffer = ev.buf, desc = "List LSP implementations" }
+      )
+      vim.keymap.set("n", "<M-C-O>", function()
+        Snacks.picker.lsp_symbols({ filter = { default = true } })
+      end, { buffer = ev.buf, desc = "List LSP current file symbols" })
+      vim.keymap.set(
+        "n",
+        "<M-C-I>",
+        Snacks.picker.lsp_workspace_symbols,
+        { buffer = ev.buf, desc = "List LSP workspace symbols" }
+      )
+      vim.keymap.set(
+        "n",
+        "gci",
+        telescope_builtin.lsp_incoming_calls,
+        { buffer = ev.buf, desc = "List LSP incoming calls" }
+      )
+      vim.keymap.set(
+        "n",
+        "gco",
+        telescope_builtin.lsp_outgoing_calls,
+        { buffer = ev.buf, desc = "List LSP outgoing calls" }
+      )
     end,
   })
 end
