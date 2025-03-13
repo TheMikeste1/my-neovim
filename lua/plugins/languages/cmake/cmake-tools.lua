@@ -3,6 +3,7 @@ local function open_overseer(task)
 end
 
 return {
+  cond = false,
   "Civitasv/cmake-tools.nvim",
   dependencies = {
     "nvim-lua/plenary.nvim",
