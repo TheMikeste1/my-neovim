@@ -1,5 +1,17 @@
 local mod = {}
 
+---Filters out items from harperls.
+---@param item snacks.picker.finder.Item,
+---@param filter snacks.picker.Filter
+---@return boolean
+local function filter_out_harperls(item, filter)
+  if item.item.source == "Harper" then
+    return false
+  end
+
+  return true
+end
+
 -- Search for a word in files.
 local function grep_search()
   local input = vim.fn.input("Grep > ")
@@ -126,14 +138,26 @@ mod.lazy_keys = {
   {
     "<leader>xx",
     function()
-      require("snacks").picker.diagnostics({ layout = { preset = "ivy" } })
+      require("snacks").picker.diagnostics({
+        layout = { preset = "ivy" },
+        filter = {
+          cwd = true,
+          filter = filter_out_harperls,
+        },
+      })
     end,
     desc = "Diagnostics",
   },
   {
     "<leader>xX",
     function()
-      require("snacks").picker.diagnostics_buffer({ layout = { preset = "ivy" } })
+      require("snacks").picker.diagnostics_buffer({
+        layout = { preset = "ivy" },
+        filter = {
+          buf = true,
+          filter = filter_out_harperls,
+        },
+      })
     end,
     desc = "Buffer Diagnostics",
   },
