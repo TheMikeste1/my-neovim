@@ -1,3 +1,22 @@
+---@return string path The path to the executable to run.
+local function get_executable_path()
+  local cmakeseer = require("cmakeseer")
+  if not cmakeseer.is_cmake_project() then
+    return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+  end
+
+  if not cmakeseer.project_is_configured() then
+    vim.notify(
+      "This is a CMake project, but the project isn't configured. Cannot identify which program to run.",
+      vim.log.levels.WARN
+    )
+    return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+  end
+
+  -- TODO: List potential executables instead of just appending the build path
+  return vim.fn.input("Path to executable: ", cmakeseer.get_build_directory() .. "/", "file")
+end
+
 local M = {}
 
 function M.adapters()
@@ -23,9 +42,7 @@ function M.configurations()
       request = "launch",
       MIMode = "gdb",
       miDebuggerPath = "gdb",
-      program = function()
-        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-      end,
+      program = get_executable_path,
       cwd = "${workspaceFolder}",
       stopAtEntry = false,
       setupCommands = {
@@ -41,9 +58,7 @@ function M.configurations()
     --     name = "Launch file",
     --     type = "codelldb",
     --     request = "launch",
-    --     program = function()
-    --       return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-    --     end,
+    --     program = get_program_path,
     --     cwd = "${workspaceFolder}",
     --     stopOnEntry = false,
     --   },
