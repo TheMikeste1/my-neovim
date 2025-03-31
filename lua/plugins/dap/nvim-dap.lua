@@ -4,8 +4,8 @@ return {
   config = function() end,
   keys = require("keymaps.dap").lazy_keys,
   dependencies = {
-    "jbyuki/one-small-step-for-vimkind",
-      -- stylua: ignore
+    {
+      "jbyuki/one-small-step-for-vimkind",
       config = function()
         local dap = require("dap")
         dap.adapters.nlua = function(callback, conf)
@@ -40,5 +40,6 @@ return {
           },
         }
       end,
+    },
   },
 }
