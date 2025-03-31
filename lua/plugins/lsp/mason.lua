@@ -57,6 +57,8 @@ return {
       "yamllint",
       "yamlfix",
       "yamlfmt",
+      -- Misc
+      "harper-ls",
     },
     ui = {
       icons = {
