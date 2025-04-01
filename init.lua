@@ -24,3 +24,5 @@ require("plugin_setup")
 require("keymap")
 require("filetype")
 require("configure_theme")
+
+-- TODO: Compile spell files: https://www.reddit.com/r/vim/comments/5zhpre/comment/df0xccw/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
