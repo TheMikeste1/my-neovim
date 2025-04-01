@@ -28,8 +28,7 @@ function M.adapters()
     cppdbg = {
       id = "cppdbg",
       type = "executable",
-      command = vim.fn.expand("~")
-        .. "/.local/share/nvim/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7",
+      command = vim.fn.stdpath("data") .. "/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7",
     },
   }
 end
