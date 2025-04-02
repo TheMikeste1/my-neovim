@@ -134,6 +134,19 @@ return {
             },
           })
         end,
+        ["harper_ls"] = function()
+          setup_lsp("harper_ls", {
+            settings = {
+              ["harper-ls"] = {
+                linters = {
+                  SentenceCapitalization = false,
+                  ToDoHyphen = false,
+                },
+                isolateEnglish = true,
+              },
+            },
+          })
+        end,
         ["lua_ls"] = function()
           setup_lsp("lua_ls", {
             on_init = on_lua_init,
