@@ -81,8 +81,13 @@ return {
         null_ls.builtins.hover.dictionary,
 
         -- Python
-        null_ls.builtins.diagnostics.pylint,
-        null_ls.builtins.diagnostics.mypy,
+        null_ls.builtins.diagnostics.pylint.with({
+          extra_args = { "--disable=useless-option-value,unknown-option-value,unrecognized-option" },
+          prefer_local = ".venv/bin",
+        }),
+        -- null_ls.builtins.diagnostics.mypy.with({
+        --   prefer_local = ".venv/bin",
+        -- }),
 
         -- Shell/Bash
         null_ls.builtins.hover.printenv,
