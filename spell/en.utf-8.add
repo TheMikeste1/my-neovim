@@ -31,3 +31,8 @@ lua
 executables
 @endverbatim
 @tparam
+booleans
+iff
+Stateful
+lexicographically
+stateful
