@@ -140,7 +140,9 @@ return {
               ["harper-ls"] = {
                 linters = {
                   SentenceCapitalization = false,
+                  SpellCheck = false,
                   ToDoHyphen = false,
+                  RepeatedWords = false,
                 },
                 isolateEnglish = true,
               },

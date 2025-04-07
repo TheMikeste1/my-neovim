@@ -42,7 +42,7 @@ return {
         -- Web
         javascript = { "biome", "prettier" },
         typescript = { "biome", "prettier" },
-        javascriptreact = { "biome", { "prettier" } },
+        javascriptreact = { "biome", "prettier" },
         typescriptreact = { "biome", "prettier" },
         json = { "biome", "prettier" },
         jsonc = { "biome", "prettier" },
