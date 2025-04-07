@@ -2,8 +2,18 @@ local vscode_kit_file = vim.fn.expand("~/.local/share/CMakeTools/cmake-tools-kit
 
 local function handle_api_command(opts)
   vim.notify("CMakeSeer opts: " .. vim.inspect(opts), vim.log.levels.DEBUG)
-  if opts.fargs and opts.fargs[1] == "select_kit" then
+  if not opts.fargs then
+    vim.notify("Missing args")
+    return
+  end
+
+  if opts.fargs[1] == "select_kit" then
     require("cmakeseer").select_kit()
+    return
+  end
+
+  if opts.fargs[1] == "select_variant" then
+    require("cmakeseer").select_variant()
     return
   end
 
@@ -17,11 +27,13 @@ return {
   dir = "~/projects/cmakeseer",
   config = function(_, opts)
     require("cmakeseer").setup(opts)
-    vim.api.nvim_create_user_command(
-      "CMakeSeer",
-      handle_api_command,
-      { desc = "Access the CMakeSeer API", nargs = "*" }
-    )
+    vim.api.nvim_create_user_command("CMakeSeer", handle_api_command, {
+      desc = "Access the CMakeSeer API",
+      nargs = "*",
+      complete = function(_, line)
+        return { "select_kit", "select_variant" }
+      end,
+    })
   end,
   opts = {
     kit_paths = {
