@@ -12,6 +12,8 @@ end
 
 return {
   "TheMikeste1/cmakeseer.nvim",
+  lazy = false,
+  priority = 10,
   dir = "~/projects/cmakeseer",
   config = function(_, opts)
     require("cmakeseer").setup(opts)

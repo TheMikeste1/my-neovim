@@ -10,6 +10,7 @@ function M.adapters()
   return adapters
 end
 
+---@return dap.Configuration
 function M.configurations()
   local configurations = {}
   local new_configurations = {}

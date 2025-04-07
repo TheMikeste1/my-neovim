@@ -1,20 +1,47 @@
 ---@return string path The path to the executable to run.
 local function get_executable_path()
+  return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+end
+
+---@param target Target The CMakeSeer target.
+---@return dap.Configuration config
+local function generate_target_configuration(target)
   local cmakeseer = require("cmakeseer")
-  if not cmakeseer.is_cmake_project() then
-    return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-  end
+  local executable_path =
+    vim.fs.joinpath(cmakeseer.get_build_directory(), target.artifacts[1].path)
 
-  if not cmakeseer.project_is_configured() then
-    vim.notify(
-      "This is a CMake project, but the project isn't configured. Cannot identify which program to run.",
-      vim.log.levels.WARN
-    )
-    return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-  end
+  return {
+    name = string.format("CMakeseer: Launch %s", target.name),
+    type = "cppdbg",
+    request = "launch",
+    MIMode = "gdb",
+    miDebuggerPath = "gdb",
+    program = executable_path,
+    cwd = "${workspaceFolder}",
+    stopAtEntry = false,
+    setupCommands = {
+      {
+        text = "-enable-pretty-printing",
+        description = "enable pretty printing",
+        ignoreFailures = false,
+      },
+    },
+  }
+end
 
-  -- TODO: List potential executables instead of just appending the build path
-  return vim.fn.input("Path to executable: ", cmakeseer.get_build_directory() .. "/", "file")
+---@return dap.Configuration[] configurations The configs provided by CMakeSeer.
+local function generate_cmakeseer_configurations()
+  local cmakeseer = require("cmakeseer")
+  local cmakeseer_target = require("cmakeseer.cmake.api.codemodel.target")
+
+  local configs = {}
+  for _, target in ipairs(cmakeseer.get_targets()) do
+    if target.type == cmakeseer_target.TargetType.Executable then
+      local config = generate_target_configuration(target)
+      table.insert(configs, config)
+    end
+  end
+  return configs
 end
 
 local M = {}
@@ -28,41 +55,36 @@ function M.adapters()
     cppdbg = {
       id = "cppdbg",
       type = "executable",
-      command = vim.fn.stdpath("data") .. "/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7",
+      command = vim.fs.joinpath(
+        vim.fn.stdpath("data"),
+        "mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7"
+      ),
     },
   }
 end
 
+---@return dap.Configuration
 function M.configurations()
-  return {
-    {
-      name = "Launch file",
-      type = "cppdbg",
-      request = "launch",
-      MIMode = "gdb",
-      miDebuggerPath = "gdb",
-      program = get_executable_path,
-      cwd = "${workspaceFolder}",
-      stopAtEntry = false,
-      setupCommands = {
-        {
-          text = "-enable-pretty-printing",
-          description = "enable pretty printing",
-          ignoreFailures = false,
-        },
+  local configs = generate_cmakeseer_configurations()
+  table.insert(configs, {
+    name = "Launch executable",
+    type = "cppdbg",
+    request = "launch",
+    MIMode = "gdb",
+    miDebuggerPath = "gdb",
+    program = get_executable_path,
+    cwd = "${workspaceFolder}",
+    stopAtEntry = false,
+    setupCommands = {
+      {
+        text = "-enable-pretty-printing",
+        description = "enable pretty printing",
+        ignoreFailures = false,
       },
     },
-    -- {
-    --   {
-    --     name = "Launch file",
-    --     type = "codelldb",
-    --     request = "launch",
-    --     program = get_program_path,
-    --     cwd = "${workspaceFolder}",
-    --     stopOnEntry = false,
-    --   },
-    -- }
-  }
+  })
+
+  return configs
 end
 
 return M
