@@ -1,5 +1,20 @@
-local function config()
-  require("noice").setup({
+local function config(_, opts)
+  require("noice").setup(opts)
+end
+
+return {
+  "folke/noice.nvim",
+  event = "VeryLazy",
+  dependencies = {
+    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    "MunifTanjim/nui.nvim",
+    -- OPTIONAL:
+    --   `nvim-notify` is only needed, if you want to use the notification view.
+    --   If not available, we use `mini` as the fallback
+    "rcarriga/nvim-notify",
+    "nvim-treesitter/nvim-treesitter",
+  },
+  opts = {
     format = {
       filter = { icon = "!", lang = "zsh" },
     },
@@ -99,23 +114,6 @@ local function config()
         zindex = 25,
       },
     },
-  })
-end
-
-return {
-  "folke/noice.nvim",
-  event = "VeryLazy",
-  opts = {
-    -- add any options here
-  },
-  dependencies = {
-    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-    "MunifTanjim/nui.nvim",
-    -- OPTIONAL:
-    --   `nvim-notify` is only needed, if you want to use the notification view.
-    --   If not available, we use `mini` as the fallback
-    "rcarriga/nvim-notify",
-    "nvim-treesitter/nvim-treesitter",
   },
   config = config,
 }

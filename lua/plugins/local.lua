@@ -1,5 +1,12 @@
 local vscode_kit_file = vim.fn.expand("~/.local/share/CMakeTools/cmake-tools-kits.json")
 
+local function postconfigure()
+  local new_configurations = require("configs.dap.cpp").configurations()
+  local dap = require("dap")
+  dap.configurations.cpp = new_configurations
+  dap.configurations.c = new_configurations
+end
+
 local function handle_api_command(opts)
   vim.notify("CMakeSeer opts: " .. vim.inspect(opts), vim.log.levels.DEBUG)
   if not opts.fargs then
@@ -40,6 +47,9 @@ return {
       vscode_kit_file,
     },
     persist_file = vscode_kit_file,
+    callbacks = {
+      postconfigure = postconfigure,
+    },
   },
   cmd = {
     "CMakeSeer",

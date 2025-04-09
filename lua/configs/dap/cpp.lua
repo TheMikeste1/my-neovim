@@ -6,9 +6,8 @@ end
 ---@param target Target The CMakeSeer target.
 ---@return dap.Configuration config
 local function generate_target_configuration(target)
-  local cmakeseer = require("cmakeseer")
-  local executable_path =
-    vim.fs.joinpath(cmakeseer.get_build_directory(), target.artifacts[1].path)
+  local CmakeseerTarget = require("cmakeseer.cmake.api.codemodel.target")
+  local executable_path = CmakeseerTarget.get_target_path(target)
 
   return {
     name = string.format("CMakeseer: Launch %s", target.name),
