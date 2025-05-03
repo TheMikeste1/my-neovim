@@ -116,6 +116,14 @@ return {
           --     },
           --   },
           -- })
+
+          setup_lsp("bacon_ls", {
+            init_options = {
+              updateOnSave = true,
+              updateOnSaveWaitMillis = 250,
+              synchronizeAllOpenFilesWaitMillis = 250,
+            },
+          })
         end,
         ["bashls"] = function()
           setup_lsp("bashls", {
