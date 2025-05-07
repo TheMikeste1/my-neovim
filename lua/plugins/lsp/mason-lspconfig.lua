@@ -82,16 +82,8 @@ local function on_lua_init(client)
 end
 
 local function setup_lsp(server, opts)
-  local lspconfig = require("lspconfig")
-  local capabilities = require("cmp_nvim_lsp").default_capabilities()
-  capabilities.textDocument.foldingRange = { -- Used by nvim-ufo
-    dynamicRegistration = false,
-    lineFoldingOnly = true,
-  }
-
   opts = opts or {}
-  opts.capabilities = capabilities
-  lspconfig[server].setup(opts)
+  vim.lsp.config(server, opts)
 end
 
 return {
@@ -99,88 +91,92 @@ return {
   config = function()
     local mason_lspconfig = require("mason-lspconfig")
     mason_lspconfig.setup({
-      automatic_installation = true,
-      handlers = {
-        -- Default
-        function(server_name)
-          setup_lsp(server_name)
-        end,
-        ["rust_analyzer"] = function()
-          -- setup_lsp("rust_analyzer", {
-          --   settings = {
-          --     ["rust-analyzer"] = {
-          --       checkOnSave = true,
-          --       check = {
-          --         command = "clippy",
-          --       },
-          --     },
-          --   },
-          -- })
+      automatic_enable = {
+        exclude = {
+          "rust_analyzer",
+        },
+      },
+      ensure_installed = {
+        -- TODO
+      },
+    })
 
-          setup_lsp("bacon_ls", {
-            init_options = {
-              updateOnSave = true,
-              updateOnSaveWaitMillis = 250,
-              synchronizeAllOpenFilesWaitMillis = 250,
-            },
-          })
-        end,
-        ["bashls"] = function()
-          setup_lsp("bashls", {
-            filetypes = { "bash", "sh", "zsh" },
-          })
-        end,
-        ["clangd"] = function()
-          setup_lsp("clangd", {
-            cmd = {
-              "clangd",
-              "--offset-encoding=utf-16",
-              "--header-insertion=iwyu",
-              "--header-insertion-decorators",
-              "--import-insertions",
-              "--malloc-trim",
-            },
-          })
-        end,
-        ["harper_ls"] = function()
-          setup_lsp("harper_ls", {
-            settings = {
-              ["harper-ls"] = {
-                linters = {
-                  SentenceCapitalization = false,
-                  SpellCheck = false,
-                  ToDoHyphen = false,
-                  RepeatedWords = false,
-                },
-                isolateEnglish = true,
-              },
-            },
-          })
-        end,
-        ["lua_ls"] = function()
-          setup_lsp("lua_ls", {
-            on_init = on_lua_init,
-            settings = {
-              Lua = {
-                telemetry = {
-                  enable = false,
-                },
-                doc = {
-                  privateName = { "^_" },
-                },
-              },
-            },
-          })
-        end,
-        ["zls"] = function()
-          setup_lsp("zls", {
-            settings = {
-              enable_build_on_save = true,
-              inlay_hints_hide_redundant_param_names = true,
-              warn_style = true,
-            },
-          })
-        end,
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    capabilities.textDocument.foldingRange = { -- Used by nvim-ufo
+      dynamicRegistration = false,
+      lineFoldingOnly = true,
+    }
+
+    local all_opts = {
+      capabilities = capabilities,
+      root_markers = { ".git", ".hg" },
+    }
+
+    vim.lsp.config("*", all_opts)
+
+    -- setup_lsp("rust_analyzer", {
+    --   settings = {
+    --     ["rust-analyzer"] = {
+    --       checkOnSave = true,
+    --       check = {
+    --         command = "clippy",
+    --       },
+    --     },
+    --   },
+    -- })
+    setup_lsp("bacon_ls", {
+      init_options = {
+        updateOnSave = true,
+        updateOnSaveWaitMillis = 250,
+        synchronizeAllOpenFilesWaitMillis = 250,
+      },
+    })
+
+    setup_lsp("bashls", {
+      filetypes = { "bash", "sh", "zsh" },
+    })
+
+    setup_lsp("clangd", {
+      cmd = {
+        "clangd",
+        "--offset-encoding=utf-16",
+        "--header-insertion=iwyu",
+        "--header-insertion-decorators",
+        "--import-insertions",
+        "--malloc-trim",
+      },
+    })
+    setup_lsp("harper_ls", {
+      settings = {
+        ["harper-ls"] = {
+          linters = {
+            SentenceCapitalization = false,
+            SpellCheck = false,
+            ToDoHyphen = false,
+            RepeatedWords = false,
+          },
+          isolateEnglish = false,
+        },
+      },
+    })
+    setup_lsp("lua_ls", {
+      on_init = on_lua_init,
+      settings = {
+        Lua = {
+          telemetry = {
+            enable = false,
+          },
+          doc = {
+            privateName = { "^_" },
+          },
+        },
+      },
+    })
+    setup_lsp("zls", {
+      settings = {
+        enable_build_on_save = true,
+        inlay_hints_hide_redundant_param_names = true,
+        warn_style = true,
       },
     })
   end,

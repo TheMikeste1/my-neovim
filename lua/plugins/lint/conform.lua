@@ -54,7 +54,7 @@ return {
         xsd = { "xmllint", "xmlformat" },
         -- Config Files
         toml = { "taplo" },
-        yaml = { "yamlfix", "yamlfmt" },
+        yaml = { "yamlfix" },
         -- Writing
         markdown = { "mdslw", "markdownlint", "mdformat" },
       },
@@ -64,6 +64,9 @@ return {
       formatters = {
         ["clang-format"] = {
           cwd = require("conform.util").root_file({ ".editorconfig", ".git", ".clang-format" }),
+        },
+        black = {
+          prepend_args = { "--line-length", "160" },
         },
         shfmt = {
           prepend_args = { "-i", "2" },

@@ -1,9 +1,13 @@
+@cond
+@endcond
 @endverbatim
+@param
 @tparam
 CMake
 Hegerhorst
 MSVC
 boolean
+clippy
 cmake
 cyber
 cyberharden
@@ -20,6 +24,7 @@ iff
 implementers
 incrementing
 lexicographically
+lsp
 lua
 marshalled
 marshalling
@@ -32,5 +37,6 @@ stateful
 subcondition
 symlink
 toolchain
+unmarshal
 uplink
 verification

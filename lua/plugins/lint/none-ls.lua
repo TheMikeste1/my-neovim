@@ -101,7 +101,9 @@ return {
         -- Web
 
         -- YAML
-        null_ls.builtins.diagnostics.yamllint,
+        null_ls.builtins.diagnostics.yamllint.with({
+          extra_args = {"--config-data", "{extends: default, rules: {line-length: {max: 240}}}"}
+        }),
       },
       should_attach = function(bufnr)
         local filetype = vim.fn.getbufvar(bufnr, "&filetype")
