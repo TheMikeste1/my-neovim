@@ -50,8 +50,8 @@ return {
         less = { "stylelint" },
         css = { "stylelint" },
         sass = { "stylelint" },
-        xml = { "xmllint", "xmlformat" },
-        xsd = { "xmllint", "xmlformat" },
+        xml = { "xmlformat" },
+        xsd = { "xmlformat" },
         -- Config Files
         toml = { "taplo" },
         yaml = { "yamlfix" },
@@ -85,6 +85,12 @@ return {
           args = {
             "--use-spaces=2",
             "-",
+          },
+        },
+        xmlformat = {
+          prepend_args = {
+            "--preserve-attributes",
+            "--selfclose",
           },
         },
       },
