@@ -37,6 +37,18 @@ end
 return {
   "goolord/alpha-nvim",
   init = function()
+    vim.api.nvim_create_autocmd("TabNewEntered", {
+      group = vim.api.nvim_create_augroup("default_tab", {}),
+      desc = "Open Alpha on new, empty tab",
+      pattern = "*",
+      callback = function()
+        local filename = vim.api.nvim_buf_get_name(0)
+        if filename == "" then
+          vim.cmd("Alpha")
+        end
+      end,
+    })
+
     if vim.fn.argc() == 0 then
       return
     end
