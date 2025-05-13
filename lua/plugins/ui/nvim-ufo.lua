@@ -40,7 +40,7 @@ return {
     require("ufo").setup({
       fold_virt_text_handler = fold_virt_text_handler,
     })
-    vim.lsp.setup("*", {
+    vim.lsp.config("*", {
       capabilities = {
         textDocument = {
           foldingRange = {
