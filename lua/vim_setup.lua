@@ -70,8 +70,3 @@ vim.filetype.add({
 })
 
 vim.o.timeout = false
-vim.keymap.del("n", "gri")
-vim.keymap.del("n", "gra")
-vim.keymap.del("x", "gra")
-vim.keymap.del("n", "grn")
-vim.keymap.del("n", "grr")

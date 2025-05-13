@@ -40,8 +40,21 @@ return {
     require("ufo").setup({
       fold_virt_text_handler = fold_virt_text_handler,
     })
+    vim.lsp.setup("*", {
+      capabilities = {
+        textDocument = {
+          foldingRange = {
+            dynamicRegistration = false,
+            lineFoldingOnly = true,
+          },
+        },
+      },
+    })
   end,
-  dependencies = "kevinhwang91/promise-async",
+  dependencies = {
+    "hrsh7th/cmp-nvim-lsp", -- Load the LSP capabilities first so we override them in config
+    "kevinhwang91/promise-async",
+  },
   keys = {
     {
       "zR",

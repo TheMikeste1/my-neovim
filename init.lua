@@ -20,6 +20,7 @@ if vim.fn.argc() == 1 then
 end
 
 require("vim_setup")
+require("vim-setup")
 require("plugin_setup")
 require("keymap")
 require("filetype")
