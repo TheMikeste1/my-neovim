@@ -85,9 +85,7 @@ return {
           extra_args = { "--disable=useless-option-value,unknown-option-value,unrecognized-option" },
           prefer_local = ".venv/bin",
         }),
-        -- null_ls.builtins.diagnostics.mypy.with({
-        --   prefer_local = ".venv/bin",
-        -- }),
+        null_ls.builtins.diagnostics.pydoclint,
 
         -- Shell/Bash
         null_ls.builtins.hover.printenv,

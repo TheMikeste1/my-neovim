@@ -92,13 +92,13 @@ vim.lsp.config("*", {
 --     },
 --   },
 -- })
-setup_lsp("bacon_ls", {
-  init_options = {
-    updateOnSave = true,
-    updateOnSaveWaitMillis = 250,
-    synchronizeAllOpenFilesWaitMillis = 250,
-  },
-})
+-- setup_lsp("bacon_ls", {
+--   init_options = {
+--     updateOnSave = true,
+--     updateOnSaveWaitMillis = 250,
+--     synchronizeAllOpenFilesWaitMillis = 250,
+--   },
+-- })
 setup_lsp("bashls", {
   filetypes = { "bash", "sh", "zsh" },
 })
@@ -138,6 +138,7 @@ setup_lsp("lua_ls", {
     },
   },
 })
+setup_lsp("lemminx")
 setup_lsp("zls", {
   settings = {
     enable_build_on_save = true,

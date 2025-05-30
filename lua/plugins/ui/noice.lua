@@ -72,6 +72,10 @@ return {
               event = "msg_show",
               find = "lines yanked",
             },
+            {
+              event = "msg_show",
+              find = ">ed",
+            },
           },
         },
         opts = { skip = true },

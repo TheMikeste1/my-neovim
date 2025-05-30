@@ -55,8 +55,10 @@ vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 vim.opt.autoread = true
 vim.opt.autowrite = true
 
-vim.opt.signcolumn = "yes:2"
-vim.opt.statuscolumn = "%=%l%s%C"
+-- vim.opt.signcolumn = "yes:2"
+vim.opt.signcolumn = "yes"
+vim.opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
+-- vim.opt.statuscolumn = "%=%l%s%C"
 
 vim.cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh({ bufnr = 0 })]])
 

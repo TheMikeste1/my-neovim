@@ -10,11 +10,13 @@ return {
         default_settings = {
           -- rust-analyzer language server configuration
           ["rust-analyzer"] = {
-            -- checkOnSave = true,
+            checkOnSave = true,
+
             -- Settings for bacon_ls
-            checkOnSave = false,
-            diagnostics = false,
+            -- checkOnSave = false,
+            -- diagnostics = false,
             -- end bacon_ls
+
             check = {
               command = "clippy",
             },

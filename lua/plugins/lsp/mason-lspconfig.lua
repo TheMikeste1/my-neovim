@@ -1,9 +1,9 @@
 return {
   "williamboman/mason-lspconfig.nvim",
+  cond = false,
   config = function()
-
     local mason_lspconfig = require("mason-lspconfig")
-    mason_lspconfig.setup({
+      mason_lspconfig.setup({
       automatic_enable = {
         exclude = {
           "rust_analyzer",
