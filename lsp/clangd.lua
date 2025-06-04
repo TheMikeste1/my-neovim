@@ -1,4 +1,5 @@
-return {
+-- Override nvim-lspconfig
+vim.lsp.config("clangd", {
   cmd = {
     "clangd",
     "--offset-encoding=utf-16",
@@ -7,4 +8,6 @@ return {
     "--import-insertions",
     "--malloc-trim",
   },
-}
+})
+-- Defaults
+return {}

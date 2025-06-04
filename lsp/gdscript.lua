@@ -1,8 +1,7 @@
-local opts = {
-  filetypes = { "gd", "gdscript", "gdscript3" },
-}
 if IS_WSL then
-  opts.cmd = { "godot-wsl-lsp", "--useMirroredNetworking" }
+  vim.lsp.config("gdscript", {
+    cmd = { "godot-wsl-lsp", "--useMirroredNetworking" },
+  })
 end
 
-return opts
+return {}

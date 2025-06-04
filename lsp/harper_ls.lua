@@ -1,4 +1,3 @@
-vim.notify("START HARPER_LS")
 return {
   settings = {
     ["harper-ls"] = {
