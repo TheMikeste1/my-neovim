@@ -1,7 +1,3 @@
-local function config(_, opts)
-  require("noice").setup(opts)
-end
-
 return {
   "folke/noice.nvim",
   event = "VeryLazy",
@@ -119,5 +115,4 @@ return {
       },
     },
   },
-  config = config,
 }
