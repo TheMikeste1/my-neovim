@@ -4,8 +4,7 @@ if VSCODE then
   return
 end
 
-vim.g.everforest_background = "hard"
-local theme = "everforest"
+local theme = "nordfox"
 
 vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DapBreakpoint" })
 vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "DapBreakpoint" })
