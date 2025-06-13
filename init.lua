@@ -16,6 +16,18 @@ if vim.fn.argc() == 1 then
 
   if FileUtilities.isDirectory(arg) then
     vim.cmd("cd " .. arg)
+
+    -- Auto open dashboard
+    vim.api.nvim_create_autocmd({ "User" }, {
+      pattern = "LazyDone",
+      once = true,
+      callback = function()
+        vim.cmd("1wincmd w")
+        if require("alpha").default_config.opts.autostart then
+          vim.cmd("Alpha")
+        end
+      end,
+    })
   end
 end
 

@@ -55,33 +55,10 @@ return {
         end
       end,
     })
-
-    if vim.fn.argc() == 0 then
-      return
-    end
-
-    -- If the argument is a directory, start the dashboard
-    local FileUtilities = require("utilities.file_utilities")
-    local arg = vim.fn.argv()[1]
-    if not FileUtilities.isDirectory(arg) then
-      return
-    end
-
-    vim.api.nvim_create_autocmd({ "VimEnter" }, {
-      callback = function()
-        local alpha = require("alpha")
-        if alpha.default_config.opts.autostart then
-          vim.cmd("Alpha")
-        end
-      end,
-    })
-  end,
-  config = function()
-    local alpha = require("alpha")
-    alpha.setup(generate_dashboard())
   end,
   dependencies = {
     "nvim-tree/nvim-web-devicons",
     "nvim-lua/plenary.nvim",
   },
+  opts = generate_dashboard,
 }
