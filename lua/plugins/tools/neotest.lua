@@ -36,9 +36,6 @@ return {
         require("neotest-bash"),
         require("neotest-python"),
       },
-      consumers = {
-        overseer = require("neotest.consumers.overseer"),
-      },
     })
   end,
   keys = {

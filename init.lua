@@ -43,3 +43,7 @@ for _, file in ipairs(paths) do
   vim.cmd("mkspell! " .. file)
   ::continue::
 end
+
+vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+  command = "wa",
+})
