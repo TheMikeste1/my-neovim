@@ -1,10 +1,10 @@
 local vscode_kit_file = vim.fn.expand("~/.local/share/CMakeTools/cmake-tools-kits.json")
 
 local function postconfigure()
-  local new_configurations = require("configs.dap.cpp").configurations()
   local dap = require("dap")
-  dap.configurations.cpp = new_configurations
+  local new_configurations = require("configs.dap.c").configurations()
   dap.configurations.c = new_configurations
+  dap.configurations.cpp = new_configurations
 end
 
 local function handle_api_command(opts)
@@ -37,7 +37,7 @@ return {
     vim.api.nvim_create_user_command("CMakeSeer", handle_api_command, {
       desc = "Access the CMakeSeer API",
       nargs = "*",
-      complete = function(_, line)
+      complete = function(_, _)
         return { "select_kit", "select_variant" }
       end,
     })

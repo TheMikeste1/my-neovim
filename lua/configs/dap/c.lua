@@ -3,7 +3,7 @@ local function get_executable_path()
   return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
 end
 
----@param target Target The CMakeSeer target.
+---@param target cmakeseer.cmake.api.codemodel.Target The CMakeSeer target.
 ---@return dap.Configuration config
 local function generate_target_configuration(target)
   local CmakeseerTarget = require("cmakeseer.cmake.api.codemodel.target")
