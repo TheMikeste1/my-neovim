@@ -20,12 +20,19 @@ local function generate_dashboard()
   screen.buttons.val = {
     { type = "text", val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
     { type = "padding", val = 1 },
-    dashboard.button("e", "  New file", "<cmd>ene<CR>"),
+    dashboard.button("e", "  New file", "<cmd>enew<CR>"),
     dashboard.button("<C-p>", "󰈞  Find file"),
     dashboard.button("<M-C-F>", "󰊄  Live grep"),
     dashboard.button("s", "  Open last session", open_session),
     dashboard.button("c", "  Configuration", function()
-      vim.cmd.tcd(vim.fn.stdpath("config"))
+      local dir = vim.fn.stdpath("config")
+      vim.cmd.tcd(dir)
+      vim.notify(string.format("Tab changed directory to %s", dir))
+    end),
+    dashboard.button("p", "󰚥  Plugin Folder", function()
+      local dir = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")
+      vim.cmd.tcd(dir)
+      vim.notify(string.format("Tab changed directory to %s", dir))
     end),
     dashboard.button("t", "  Open terminal", "<cmd>terminal<CR>"),
     dashboard.button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),

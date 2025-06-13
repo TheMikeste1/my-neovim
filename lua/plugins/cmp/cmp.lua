@@ -135,7 +135,7 @@ local function config()
       ["<CR>"] = cmp.mapping({
         i = on_enter,
         s = cmp.mapping.confirm({ select = false }),
-        c = cmp.config.disable
+        c = cmp.config.disable,
         -- c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
       }),
     }),
