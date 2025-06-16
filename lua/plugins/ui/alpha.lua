@@ -43,6 +43,7 @@ end
 
 return {
   "goolord/alpha-nvim",
+  cond = false,
   init = function()
     vim.api.nvim_create_autocmd("TabNewEntered", {
       group = vim.api.nvim_create_augroup("default_tab", {}),

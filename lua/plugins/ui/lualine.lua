@@ -8,7 +8,8 @@ local FILE_NONTYPES = {
   "OverseerList",
   "neo-tree",
   "lazy",
-  "snacks_picker_input"
+  "snacks_picker_input",
+  "snacks_dashboard"
 }
 
 ---@return boolean

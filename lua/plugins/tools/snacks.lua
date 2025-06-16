@@ -1,3 +1,5 @@
+local cached_header = nil
+
 local function handle_api_command(opts)
   vim.notify("Snacks opts: " .. vim.inspect(opts), vim.log.levels.DEBUG)
   if opts.fargs and opts.fargs[1] == "resume" then
@@ -12,6 +14,19 @@ return {
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
+  init = function()
+    vim.api.nvim_create_autocmd("TabNewEntered", {
+      group = vim.api.nvim_create_augroup("default_tab", {}),
+      desc = "Open dashboard on new, empty tab",
+      pattern = "*",
+      callback = function()
+        local filename = vim.api.nvim_buf_get_name(0)
+        if filename == "" then
+          require("snacks").dashboard()
+        end
+      end,
+    })
+  end,
   config = function(_, opts)
     require("snacks").setup(opts)
     vim.api.nvim_create_user_command("Snacks", handle_api_command, { desc = "Access the Snacks API", nargs = "*" })
@@ -40,6 +55,78 @@ return {
         patterns = { "GitSign", "MiniDiffSign" },
       },
       refresh = 50, -- refresh at most every 50ms
+    },
+    dashboard = {
+      preset = {
+        keys = {
+          { key = "e", icon = "", desc = "New file", action = ":enew" },
+          {
+            key = "<C-p>",
+            icon = "󰈞",
+            desc = "Find file",
+            action = ":lua require('snacks').picker.smart({ hidden = false })",
+          },
+          { key = "<M-C-F>", icon = "󰊄", desc = "Live grep" },
+          { key = "s", icon = "", desc = "Open last session", section = "session" },
+          {
+            key = "c",
+            icon = "",
+            desc = "Configuration",
+            action = function()
+              local dir = vim.fn.stdpath("config")
+              vim.cmd.tcd(dir)
+              vim.notify(string.format("Tab changed directory to %s", dir))
+            end,
+          },
+          {
+            key = "p",
+            icon = "󰚥",
+            desc = "Plugin Folder",
+            action = function()
+              local dir = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")
+              vim.cmd.tcd(dir)
+              vim.notify(string.format("Tab changed directory to %s", dir))
+            end,
+          },
+          { key = "t", icon = "", desc = "Open terminal", action = ":terminal" },
+          { key = "u", icon = "", desc = "Update plugins", action = ":Lazy sync" },
+          { key = "q", icon = "󰅚", desc = "Close", action = ":q" },
+        },
+      },
+      formats = {
+        header = function()
+          if cached_header ~= nil then
+            return cached_header
+          end
+
+          local headers = vim.split(vim.fn.glob(string.format("%s/ascii_art/*.txt", vim.fn.stdpath("config"))), "\n")
+          local index = math.random(#headers)
+          local header_file = headers[index]
+          local header_lines = vim.fn.readfile(header_file)
+          local max_length = 0
+          for _, line in ipairs(header_lines) do
+            if #line > max_length then
+              max_length = #line
+            end
+          end
+
+          for i, line in ipairs(header_lines) do
+            header_lines[i] = line .. string.rep(" ", max_length - #line)
+          end
+          local header = table.concat(header_lines, "\n")
+          return { header, align = "center", hl = "SnacksDashboardHeader" }
+          -- In case I want to cache the header. . .
+          -- cached_header = { header, align = "center", hl = "SnacksDashboardHeader" }
+          -- return cached_header
+        end,
+      },
+      sections = {
+        { section = "header", padding = { 1, 1 } },
+        { icon = " ", title = "Recent Files", section = "recent_files", cwd = true, indent = 2, padding = 1 },
+        { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 2 },
+        { section = "keys", padding = 2 },
+        { section = "startup" },
+      },
     },
   },
 }

@@ -18,14 +18,11 @@ if vim.fn.argc() == 1 then
     vim.cmd("cd " .. arg)
 
     -- Auto open dashboard
-    vim.api.nvim_create_autocmd({ "User" }, {
-      pattern = "LazyDone",
+    vim.api.nvim_create_autocmd({ "UIEnter" }, {
       once = true,
       callback = function()
         vim.cmd("1wincmd w")
-        if require("alpha").default_config.opts.autostart then
-          vim.cmd("Alpha")
-        end
+        require("snacks").dashboard()
       end,
     })
   end
