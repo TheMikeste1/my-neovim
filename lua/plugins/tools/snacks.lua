@@ -1,4 +1,4 @@
-local cached_header = nil
+local cached_headers = {}
 
 local function handle_api_command(opts)
   vim.notify("Snacks opts: " .. vim.inspect(opts), vim.log.levels.DEBUG)
@@ -95,6 +95,8 @@ return {
       },
       formats = {
         header = function()
+          local buffer_id = vim.api.nvim_get_current_buf()
+          local cached_header = cached_headers[buffer_id]
           if cached_header ~= nil then
             return cached_header
           end
@@ -114,10 +116,19 @@ return {
             header_lines[i] = line .. string.rep(" ", max_length - #line)
           end
           local header = table.concat(header_lines, "\n")
-          return { header, align = "center", hl = "SnacksDashboardHeader" }
-          -- In case I want to cache the header. . .
-          -- cached_header = { header, align = "center", hl = "SnacksDashboardHeader" }
-          -- return cached_header
+          local header_item = { header, align = "center", hl = "SnacksDashboardHeader" }
+          cached_headers[buffer_id] = header_item
+
+          -- Clean up memory once the buffer is closed
+          vim.api.nvim_create_autocmd("BufUnload", {
+            buffer = buffer_id,
+            once = true,
+            callback = function()
+              cached_headers[buffer_id] = nil
+            end,
+          })
+
+          return header_item
         end,
       },
       sections = {
