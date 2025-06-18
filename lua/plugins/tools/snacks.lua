@@ -26,11 +26,9 @@ return {
         end
       end,
     })
-  end,
-  config = function(_, opts)
-    require("snacks").setup(opts)
     vim.api.nvim_create_user_command("Snacks", handle_api_command, { desc = "Access the Snacks API", nargs = "*" })
   end,
+  config = true,
   ---@type snacks.Config
   opts = {
     bigfile = { enabled = true },
