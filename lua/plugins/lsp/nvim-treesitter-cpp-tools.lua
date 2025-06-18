@@ -1,7 +1,6 @@
 return {
   "Badhi/nvim-treesitter-cpp-tools",
   dependencies = { "nvim-treesitter/nvim-treesitter" },
-  -- Optional: Configuration
   opts = function()
     local options = {
       preview = {
@@ -13,6 +12,6 @@ return {
     }
     return options
   end,
-  -- End configuration
   config = true,
+  ft = { "cpp", "c" },
 }
