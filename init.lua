@@ -22,7 +22,7 @@ if vim.fn.argc() == 1 then
       once = true,
       callback = function()
         vim.cmd("1wincmd w")
-        require("snacks").dashboard()
+        require("snacks").dashboard({ buf = 0, win = 0 })
       end,
     })
   end

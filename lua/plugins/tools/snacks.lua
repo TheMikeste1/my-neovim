@@ -22,7 +22,7 @@ return {
       callback = function()
         local filename = vim.api.nvim_buf_get_name(0)
         if filename == "" then
-          require("snacks").dashboard()
+          require("snacks").dashboard({ buf = 0, win = 0 })
         end
       end,
     })
@@ -31,6 +31,11 @@ return {
   config = true,
   ---@type snacks.Config
   opts = {
+    styles = {
+      dashboard = {
+        position = "current",
+      },
+    },
     bigfile = { enabled = true },
     indent = {
       enabled = true,
