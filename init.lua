@@ -15,14 +15,13 @@ if vim.fn.argc() == 1 then
   end
 
   if FileUtilities.isDirectory(arg) then
-    vim.cmd("cd " .. arg)
+    vim.fn.chdir(arg)
 
     -- Auto open dashboard
     vim.api.nvim_create_autocmd({ "UIEnter" }, {
       once = true,
       callback = function()
-        vim.cmd("1wincmd w")
-        require("snacks").dashboard({ buf = 0, win = 0 })
+        require("snacks").dashboard({ buf = 1, win = 1000 })
       end,
     })
   end
