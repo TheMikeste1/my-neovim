@@ -66,11 +66,14 @@ return {
     local lsp_names = {}
     for _, package in ipairs(require("mason-registry").get_installed_packages()) do
       if vim.tbl_contains(package.spec.categories, "LSP") then
-        assert(package.spec.neovim.lspconfig ~= nil, "Package name was nil")
-        table.insert(lsp_names, package.spec.neovim.lspconfig)
-        goto continue
+        local name = package.spec.name
+        if package.spec.neovim ~= nil and package.spec.neovim.lspconfig ~= nil then
+          name = package.spec.neovim.lspconfig
+        else
+          name = name:gsub("%-", "_")
+        end
+        table.insert(lsp_names, name)
       end
-      ::continue::
     end
 
     vim.lsp.enable(lsp_names, true)
