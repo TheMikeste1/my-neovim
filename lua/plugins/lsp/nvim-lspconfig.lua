@@ -56,10 +56,7 @@ local function config()
         Snacks.picker.lsp_type_definitions,
         { buffer = ev.buf, desc = "List LSP type definition" }
       )
-      vim.keymap.set("n", "<space>rn", function()
-        vim.lsp.buf.rename()
-        vim.cmd.wall({ mods = { silent = true } })
-      end, { buffer = ev.buf, desc = "Rename variable" })
+      vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, { buffer = ev.buf, desc = "Rename variable" })
 
       vim.keymap.set("n", "gD", Snacks.picker.lsp_declarations, { buffer = ev.buf, desc = "Go to declaration" })
       vim.keymap.set("n", "gd", Snacks.picker.lsp_definitions, { buffer = ev.buf, desc = "Go to definition" })
