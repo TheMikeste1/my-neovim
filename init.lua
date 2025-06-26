@@ -34,6 +34,8 @@ require("keymap")
 require("filetype")
 require("configure_theme")
 
+require("after")
+
 -- Recompile spell file if it updated
 local spell_path = vim.fn.stdpath("config") .. "/spell"
 local paths = vim.split(vim.fn.glob(spell_path .. "/*.add"), "\n")
