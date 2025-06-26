@@ -34,25 +34,3 @@ require("filetype")
 require("configure_theme")
 
 require("after")
-
--- Recompile spell file if it updated
-local spell_path = vim.fn.stdpath("config") .. "/spell"
-local paths = vim.split(vim.fn.glob(spell_path .. "/*.add"), "\n")
-for _, file in ipairs(paths) do
-  -- Can we skip generation?
-  local compiled_file = file .. ".spl"
-  if vim.fn.filereadable(compiled_file) == 1 then
-    local file_timestamp = vim.fn.getftime(file)
-    local compiled_timestamp = vim.fn.getftime(compiled_file)
-    if file_timestamp <= compiled_timestamp then
-      goto continue
-    end
-  end
-
-  vim.cmd("mkspell! " .. file)
-  ::continue::
-end
-
-vim.api.nvim_create_autocmd("QuickFixCmdPost", {
-  command = "wa",
-})
