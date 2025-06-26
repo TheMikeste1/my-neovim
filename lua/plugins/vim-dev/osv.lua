@@ -1,5 +1,6 @@
 return {
   "jbyuki/one-small-step-for-vimkind",
+  lazy = true,
   config = function()
     local dap = require("dap")
     dap.adapters.nlua = function(callback, conf)
@@ -34,4 +35,7 @@ return {
       },
     }
   end,
+  dependencies = {
+    "mfussenegger/nvim-dap",
+  },
 }
