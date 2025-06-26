@@ -1,3 +1,5 @@
+require("vim_setup.lsp")
+
 vim.opt.wrap = false -- No word wrap
 vim.opt.fillchars = { eob = " " } -- Don't show ~ on none-lines
 vim.opt.colorcolumn = "81,121,241" -- Indicators of line length
@@ -72,3 +74,4 @@ vim.filetype.add({
 })
 
 vim.o.timeout = false
+vim.o.sessionoptions = "curdir,folds,help,tabpages,winsize,terminal,options"
