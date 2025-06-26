@@ -63,7 +63,7 @@ return {
         "mfussenegger/nvim-dap",
       },
     },
-    "rcasia/neotest-bash",
+    { "rcasia/neotest-bash", submodules = false },
     "nvim-neotest/neotest-python",
     "nvim-neotest/nvim-nio",
     "stevearc/overseer.nvim",
