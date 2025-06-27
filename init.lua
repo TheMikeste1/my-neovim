@@ -33,4 +33,5 @@ require("filetype")
 require("plugin_setup")
 require("configure_theme")
 
+require("once_ftplugin")
 require("after")

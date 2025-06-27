@@ -1,3 +1,5 @@
+require("once_ftplugin.c")
+
 if VSCODE then
   return
 end
