@@ -74,4 +74,4 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
   end,
 })
 
-vim.cmd(string.format("colorscheme %s", theme))
+vim.cmd.colorscheme(theme)
