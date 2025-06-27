@@ -6,8 +6,8 @@ for _, file in ipairs(files) do
   if file ~= source_file then
     local filetype = file:sub(#source_dir + 2, #file - 4)
     vim.api.nvim_create_autocmd("FileType", {
-      pattern = filetype,
       desc = string.format("Run the one-time filetype setup for %s files", filetype),
+      pattern = filetype,
       once = true,
       callback = function()
         require("once_ftplugin." .. filetype)

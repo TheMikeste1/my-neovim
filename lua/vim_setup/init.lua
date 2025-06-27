@@ -1,4 +1,6 @@
-require("vim_setup.lsp")
+vim.lsp.config("*", {
+  root_markers = { ".git", ".hg" },
+})
 
 vim.opt.wrap = false -- No word wrap
 vim.opt.fillchars = { eob = " " } -- Don't show ~ on none-lines
