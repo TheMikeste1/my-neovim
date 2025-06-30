@@ -1,3 +1,8 @@
+require("utilities.state")
+if VSCODE then
+  return
+end
+
 local Set = require("utilities.set").Set
 
 --- Tools used for all filetypes.
