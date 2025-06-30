@@ -16,19 +16,11 @@ vim.opt.undodir = (os.getenv("HOME") or os.getenv("UserProfile")) .. "/.vim/undo
 vim.opt.undofile = true
 
 -- Use system clipboard
-vim.opt.clipboard = ""
--- https://www.reddit.com/r/neovim/comments/17ieyn2/comment/kd9vt97/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
--- sync with system clipboard on focus
-vim.api.nvim_create_autocmd({ "FocusGained" }, {
-  pattern = { "*" },
-  command = [[call setreg("@", getreg("+"))]],
-})
-
--- sync with system clipboard on focus
-vim.api.nvim_create_autocmd({ "FocusLost" }, {
-  pattern = { "*" },
-  command = [[call setreg("+", getreg("@"))]],
-})
+if vim.fn.has("unamedplus") then
+  vim.opt.clipboard = "unnamedplus"
+else
+  vim.opt.clipboard = "unnamed"
+end
 
 -- Set GUI colors if in the terminal
 if not VSCODE and vim.fn.has("termguicolors") then
