@@ -1,3 +1,8 @@
+require("utilities.state")
+if VSCODE then
+  return
+end
+
 --- LSPs that should never be enabled directly, even if installed.
 local DISABLED_LSPS = {
   "bacon_ls",
