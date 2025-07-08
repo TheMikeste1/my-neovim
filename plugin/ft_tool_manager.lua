@@ -41,6 +41,10 @@ local FT_TOOLS = {
     "shellharden",
   }),
   sql = Set({ "sqlfluff" }),
+  systemd = Set({
+    "systemd-language-server",
+    "systemdlint",
+  }),
   toml = Set({
     "ansible-lint",
     "taplo",

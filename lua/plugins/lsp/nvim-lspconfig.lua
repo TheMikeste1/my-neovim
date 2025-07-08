@@ -15,11 +15,12 @@ local function config()
   vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
   vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, { desc = "Set location list" })
 
-  vim.keymap.del("n", "gri")
   vim.keymap.del("n", "gra")
-  vim.keymap.del("x", "gra")
+  vim.keymap.del("n", "gri")
   vim.keymap.del("n", "grn")
   vim.keymap.del("n", "grr")
+  vim.keymap.del("n", "grt")
+  vim.keymap.del("x", "gra")
 
   -- Use LspAttach autocommand to only map the following keys
   -- after the language server attaches to the current buffer
