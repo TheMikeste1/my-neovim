@@ -91,6 +91,9 @@ return {
           prepend_args = {
             "--preserve-attributes",
             "--selfclose",
+            "--blanks",
+            "--eof-newline",
+
           },
         },
       },

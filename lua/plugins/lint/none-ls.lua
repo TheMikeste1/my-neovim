@@ -77,7 +77,9 @@ return {
         null_ls.builtins.diagnostics.checkmake,
 
         -- Markdown
-        null_ls.builtins.diagnostics.markdownlint,
+        null_ls.builtins.diagnostics.markdownlint.with({
+          extra_args = {"--disable", "MD013"}
+        }),
         null_ls.builtins.hover.dictionary,
 
         -- Python
