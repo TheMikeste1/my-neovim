@@ -40,14 +40,14 @@ mod.lazy_keys = {
   {
     "<C-p>",
     function()
-      require("snacks").picker.smart({ hidden = false })
+      require("snacks").picker.smart({ hidden = false, filter = { cwd = true } })
     end,
     desc = "Quick jump to project files",
   },
   {
     "<leader><leader>f",
     function()
-      require("snacks").picker.smart({ ignored = true, hidden = true })
+      require("snacks").picker.smart({ ignored = true, hidden = true, filter = { cwd = true } })
     end,
     desc = "Quick jump to all files",
   },
