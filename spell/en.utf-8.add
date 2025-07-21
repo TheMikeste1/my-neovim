@@ -9,13 +9,17 @@ MSVC
 boolean
 clippy
 cmake
+constructible
 cyber
 cyberharden
 cyberhardening
+dataflow
 debugability
 deserialize
 destructor
+downlink
 emissive
+endian
 endianness
 enqueue
 executables
@@ -31,6 +35,7 @@ marshalling
 metadata
 mutex
 namespace
+parameterized
 programmatically
 snakecase
 stateful
