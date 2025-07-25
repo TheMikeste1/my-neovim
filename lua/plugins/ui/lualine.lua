@@ -9,7 +9,7 @@ local FILE_NONTYPES = {
   "neo-tree",
   "lazy",
   "snacks_picker_input",
-  "snacks_dashboard"
+  "snacks_dashboard",
 }
 
 ---@return boolean
@@ -21,6 +21,14 @@ local function is_enabled_file()
     end
   end
   return true
+end
+
+local function eol_type()
+  local format = vim.bo.fileformat:upper()
+  if format ~= "UNIX" then
+    return "[" .. format .. "]"
+  end
+  return ""
 end
 
 local function get_recording_status()
@@ -69,6 +77,7 @@ return {
         },
         lualine_c = {
           { "filetype", cond = is_enabled_file },
+          { eol_type, cond = is_enabled_file },
           { "filename", cond = is_enabled_file },
         },
         lualine_x = {

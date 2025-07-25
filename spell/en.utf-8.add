@@ -37,6 +37,7 @@ mutex
 namespace
 parameterized
 programmatically
+radians
 snakecase
 stateful
 subcondition
