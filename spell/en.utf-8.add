@@ -6,13 +6,16 @@
 CMake
 Hegerhorst
 MSVC
+bitfields
 boolean
+centroids
 clippy
 cmake
 constructible
 cyber
 cyberharden
 cyberhardening
+data's
 dataflow
 debugability
 deserialize
@@ -23,6 +26,7 @@ endian
 endianness
 enqueue
 executables
+federal
 globbed
 iff
 implementers
