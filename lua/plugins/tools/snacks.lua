@@ -80,6 +80,7 @@ return {
               local dir = vim.fn.stdpath("config")
               vim.cmd.tcd(dir)
               vim.notify(string.format("Tab changed directory to %s", dir))
+              require("snacks").dashboard.update()
             end,
           },
           {
@@ -90,6 +91,7 @@ return {
               local dir = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")
               vim.cmd.tcd(dir)
               vim.notify(string.format("Tab changed directory to %s", dir))
+              require("snacks").dashboard.update()
             end,
           },
           { key = "t", icon = "", desc = "Open terminal", action = ":terminal" },
@@ -137,6 +139,12 @@ return {
       },
       sections = {
         { section = "header", padding = { 1, 1 } },
+        function()
+          local dirname = vim.fn.getcwd()
+          dirname = vim.fn.fnamemodify(dirname, ":~")
+          ---@type snacks.dashboard.Item
+          return { title = dirname, align = "center" }
+        end,
         { icon = " ", title = "Recent Files", section = "recent_files", cwd = true, indent = 2, padding = 1 },
         { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 2 },
         { section = "keys", padding = 2 },
