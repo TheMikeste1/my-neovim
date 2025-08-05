@@ -56,7 +56,7 @@ return {
         toml = { "taplo" },
         yaml = { "yamlfix" },
         -- Writing
-        markdown = { "mdslw", "markdownlint", "mdformat" },
+        markdown = { "markdownlint", "mdformat" },
       },
       -- Set up format-on-save
       -- format_on_save = { timeout_ms = 500, lsp_fallback = true },
