@@ -102,6 +102,18 @@ return {
       formats = {
         header = function()
           local buffer_id = vim.api.nvim_get_current_buf()
+          local buftype = vim.fn.getbufvar(buffer_id, "&filetype")
+          if buftype ~= "snacks_dashboard" then
+            local bufs = vim.api.nvim_list_bufs()
+            for _, buf_id in ipairs(bufs) do
+              buftype = vim.fn.getbufvar(buf_id, "&filetype")
+              if buftype == "snacks_dashboard" then
+                buffer_id = buf_id
+                break
+              end
+            end
+          end
+
           local cached_header = cached_headers[buffer_id]
           if cached_header ~= nil then
             return cached_header
