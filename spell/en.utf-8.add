@@ -8,6 +8,7 @@ Hegerhorst
 MSVC
 bitfields
 boolean
+booleans
 centroids
 clippy
 cmake
@@ -18,6 +19,7 @@ cyberhardening
 data's
 dataflow
 debugability
+defragment
 deserialize
 destructor
 downlink
@@ -31,6 +33,7 @@ globbed
 iff
 implementers
 incrementing
+layout
 lexicographically
 lsp
 lua
