@@ -26,7 +26,7 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
-    "3rd/image.nvim",
+    { "3rd/image.nvim", config = true },
     "s1n7ax/nvim-window-picker",
     "jackielii/neo-tree-harpoon.nvim",
     "folke/snacks.nvim",

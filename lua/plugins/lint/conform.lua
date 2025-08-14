@@ -87,6 +87,11 @@ return {
             "-",
           },
         },
+        mdformat = {
+          prepend_args = {
+            "--number"
+          }
+        },
         xmlformat = {
           prepend_args = {
             "--preserve-attributes",
