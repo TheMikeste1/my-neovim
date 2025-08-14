@@ -1,14 +1,27 @@
 --- Set up auto-save all on rename
 
+local _FILE_PREFIX = "file://"
+local _FILE_PREFIX_LEN = #_FILE_PREFIX
+
 --- Actions to take after the default handlers.
 ---@param err lsp.ResponseError? An error if one occurred.
----@param _ any The result of the action.
----@param ctx lsp.HandlerContext The context for the response.
-local function post_handle(err, _, ctx)
+---@param result any The result of the action.
+---@param _ lsp.HandlerContext The context for the response.
+local function post_handle(err, result, _)
   if err == nil then
-    vim.api.nvim_buf_call(ctx.bufnr, function()
-      vim.cmd.w({ mods = { silent = true } })
-    end)
+    vim
+      .iter(result.changes)
+      :map(function(file)
+        return vim.fn.bufnr(file:sub(_FILE_PREFIX_LEN + 1))
+      end)
+      :filter(function(bufnr)
+        return bufnr > 0
+      end)
+      :each(vim.schedule_wrap(function(bufnr)
+        vim.api.nvim_buf_call(bufnr, function()
+          vim.cmd.w({ mods = { silent = true } })
+        end)
+      end))
   end
 end
 
