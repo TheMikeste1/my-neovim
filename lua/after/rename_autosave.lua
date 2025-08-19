@@ -3,14 +3,32 @@
 local _FILE_PREFIX = "file://"
 local _FILE_PREFIX_LEN = #_FILE_PREFIX
 
+---@param result any The result of the action.
+local function extract_files(result)
+  if result.changes then
+    return result.changes
+  end
+
+  if result.documentChanges then
+    local files = {}
+    for _, changes in ipairs(result.documentChanges) do
+      table.insert(files, changes.textDocument.uri)
+    end
+    return files
+  end
+
+  vim.notify("Unknown rename function. Got result=" .. vim.inspect(result), vim.log.levels.ERROR)
+end
+
 --- Actions to take after the default handlers.
 ---@param err lsp.ResponseError? An error if one occurred.
 ---@param result any The result of the action.
 ---@param _ lsp.HandlerContext The context for the response.
 local function post_handle(err, result, _)
   if err == nil then
+    local files = extract_files(result)
     vim
-      .iter(result.changes)
+      .iter(files)
       :map(function(file)
         return vim.fn.bufnr(file:sub(_FILE_PREFIX_LEN + 1))
       end)

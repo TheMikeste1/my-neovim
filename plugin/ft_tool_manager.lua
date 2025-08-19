@@ -31,8 +31,8 @@ local FT_TOOLS = {
     "isort",
     "mypy",
     "pylint",
-    "pyrefly",
-    -- "pyright",
+    -- "pyrefly",
+    "pyright",
   }),
   sh = Set({
     "bash-language-server",

@@ -7,7 +7,6 @@ end
 local DISABLED_LSPS = {
   "bacon_ls",
   "rust_analyzer",
-  "pyright"
 }
 
 local lsp_names = {}
