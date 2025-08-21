@@ -20,8 +20,10 @@ data's
 dataflow
 debugability
 defragment
+defragmented
 deserialize
 destructor
+discriminants
 downlink
 emissive
 endian
