@@ -2,7 +2,8 @@ return {
   "tpope/vim-fugitive",
   cond = true,
   init = function()
-    has_local, fugitive = pcall(require, "local.fugitive")
+    vim.g.fugitive_git_executable = "LEFTHOOK_OUTPUT=failure git"
+    local has_local, fugitive = pcall(require, "local.fugitive")
     if has_local then
       fugitive.init()
     end
