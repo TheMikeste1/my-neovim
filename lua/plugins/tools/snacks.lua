@@ -70,7 +70,7 @@ return {
             desc = "Find file",
             action = ":lua require('snacks').picker.smart({ hidden = false })",
           },
-          { key = "<M-C-F>", icon = "󰊄", desc = "Live grep" },
+          { key = "<M-C-F>", icon = "󰊄", desc = "Live grep", action = ":lua require('snacks').picker.grep()" },
           { key = "s", icon = "", desc = "Open last session", section = "session" },
           {
             key = "c",
