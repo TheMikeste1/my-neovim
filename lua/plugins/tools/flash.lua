@@ -1,5 +1,6 @@
 return {
   "folke/flash.nvim",
+  lazy = false,
   cond = true,
   keys = {
     {
