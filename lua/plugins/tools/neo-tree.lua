@@ -26,10 +26,10 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
-    { "3rd/image.nvim", config = true },
     "s1n7ax/nvim-window-picker",
     "jackielii/neo-tree-harpoon.nvim",
     "folke/snacks.nvim",
+    "miversen33/netman.nvim",
   },
   keys = {
     {
@@ -71,6 +71,7 @@ return {
         "git_status",
         "document_symbols",
         "harpoon-buffers",
+        "netman.ui.neo-tree",
       },
       event_handlers = {
         {
@@ -117,6 +118,7 @@ return {
           { source = "buffers" },
           { source = "git_status" },
           { source = "document_symbols" },
+          { source = "remote" },
         },
       },
       use_popups_for_input = false,
