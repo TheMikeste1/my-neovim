@@ -120,7 +120,7 @@ return {
         },
       },
       use_popups_for_input = false,
-      open_files_do_not_replace_types = { "terminal", "Trouble", "qf", "edgy", "OverseerList", "nofile" },
+      open_files_do_not_replace_types = { "terminal", "Trouble", "qf", "edgy", "OverseerList" },
     }
 
     local events = require("neo-tree.events")
