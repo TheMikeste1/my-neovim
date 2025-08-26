@@ -35,6 +35,9 @@ return {
       dashboard = {
         position = "current",
       },
+      scratch = {
+        position = "bottom",
+      },
     },
     bigfile = { enabled = true },
     indent = {
@@ -162,6 +165,22 @@ return {
         { section = "keys", padding = 2 },
         { section = "startup" },
       },
+    },
+  },
+  keys = {
+    {
+      "<leader>.",
+      function()
+        Snacks.scratch()
+      end,
+      desc = "Toggle Scratch Buffer",
+    },
+    {
+      "<leader>S",
+      function()
+        Snacks.scratch.select()
+      end,
+      desc = "Select Scratch Buffer",
     },
   },
 }
