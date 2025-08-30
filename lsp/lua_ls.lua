@@ -37,6 +37,11 @@ end
 local function on_init(client)
   client.config.settings.Lua = client.config.settings.Lua or {}
 
+  if client.workspace_folders == nil then
+    -- Individual file
+    return true
+  end
+
   ---@type string
   local path = client.workspace_folders[1].name
 
