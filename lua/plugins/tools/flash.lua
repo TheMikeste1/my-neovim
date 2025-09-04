@@ -2,6 +2,13 @@ return {
   "folke/flash.nvim",
   lazy = false,
   cond = true,
+  opts = {
+    modes = {
+      search = {
+        enabled = true,
+      },
+    },
+  },
   keys = {
     {
       "<leader>f",
