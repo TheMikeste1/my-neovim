@@ -95,6 +95,7 @@ end
 
 return {
   "neovim/nvim-lspconfig",
+  event = "VeryLazy",
   config = config,
   dependencies = {
     "williamboman/mason.nvim",
