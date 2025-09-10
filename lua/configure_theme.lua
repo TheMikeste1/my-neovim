@@ -47,6 +47,8 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
       number_background_string = string.format("#%06x", number_backgroud)
     end
 
+    vim.api.nvim_set_hl(0, "SpellBad", { underline = true })
+
     vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { fg = "#993939" })
     vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { fg = "#ff942f" })
     vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { fg = "#00b7e4" })
