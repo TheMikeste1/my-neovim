@@ -23,7 +23,7 @@ return {
         -- Programming
         c = { "uncrustify", "clang-format" },
         cpp = { "uncrustify", "clang-format" },
-        cs = { "uncrustify", "clang-format" },
+        cs = { "csharpier", lsp_format = "fallback" },
         cuda = { "clang-format" },
         gdscript = { "gdformat" },
         java = { "uncrustify", "clang-format" },
@@ -89,8 +89,8 @@ return {
         },
         mdformat = {
           prepend_args = {
-            "--number"
-          }
+            "--number",
+          },
         },
         xmlformat = {
           prepend_args = {
@@ -98,7 +98,6 @@ return {
             "--selfclose",
             "--blanks",
             "--eof-newline",
-
           },
         },
       },

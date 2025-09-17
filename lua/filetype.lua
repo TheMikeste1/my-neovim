@@ -5,3 +5,15 @@ vim.filetype.add({
     tpp = "cpp",
   },
 })
+
+vim.filetype.add({
+  extension = {
+    yaml = "base",
+  },
+})
+
+vim.filetype.add({
+  extension = {
+    xteds = "xml",
+  },
+})
