@@ -11,7 +11,9 @@ return {
         -- require("neotest-rust"),
         require("rustaceanvim.neotest"),
         require("cmakeseer.neotest.ctest"),
-        require("neotest-dotnet"),
+        require("neotest-dotnet")({
+          discovery_root = "solution",
+        }),
         require("neotest-gtest").setup({
           is_test_file = function(file)
             local filename = string.match(file, "([^/]+)$")
