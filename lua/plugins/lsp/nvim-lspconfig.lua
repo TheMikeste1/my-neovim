@@ -95,7 +95,7 @@ end
 
 return {
   "neovim/nvim-lspconfig",
-  event = "VeryLazy",
+  -- event = "VeryLazy", -- Launching on VeryLazy seems to cause issues with some filetypes
   config = config,
   dependencies = {
     "williamboman/mason.nvim",
