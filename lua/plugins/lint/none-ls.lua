@@ -78,7 +78,7 @@ return {
 
         -- Markdown
         null_ls.builtins.diagnostics.markdownlint.with({
-          extra_args = {"--disable", "MD013"}
+          extra_args = {"--disable", "MD013", "MD041", "--config", vim.fs.joinpath(vim.fn.stdpath("config"), "tool_configs", "markdownlint.json")}
         }),
         null_ls.builtins.hover.dictionary,
 
