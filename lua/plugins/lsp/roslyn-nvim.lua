@@ -18,4 +18,8 @@ return {
       },
     })
   end,
+  config = function(_, opts)
+    require("mason-registry").sources:append("github:Crashdummyy/mason-registry")
+    require("roslyn").setup(opts)
+  end,
 }
