@@ -35,25 +35,19 @@ return {
     {
       "<leader><C-e>",
       function()
+        local dir = nil
+        if vim.bo.filetype == "fugitive" then
+          dir = vim.fn.getcwd() -- Don't try changing to the fugitive file's dir
+        end
+
         require("neo-tree.command").execute({
           action = "focus",
           position = "left",
           reveal = true,
+          dir = dir,
         })
       end,
       desc = "Explorer",
-    },
-    {
-      "<leader><C-b>",
-      function()
-        require("neo-tree.command").execute({
-          action = "show",
-          position = "left",
-          reveal = true,
-          toggle = true,
-        })
-      end,
-      desc = "Toggle sideview",
     },
   },
   cmd = { "Neotree" },
@@ -98,6 +92,7 @@ return {
         },
         follow_current_file = {
           enabled = true,
+          leave_dirs_open = true,
         },
         use_libuv_file_watcher = true,
         renderers = {
@@ -108,6 +103,11 @@ return {
             { "diagnostics" },
             { "git_status", highlight = "NeoTreeDimText" },
           },
+        },
+      },
+      buffers = {
+        follow_current_file = {
+          enabled = true,
         },
       },
       source_selector = {
