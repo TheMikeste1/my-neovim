@@ -44,6 +44,8 @@ marshalling
 metadata
 mutex
 namespace
+overridable
+overwritable
 parameterized
 programmatically
 radians
