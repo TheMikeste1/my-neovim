@@ -64,6 +64,7 @@ return {
       Snacks.rename.on_rename_file(data.source, data.destination)
     end
 
+    ---@type neotree.Config
     opts = {
       sources = {
         "filesystem",
