@@ -56,7 +56,7 @@ return {
         toml = { "taplo" },
         yaml = { "yamlfix" },
         -- Writing
-        markdown = { "markdownlint", "mdformat" },
+        markdown = { "markdownlint" },
       },
       -- Set up format-on-save
       -- format_on_save = { timeout_ms = 500, lsp_fallback = true },
@@ -85,6 +85,12 @@ return {
           args = {
             "--use-spaces=2",
             "-",
+          },
+        },
+        markdownlint = {
+          prepend_args = {
+            "--config",
+            vim.fs.joinpath(vim.fn.stdpath("config"), "tool_configs", "markdownlint.json"),
           },
         },
         mdformat = {
