@@ -52,12 +52,6 @@ return {
   },
   cmd = { "Neotree" },
   opts = function(_, opts)
-    Snacks = require("snacks")
-
-    local function on_move(data)
-      Snacks.rename.on_rename_file(data.source, data.destination)
-    end
-
     ---@type neotree.Config
     opts = {
       sources = {
@@ -77,6 +71,7 @@ return {
         },
       },
       filesystem = {
+        hijack_netrw_behavior = "disabled",
         components = {
           harpoon_index = harpoon_index,
         },
@@ -125,6 +120,12 @@ return {
       use_popups_for_input = false,
       open_files_do_not_replace_types = { "terminal", "Trouble", "qf", "edgy", "OverseerList" },
     }
+
+    Snacks = require("snacks")
+
+    local function on_move(data)
+      Snacks.rename.on_rename_file(data.source, data.destination)
+    end
 
     local events = require("neo-tree.events")
     opts.event_handlers = opts.event_handlers or {}
