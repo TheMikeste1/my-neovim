@@ -17,3 +17,9 @@ vim.filetype.add({
     xteds = "xml",
   },
 })
+
+vim.filetype.add({
+  extension = {
+    godot = "gdresource",
+  },
+})

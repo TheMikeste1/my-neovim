@@ -57,21 +57,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.opt.autoread = true
 vim.opt.autowrite = true
 
--- vim.opt.signcolumn = "yes:2"
-vim.opt.signcolumn = "yes"
-vim.opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
--- vim.opt.statuscolumn = "%=%l%s%C"
+vim.opt.signcolumn = "yes:2"
+vim.opt.statuscolumn = "%=%l%s%C"
 
 vim.cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh({ bufnr = 0 })]])
 
 vim.opt.list = true
 vim.opt.listchars = "tab:!·,trail:·,nbsp:+"
-
-vim.filetype.add({
-  extension = {
-    godot = "gdresource",
-  },
-})
 
 vim.o.timeout = false
 vim.o.sessionoptions = "curdir,folds,help,tabpages,winsize,terminal,options"

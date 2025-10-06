@@ -1,9 +1,26 @@
 local cached_headers = {}
 
+---Filters out items from harperls.
+---@param item snacks.picker.finder.Item,
+---@param filter snacks.picker.Filter
+---@return boolean
+local function filter_out_harperls(item, filter)
+  if item.item.source == "Harper" then
+    return false
+  end
+
+  return true
+end
+
 local function handle_api_command(opts)
   vim.notify("Snacks opts: " .. vim.inspect(opts), vim.log.levels.DEBUG)
-  if opts.fargs and opts.fargs[1] == "resume" then
-    require("snacks").picker.resume()
+  if not opts.fargs then
+    return
+  end
+
+  local maybe_func = require("snacks").picker[opts.fargs[1]]
+  if maybe_func ~= nil then
+    maybe_func()
     return
   end
 
@@ -28,7 +45,11 @@ return {
     })
     vim.api.nvim_create_user_command("Snacks", handle_api_command, { desc = "Access the Snacks API", nargs = "*" })
   end,
-  config = true,
+  config = function(_, opts)
+    require("snacks").setup(opts)
+    vim.opt.signcolumn = "yes"
+    vim.opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
+  end,
   ---@type snacks.Config
   opts = {
     styles = {
@@ -181,6 +202,137 @@ return {
         Snacks.scratch.select()
       end,
       desc = "Select Scratch Buffer",
+    },
+    -- Pickers
+    {
+      "<C-p>",
+      function()
+        require("snacks").picker.smart({ hidden = false, filter = { cwd = true } })
+      end,
+      desc = "Quick jump to project files",
+    },
+    {
+      "<leader><leader>f",
+      function()
+        require("snacks").picker.smart({ ignored = true, hidden = true, filter = { cwd = true } })
+      end,
+      desc = "Quick jump to all files",
+    },
+    {
+      "<leader>ps",
+      function()
+        require("snacks").picker.grep_word({
+          search = function()
+            return vim.fn.input("Grep > ")
+          end,
+        })
+      end,
+      desc = "Search for word in files",
+    },
+    {
+      "<leader><leader>r",
+      function()
+        require("snacks").picker.registers()
+      end,
+      desc = "Show registers",
+      mode = { "n", "x" },
+    },
+    {
+      "<leader>rr",
+      function()
+        require("telescope").extensions.refactoring.refactors()
+      end,
+      desc = "Show refactors",
+      mode = { "n", "x" },
+    },
+    {
+      "<M-C-F>",
+      function()
+        require("snacks").picker.grep()
+      end,
+      desc = "Search in files",
+    },
+    {
+      "<C-f>",
+      function()
+        require("snacks").picker.lines()
+      end,
+      desc = "Search in current buffer",
+    },
+    {
+      "<leader><leader>h",
+      function()
+        require("snacks").picker.help()
+      end,
+      desc = "Search in help tags",
+    },
+    {
+      "<leader><leader>g",
+      function()
+        require("snacks").picker.git_files()
+      end,
+      desc = "Search in git files",
+    },
+    {
+      "<leader><leader>s",
+      function()
+        require("snacks").picker.spelling()
+      end,
+      desc = "Search in spell suggest",
+    },
+    {
+      "<leader><leader>c",
+      function()
+        require("snacks").picker.commands()
+      end,
+      desc = "Search in commands",
+    },
+    {
+      "<leader><leader>T",
+      function()
+        require("snacks").picker.treesitter()
+      end,
+      desc = "Search in treesitter",
+    },
+    {
+      "<leader><leader>m",
+      function()
+        require("snacks").picker.marks()
+      end,
+      desc = "Search in marks",
+    },
+    {
+      "<leader><leader>q",
+      function()
+        require("snacks").picker.qflist()
+      end,
+      desc = "Open quickfix list",
+    },
+    {
+      "<leader>xx",
+      function()
+        require("snacks").picker.diagnostics({
+          layout = { preset = "ivy" },
+          filter = {
+            cwd = true,
+            filter = filter_out_harperls,
+          },
+        })
+      end,
+      desc = "Diagnostics",
+    },
+    {
+      "<leader>xX",
+      function()
+        require("snacks").picker.diagnostics_buffer({
+          layout = { preset = "ivy" },
+          filter = {
+            buf = true,
+            filter = filter_out_harperls,
+          },
+        })
+      end,
+      desc = "Buffer Diagnostics",
     },
   },
 }
