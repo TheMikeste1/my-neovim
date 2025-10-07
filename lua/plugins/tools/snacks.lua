@@ -181,8 +181,7 @@ return {
           ---@type snacks.dashboard.Item
           return { title = dirname, align = "center" }
         end,
-        { icon = " ", title = "Recent Files", section = "recent_files", cwd = true, indent = 2, padding = 1 },
-        { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 2 },
+        { icon = " ", title = "Recent Files", section = "recent_files", cwd = true, indent = 2, padding = 2 },
         { section = "keys", padding = 2 },
         { section = "startup" },
       },
