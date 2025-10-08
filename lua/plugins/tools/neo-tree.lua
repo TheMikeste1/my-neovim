@@ -83,7 +83,9 @@ return {
           hide_by_name = {
             ".git",
           },
-          never_show = {},
+          never_show_by_pattern = {
+            ".null-ls*",
+          },
         },
         follow_current_file = {
           enabled = true,
