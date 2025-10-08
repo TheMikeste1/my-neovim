@@ -23,6 +23,10 @@ return {
     })
   end,
   opts = {
+    autoresize = {
+      minwidth = 12,
+      minheight = 4,
+    },
     ui = {
       cursorline = false,
       signcolumn = false,
