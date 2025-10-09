@@ -1,30 +1,32 @@
+local move_leader = require("keymaps").move_leader
+
 return {
   "chrisgrieser/nvim-spider",
   cond = true,
   keys = {
     {
-      "<Leader>w",
+      move_leader("w"),
       "<cmd>lua require('spider').motion('w')<CR>",
       mode = { "n", "o", "x" },
-      { desc = "spider-w" },
+      desc = "Spider-w",
     },
     {
-      "<Leader>e",
+      move_leader("e"),
       "<cmd>lua require('spider').motion('e')<CR>",
       mode = { "n", "o", "x" },
-      { desc = "Spider-e" },
+      desc = "Spider-e",
     },
     {
-      "<Leader>b",
+      move_leader("b"),
       "<cmd>lua require('spider').motion('b')<CR>",
       mode = { "n", "o", "x" },
-      { desc = "Spider-b" },
+      desc = "Spider-b",
     },
     {
-      "<Leader>ge",
+      move_leader("ge"),
       "<cmd>lua require('spider').motion('ge')<CR>",
       mode = { "n", "o", "x" },
-      { desc = "Spider-ge" },
+      desc = "Spider-ge",
     },
   },
 }
