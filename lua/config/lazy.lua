@@ -11,20 +11,19 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local plugin_folders = {
-  { import = "plugins" },
-  { import = "plugins.cmp" },
-  { import = "plugins.dap" },
-  { import = "plugins.languages" },
-  { import = "plugins.lint" },
-  { import = "plugins.lsp" },
-  { import = "plugins.tools" },
-  { import = "plugins.ui" },
-  { import = "plugins.vim-dev" },
-  { import = "themes" },
-}
-
-local options = {
+require("lazy").setup({
+  spec = {
+    { import = "plugins" },
+    { import = "plugins.cmp" },
+    { import = "plugins.dap" },
+    { import = "plugins.languages" },
+    { import = "plugins.lint" },
+    { import = "plugins.lsp" },
+    { import = "plugins.tools" },
+    { import = "plugins.ui" },
+    { import = "plugins.vim-dev" },
+    { import = "themes" },
+  },
   checker = {
     -- Automatically check for plugin updates
     enabled = true,
@@ -35,6 +34,4 @@ local options = {
   defaults = {
     cond = not vim.g.vscode,
   },
-}
-
-require("lazy").setup(plugin_folders, options)
+})

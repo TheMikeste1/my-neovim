@@ -27,12 +27,10 @@ if vim.fn.argc() == 1 then
   end
 end
 
-require("vim_setup")
-require("keymap")
-require("filetype")
-require("plugin_setup")
-require("configure_theme")
-
-require("once_ftplugin")
-require("after")
-require("wsl")
+require("config.vim")
+require("config.wsl")
+require("config.keymap")
+require("config.filetype")
+require("config.lazy")
+require("config.theme")
+require("core_ext")

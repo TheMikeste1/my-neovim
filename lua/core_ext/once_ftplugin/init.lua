@@ -10,7 +10,7 @@ for _, file in ipairs(files) do
       pattern = filetype,
       once = true,
       callback = function()
-        require("once_ftplugin." .. filetype)
+        require("core_ext.once_ftplugin." .. filetype)
       end,
     })
   end
