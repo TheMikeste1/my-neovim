@@ -1,10 +1,12 @@
+local leader = require("keymaps").leader
+
 return {
   "ThePrimeagen/harpoon",
   branch = "harpoon2",
   dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
   keys = {
     {
-      "<leader>ah",
+      leader("ah"),
       function()
         require("harpoon"):list():add()
         vim.notify("Added file to harpoon")
@@ -12,7 +14,7 @@ return {
       desc = "Add file to harpoon",
     },
     {
-      "<leader>dh",
+      leader("dh"),
       function()
         require("harpoon"):list():remove()
         vim.notify("Removed file from harpoon")
@@ -20,7 +22,7 @@ return {
       desc = "Remove file from harpoon",
     },
     {
-      "<leader>ch",
+      leader("ch"),
       function()
         require("harpoon"):list():clear()
         vim.notify("Cleared harpoon")
@@ -68,7 +70,7 @@ return {
       desc = "Previous harpoon file",
     },
     {
-      "<leader>1",
+      leader("1"),
       function()
         local harpoon = require("harpoon")
         harpoon:list():select(1)
@@ -76,7 +78,7 @@ return {
       desc = "First harpoon file",
     },
     {
-      "<leader>2",
+      leader("2"),
       function()
         local harpoon = require("harpoon")
         harpoon:list():select(2)
@@ -84,7 +86,7 @@ return {
       desc = "Second harpoon file",
     },
     {
-      "<leader>3",
+      leader("3"),
       function()
         local harpoon = require("harpoon")
         harpoon:list():select(3)
@@ -92,7 +94,7 @@ return {
       desc = "Third harpoon file",
     },
     {
-      "<leader>4",
+      leader("4"),
       function()
         local harpoon = require("harpoon")
         harpoon:list():select(4)
@@ -100,7 +102,7 @@ return {
       desc = "Fourth harpoon file",
     },
     {
-      "<leader>d1",
+      leader("d1"),
       function()
         local harpoon = require("harpoon")
         harpoon:list():remove_at(1)
@@ -109,7 +111,7 @@ return {
       desc = "Remove first harpoon file",
     },
     {
-      "<leader>d2",
+      leader("d2"),
       function()
         local harpoon = require("harpoon")
         harpoon:list():remove_at(2)
@@ -117,7 +119,7 @@ return {
       desc = "Remove second harpoon file",
     },
     {
-      "<leader>d3",
+      leader("d3"),
       function()
         local harpoon = require("harpoon")
         harpoon:list():remove_at(3)
@@ -126,7 +128,7 @@ return {
       desc = "Remove third harpoon file",
     },
     {
-      "<leader>d4",
+      leader("d4"),
       function()
         local harpoon = require("harpoon")
         harpoon:list():remove_at(4)

@@ -32,7 +32,7 @@ local function config()
       vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
       -- Buffer local mappings.
       -- See `:help vim.lsp.*` for documentation on any of the below functions
-      vim.keymap.set("n", "<leader><leader>i", function()
+      vim.keymap.set("n", leader(leader("i")), function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
       end, { desc = "Toggle inlay hints" })
       vim.keymap.set("n", "K", hover, { buffer = ev.buf, desc = "Hover info" })

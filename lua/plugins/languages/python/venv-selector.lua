@@ -1,3 +1,5 @@
+local leader = require("keymaps").leader
+
 return {
   "linux-cultist/venv-selector.nvim",
   branch = "main",
@@ -34,9 +36,9 @@ return {
   -- end,
   -- keys = {
   -- 	-- Keymap to open VenvSelector to pick a venv.
-  -- 	{ "<leader>vs", "<cmd>VenvSelect<cr>" },
+  -- 	{ leader("vs"), "<cmd>VenvSelect<cr>" },
   -- 	-- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
-  -- 	{ "<leader>vc", "<cmd>VenvSelectCached<cr>" },
+  -- 	{ leader("vc"), "<cmd>VenvSelectCached<cr>" },
   --  },
   event = "VeryLazy",
   cmd = {

@@ -1,3 +1,5 @@
+local leader = require("keymaps").leader
+
 local cached_headers = {}
 
 ---Filters out items from harperls.
@@ -189,14 +191,14 @@ return {
   },
   keys = {
     {
-      "<leader>.",
+      leader("."),
       function()
         Snacks.scratch()
       end,
       desc = "Toggle Scratch Buffer",
     },
     {
-      "<leader>S",
+      leader("S"),
       function()
         Snacks.scratch.select()
       end,
@@ -211,14 +213,14 @@ return {
       desc = "Quick jump to project files",
     },
     {
-      "<leader><leader>f",
+      leader(leader("f")),
       function()
         require("snacks").picker.smart({ ignored = true, hidden = true, filter = { cwd = true } })
       end,
       desc = "Quick jump to all files",
     },
     {
-      "<leader>ps",
+      leader("ps"),
       function()
         require("snacks").picker.grep_word({
           search = function()
@@ -229,7 +231,7 @@ return {
       desc = "Search for word in files",
     },
     {
-      "<leader><leader>r",
+      leader(leader("r")),
       function()
         require("snacks").picker.registers()
       end,
@@ -237,7 +239,7 @@ return {
       mode = { "n", "x" },
     },
     {
-      "<leader>rr",
+      leader("rr"),
       function()
         require("telescope").extensions.refactoring.refactors()
       end,
@@ -259,56 +261,56 @@ return {
       desc = "Search in current buffer",
     },
     {
-      "<leader><leader>h",
+      leader(leader("h")),
       function()
         require("snacks").picker.help()
       end,
       desc = "Search in help tags",
     },
     {
-      "<leader><leader>g",
+      leader(leader("g")),
       function()
         require("snacks").picker.git_files()
       end,
       desc = "Search in git files",
     },
     {
-      "<leader><leader>s",
+      leader(leader("s")),
       function()
         require("snacks").picker.spelling()
       end,
       desc = "Search in spell suggest",
     },
     {
-      "<leader><leader>c",
+      leader(leader("c")),
       function()
         require("snacks").picker.commands()
       end,
       desc = "Search in commands",
     },
     {
-      "<leader><leader>T",
+      leader(leader("T")),
       function()
         require("snacks").picker.treesitter()
       end,
       desc = "Search in treesitter",
     },
     {
-      "<leader><leader>m",
+      leader(leader("m")),
       function()
         require("snacks").picker.marks()
       end,
       desc = "Search in marks",
     },
     {
-      "<leader><leader>q",
+      leader(leader("q")),
       function()
         require("snacks").picker.qflist()
       end,
       desc = "Open quickfix list",
     },
     {
-      "<leader>xx",
+      leader("xx"),
       function()
         require("snacks").picker.diagnostics({
           layout = { preset = "ivy" },
@@ -321,7 +323,7 @@ return {
       desc = "Diagnostics",
     },
     {
-      "<leader>xX",
+      leader("xX"),
       function()
         require("snacks").picker.diagnostics_buffer({
           layout = { preset = "ivy" },

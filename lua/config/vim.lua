@@ -1,3 +1,7 @@
+vim.g.mapleader = "\\"
+vim.g.maplocalleader = "\\"
+vim.g.mapmoveleader = " "
+
 vim.opt.exrc = true
 vim.lsp.config("*", {
   root_markers = { ".git", ".hg" },
@@ -50,7 +54,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Hightlight selection on yank",
   pattern = "*",
   callback = function()
-    vim.hl.on_yank({higroup='Visual', timeout=300})
+    vim.hl.on_yank({ higroup = "Visual", timeout = 300 })
   end,
 })
 

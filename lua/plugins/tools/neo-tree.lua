@@ -1,3 +1,5 @@
+local leader = require("keymaps").leader
+
 local function harpoon_index(config, node, _)
   local harpoon_list = require("harpoon"):list()
   local path = node:get_id()
@@ -37,7 +39,7 @@ return {
   end,
   keys = {
     {
-      "<leader><C-e>",
+      leader("<C-e>"),
       function()
         local dir = nil
         if vim.bo.filetype == "fugitive" then

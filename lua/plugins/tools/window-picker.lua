@@ -1,3 +1,5 @@
+local leader = require("keymaps").leader
+
 return {
   "s1n7ax/nvim-window-picker",
   opts = {
@@ -16,7 +18,7 @@ return {
   },
   keys = {
     {
-      "<leader>,",
+      leader(","),
       function()
         local window_id = require("window-picker").pick_window()
         if window_id ~= nil then

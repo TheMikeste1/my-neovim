@@ -1,3 +1,5 @@
+local leader = require("keymaps").leader
+
 -- Text objects and language support:
 --  https://github.com/nvim-treesitter/nvim-treesitter-textobjects?tab=readme-ov-file#built-in-textobjects
 return {
@@ -15,8 +17,8 @@ return {
           border = "none",
           floating_preview_opts = {},
           peek_definition_code = {
-            ["<leader>df"] = "@function.outer",
-            ["<leader>dF"] = "@class.outer",
+            [leader("df")] = "@function.outer",
+            [leader("dF")] = "@class.outer",
           },
         },
         select = {

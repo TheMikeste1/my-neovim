@@ -1,3 +1,5 @@
+local leader = require("keymaps").leader
+
 local FileUtilities = require("utilities.file_utilities")
 
 return {
@@ -18,7 +20,7 @@ return {
   end,
   keys = {
     {
-      "<leader>u",
+      leader("u"),
       "<cmd>:UndotreeToggle<CR>",
       desc = "Open undotree",
     },

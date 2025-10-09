@@ -1,3 +1,5 @@
+local leader = require("keymaps").leader
+
 function string:endswith(suffix)
   return self:sub(-#suffix) == suffix
 end
@@ -42,7 +44,7 @@ return {
   end,
   keys = {
     {
-      "<leader><leader>t",
+      leader(leader("t")),
       function()
         require("neotest").summary.toggle()
       end,

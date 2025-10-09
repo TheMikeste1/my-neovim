@@ -1,3 +1,5 @@
+local leader = require("keymaps").leader
+
 return {
   "folke/flash.nvim",
   lazy = false,
@@ -11,7 +13,7 @@ return {
   },
   keys = {
     {
-      "<leader>f",
+      leader("f"),
       mode = { "n", "x", "o" },
       function()
         require("flash").jump()
@@ -19,7 +21,7 @@ return {
       desc = "Flash",
     },
     {
-      "<leader>F",
+      leader("F"),
       mode = { "n", "x", "o" },
       function()
         require("flash").treesitter()

@@ -1,3 +1,5 @@
+local leader = require("keymaps").leader
+
 return {
   "MagicDuck/grug-far.nvim",
   config = function()
@@ -5,7 +7,7 @@ return {
   end,
   keys = {
     {
-      "<leader>s",
+      leader("s"),
       function()
         require("grug-far").open()
       end,
@@ -13,7 +15,7 @@ return {
       desc = "Find and replace",
     },
     {
-      "<leader>s",
+      leader("s"),
       function()
         require("grug-far").with_visual_selection()
       end,
