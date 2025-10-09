@@ -28,8 +28,6 @@ local function config()
       local Snacks = require("snacks")
       local telescope_builtin = require("telescope.builtin")
 
-      -- Enable completion triggered by <c-x><c-o>
-      vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
       -- Buffer local mappings.
       -- See `:help vim.lsp.*` for documentation on any of the below functions
       vim.keymap.set("n", leader(leader("i")), function()
