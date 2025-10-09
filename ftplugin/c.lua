@@ -1,5 +1,5 @@
 -- C++ will also execute this file
-if VSCODE then
+if vim.g.vscode then
   return
 end
 

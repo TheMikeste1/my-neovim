@@ -24,7 +24,7 @@ else
 end
 
 -- Set GUI colors if in the terminal
-if not VSCODE and vim.fn.has("termguicolors") then
+if not vim.g.vscode and vim.fn.has("termguicolors") then
   vim.opt.termguicolors = true
 end
 
@@ -41,7 +41,7 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 
 -- Spelling
-vim.opt.spell = not VSCODE
+vim.opt.spell = not vim.g.vscode
 vim.opt.spelllang = { "en_us" }
 
 -- Highlight on yank

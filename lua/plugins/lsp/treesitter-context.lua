@@ -1,5 +1,3 @@
-require("utilities.state")
-
 local keys = {
   {
     "[c",

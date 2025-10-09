@@ -1,8 +1,6 @@
-require("utilities.state")
-
 return {
   "lucasecdb/godot-wsl-lsp",
-  enabled = IS_WSL,
+  enabled = vim.g.is_wsl,
   -- TODO: Automatically install the LSP
   ft = {
     "gd",

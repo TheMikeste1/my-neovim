@@ -33,7 +33,7 @@ local options = {
     notify = false,
   },
   defaults = {
-    cond = not VSCODE,
+    cond = not vim.g.vscode,
   },
 }
 

@@ -1,6 +1,4 @@
-require("utilities.state")
-
-if not IS_WSL then
+if not vim.g.is_wsl then
   return
 end
 

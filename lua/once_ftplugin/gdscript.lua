@@ -1,5 +1,5 @@
 -- We won't use the default style
-if VSCODE then
+if vim.g.vscode then
   return
 end
 
@@ -11,9 +11,9 @@ dap.adapters.godot = {
 }
 
 local cwd = vim.fn.getcwd()
-if IS_WSL then
+if vim.g.is_wsl then
   local FileUtilities = require("utilities.file_utilities")
-  cwd = FileUtilities.wslPathToWindows(cwd)
+  cwd = FileUtilities.wsl_path_to_windows(cwd)
 end
 
 dap.configurations.gdscript = {

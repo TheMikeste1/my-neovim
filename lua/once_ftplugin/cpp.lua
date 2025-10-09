@@ -1,6 +1,6 @@
 require("once_ftplugin.c")
 
-if VSCODE then
+if vim.g.vscode then
   return
 end
 

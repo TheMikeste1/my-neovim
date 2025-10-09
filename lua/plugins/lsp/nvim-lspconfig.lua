@@ -1,5 +1,3 @@
-require("utilities.state")
-
 local function hover()
   local winid = require("ufo").peekFoldedLinesUnderCursor()
   if not winid then

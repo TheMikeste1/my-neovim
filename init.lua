@@ -1,20 +1,20 @@
-require("utilities.state")
+vim.loader.enable()
+
 local FileUtilities = require("utilities.file_utilities")
 
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-vim.loader.enable()
+vim.g.vscode = vim.g.vscode ~= nil
+vim.g.is_wsl = os.getenv("WSL_DISTRO_NAME") ~= nil
 
 -- Set working directory
 if vim.fn.argc() == 1 then
   local arg = vim.fn.argv()[1]
   -- If the argument is a non-existing directory, create it
-  if arg:sub(-1) == "/" and not FileUtilities.isDirectory(arg) then
+  if arg:sub(-1) == "/" and not FileUtilities.is_directory(arg) then
     -- Create the directory
     vim.fn.mkdir(arg, "p")
   end
 
-  if FileUtilities.isDirectory(arg) then
+  if FileUtilities.is_directory(arg) then
     vim.fn.chdir(arg)
 
     -- Auto open dashboard

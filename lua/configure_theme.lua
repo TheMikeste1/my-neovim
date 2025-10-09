@@ -1,6 +1,4 @@
-require("utilities.state")
-
-if VSCODE then
+if vim.g.vscode then
   return
 end
 

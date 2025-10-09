@@ -1,5 +1,3 @@
-require("utilities.state")
-
 ---@class opts TSConfig
 function config(_, opts)
   require("nvim-treesitter.configs").setup(opts)
@@ -16,8 +14,8 @@ return {
   event = { "BufReadPost", "BufNewFile" },
   opts = {
     auto_install = true,
-    highlight = { enable = not VSCODE },
-    indent = { enable = not VSCODE },
+    highlight = { enable = not vim.g.vscode },
+    indent = { enable = not vim.g.vscode },
   },
   config = config,
 }

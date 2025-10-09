@@ -8,7 +8,7 @@ return {
       local target_path = vim.fn.expand("~/.undodir")
 
       -- Create the directory and any parent directories if the location does not exist.
-      if not FileUtilities.isDirectory(target_path) then
+      if not FileUtilities.is_directory(target_path) then
         vim.fn.mkdir(target_path, "p", tonumber("700", 8))
       end
 
