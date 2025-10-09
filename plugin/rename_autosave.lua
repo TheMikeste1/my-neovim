@@ -1,3 +1,8 @@
+-- TODO: Does lsp-file-operations take care of this?
+if true then
+  return
+end
+
 --- Set up auto-save all on rename
 
 local _FILE_PREFIX = "file://"

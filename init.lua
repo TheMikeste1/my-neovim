@@ -2,8 +2,7 @@ vim.loader.enable()
 
 local FileUtilities = require("utilities.file_utilities")
 
-vim.g.vscode = vim.g.vscode ~= nil
-vim.g.is_wsl = os.getenv("WSL_DISTRO_NAME") ~= nil
+require("config.env")
 
 -- Set working directory
 if vim.fn.argc() == 1 then
@@ -28,9 +27,5 @@ if vim.fn.argc() == 1 then
 end
 
 require("config.vim")
-require("config.wsl")
-require("config.keymap")
-require("config.filetype")
 require("config.lazy")
 require("config.theme")
-require("core_ext")
