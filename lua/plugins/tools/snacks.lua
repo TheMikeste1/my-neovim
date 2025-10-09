@@ -45,7 +45,17 @@ return {
         end
       end,
     })
-    vim.api.nvim_create_user_command("Snacks", handle_api_command, { desc = "Access the Snacks API", nargs = "*" })
+    vim.api.nvim_create_user_command("Snacks", handle_api_command, {
+      desc = "Access the Snacks API",
+      nargs = "*",
+      complete = function(_, _)
+        local pickers = {}
+        for p, _ in pairs(require("snacks").picker) do
+          table.insert(pickers, p)
+        end
+        return pickers
+      end,
+    })
   end,
   config = function(_, opts)
     require("snacks").setup(opts)
