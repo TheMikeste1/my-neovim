@@ -1,16 +1,14 @@
 return {
   "stevearc/overseer.nvim",
-  config = function()
-    require("overseer").setup({
-      task_list = {
-        direction = "bottom",
-      },
-      templates = {
-        "builtin",
-        "cmakeseer",
-      },
-    })
-  end,
+  opts = {
+    task_list = {
+      direction = "bottom",
+    },
+    templates = {
+      "builtin",
+      "cmakeseer",
+    },
+  },
   dependencies = {
     "cmakeseer.nvim",
   },
