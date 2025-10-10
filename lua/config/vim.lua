@@ -1,5 +1,3 @@
-vim.g.mapleader = "\\"
-vim.g.maplocalleader = "\\"
 vim.g.mapmoveleader = " "
 
 vim.opt.exrc = true
