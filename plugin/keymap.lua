@@ -1,11 +1,11 @@
 -- Make Y act like D, C, etc.
-vim.api.nvim_set_keymap("n", "Y", "y$", { noremap = true, desc = "Yank to the end of the line" })
+vim.keymap.set("n", "Y", "y$", { desc = "Yank to the end of the line" })
 
 -- Prevent paste from overwriting the current yank buffer
-vim.api.nvim_set_keymap("x", "p", "P", { noremap = true, desc = "Paste" })
+vim.keymap.set("x", "p", "P", { desc = "Paste" })
 
 -- Resize windows
-vim.api.nvim_set_keymap("n", "<C-Up>", "<C-w>+", { noremap = true, desc = "Resize window up" })
-vim.api.nvim_set_keymap("n", "<C-Down>", "<C-w>-", { noremap = true, desc = "Resize window down" })
-vim.api.nvim_set_keymap("n", "<C-Left>", "<C-w><", { noremap = true, desc = "Resize window left" })
-vim.api.nvim_set_keymap("n", "<C-Right>", "<C-w>>", { noremap = true, desc = "Resize window right" })
+vim.keymap.set("n", "<C-Up>", "<C-w>+", { desc = "Resize window up" })
+vim.keymap.set("n", "<C-Down>", "<C-w>-", { desc = "Resize window down" })
+vim.keymap.set("n", "<C-Left>", "<C-w><", { desc = "Resize window left" })
+vim.keymap.set("n", "<C-Right>", "<C-w>>", { desc = "Resize window right" })
