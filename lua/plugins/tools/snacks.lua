@@ -193,6 +193,18 @@ return {
           ---@type snacks.dashboard.Item
           return { title = dirname, align = "center" }
         end,
+        ---@return snacks.dashboard.Item
+        function()
+          if Snacks.git.get_root() == nil then
+            return { enabled = false }
+          end
+
+          local output = vim.fn.system("git branch --show-current")
+          return {
+            title = output,
+            align = "center",
+          }
+        end,
         { icon = " ", title = "Recent Files", section = "recent_files", cwd = true, indent = 2, padding = 2 },
         { section = "keys", padding = 2 },
         { section = "startup" },
