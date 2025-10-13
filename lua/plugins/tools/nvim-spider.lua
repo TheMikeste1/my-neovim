@@ -6,25 +6,33 @@ return {
   keys = {
     {
       move_leader("w"),
-      "<cmd>lua require('spider').motion('w')<CR>",
+      function()
+        require("spider").motion("w")
+      end,
       mode = { "n", "o", "x" },
       desc = "Spider-w",
     },
     {
       move_leader("e"),
-      "<cmd>lua require('spider').motion('e')<CR>",
+      function()
+        require("spider").motion("e")
+      end,
       mode = { "n", "o", "x" },
       desc = "Spider-e",
     },
     {
       move_leader("b"),
-      "<cmd>lua require('spider').motion('b')<CR>",
+      function()
+        require("spider").motion("b")
+      end,
       mode = { "n", "o", "x" },
       desc = "Spider-b",
     },
     {
       move_leader("ge"),
-      "<cmd>lua require('spider').motion('ge')<CR>",
+      function()
+        require("spider").motion("ge")
+      end,
       mode = { "n", "o", "x" },
       desc = "Spider-ge",
     },

@@ -73,3 +73,5 @@ vim.o.sessionoptions = "curdir,folds,help,tabpages,winsize,terminal,options"
 vim.api.nvim_create_autocmd("QuickFixCmdPost", {
   command = "wa",
 })
+
+vim.o.virtualedit = "block"

@@ -36,7 +36,7 @@ function M.wsl_path_to_windows(path)
   return path
 end
 
---- Changes a Windows path to its associated WSL  path.
+--- Changes a Windows path to its associated WSL path.
 ---@param path string The path to check.
 ---@return string path The path as a Windows path.
 function M.windows_path_to_wsl(path)

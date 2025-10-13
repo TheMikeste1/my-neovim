@@ -14,8 +14,6 @@ end
 
 return {
   "monaqa/dial.nvim",
-  recommended = true,
-  desc = "Increment and decrement numbers, dates, and more",
   -- stylua: ignore
   keys = {
     { "<C-a>", function() return M.dial(true) end, expr = true, desc = "Increment", mode = {"n", "v"} },
