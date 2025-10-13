@@ -5,6 +5,9 @@ vim.filetype.add({
     slice = "systemd",
     tpp = "cpp",
     xteds = "xml",
-    yaml = "base",
+    base = "yaml",
   },
+  filename = {
+    [".local.gitconfig"] = "gitconfig",
+  }
 })
