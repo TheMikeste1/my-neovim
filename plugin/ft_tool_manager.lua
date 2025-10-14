@@ -19,6 +19,7 @@ local FT_TOOLS = {
     "neocmakelsp",
   }),
   dockerfile = Set({ "hadolint" }),
+  javascript = Set({ "typescript-language-server" }),
   lua = Set({
     "lua-language-server",
     "stylua",
