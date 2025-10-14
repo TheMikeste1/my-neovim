@@ -9,5 +9,6 @@ vim.filetype.add({
   },
   filename = {
     [".local.gitconfig"] = "gitconfig",
+    [".local.bash_env"] = "bash",
   }
 })
