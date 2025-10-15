@@ -65,13 +65,13 @@ local function config()
       )
       vim.keymap.set(
         "n",
-        "gci",
+        "gli",
         telescope_builtin.lsp_incoming_calls,
         { buffer = ev.buf, desc = "List LSP incoming calls" }
       )
       vim.keymap.set(
         "n",
-        "gco",
+        "glo",
         telescope_builtin.lsp_outgoing_calls,
         { buffer = ev.buf, desc = "List LSP outgoing calls" }
       )
