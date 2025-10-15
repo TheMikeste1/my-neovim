@@ -1,4 +1,14 @@
 vim.lsp.config("pyright", {
+  settings = {
+    python = {
+      venvPath = vim.env.VIRTUAL_ENV or ".venv",
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = "workspace",
+        typeCheckingMode = "strict",
+      },
+    },
+  },
   handlers = {
     -- Override the default rename handler to remove the `annotationId` from edits.
     --
@@ -30,10 +40,4 @@ vim.lsp.config("pyright", {
   },
 })
 
-return {
-  settings = {
-    python = {
-      venvPath = ".venv",
-    },
-  },
-}
+return {}

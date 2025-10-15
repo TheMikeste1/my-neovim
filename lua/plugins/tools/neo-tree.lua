@@ -42,7 +42,7 @@ return {
       leader("<C-e>"),
       function()
         local dir = nil
-        if vim.bo.filetype == "fugitive" or vim.bo.filetype == "snacks_dashboard" then
+        if vim.bo.filetype == "fugitive" or vim.bo.filetype == "snacks_dashboard" or vim.bo.filetype == "checkhealth" then
           dir = vim.fn.getcwd() -- Don't try changing to the fugitive file's dir
         end
 
