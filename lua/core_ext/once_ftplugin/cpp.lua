@@ -1,4 +1,4 @@
-require("once_ftplugin.c")
+require("core_ext.once_ftplugin.c")
 
 if vim.g.vscode then
   return
