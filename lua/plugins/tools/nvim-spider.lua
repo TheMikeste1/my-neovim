@@ -1,11 +1,11 @@
-local move_leader = require("keymaps").move_leader
+local rapid_leader = require("keymaps").rapid_leader
 
 return {
   "chrisgrieser/nvim-spider",
   cond = true,
   keys = {
     {
-      move_leader("w"),
+      rapid_leader("w"),
       function()
         require("spider").motion("w")
       end,
@@ -13,7 +13,7 @@ return {
       desc = "Spider-w",
     },
     {
-      move_leader("e"),
+      rapid_leader("e"),
       function()
         require("spider").motion("e")
       end,
@@ -21,7 +21,7 @@ return {
       desc = "Spider-e",
     },
     {
-      move_leader("b"),
+      rapid_leader("b"),
       function()
         require("spider").motion("b")
       end,
@@ -29,7 +29,7 @@ return {
       desc = "Spider-b",
     },
     {
-      move_leader("ge"),
+      rapid_leader("ge"),
       function()
         require("spider").motion("ge")
       end,

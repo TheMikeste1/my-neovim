@@ -1,4 +1,5 @@
 local leader = require("keymaps").leader
+local rapid_leader = require("keymaps").rapid_leader
 
 local function hover()
   local winid = require("ufo").peekFoldedLinesUnderCursor()
@@ -43,7 +44,7 @@ local function config()
         Snacks.picker.lsp_type_definitions,
         { buffer = ev.buf, desc = "List LSP type definition" }
       )
-      vim.keymap.set("n", leader("rn"), vim.lsp.buf.rename, { buffer = ev.buf, desc = "Rename variable" })
+      vim.keymap.set("n", rapid_leader("rn"), vim.lsp.buf.rename, { buffer = ev.buf, desc = "Rename variable" })
 
       vim.keymap.set("n", "gD", Snacks.picker.lsp_declarations, { buffer = ev.buf, desc = "Go to declaration" })
       vim.keymap.set("n", "gd", Snacks.picker.lsp_definitions, { buffer = ev.buf, desc = "Go to definition" })

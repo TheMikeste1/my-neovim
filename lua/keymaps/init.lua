@@ -17,8 +17,8 @@ end
 --- Creates a mapping with the movement leader key at the front.
 ---@param keys string The keys to follow the leader.
 ---@return string keys
-function M.move_leader(keys)
-  return vim.g.mapmoveleader .. keys
+function M.rapid_leader(keys)
+  return vim.g.maprapidleader .. keys
 end
 
 return M

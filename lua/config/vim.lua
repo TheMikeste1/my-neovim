@@ -1,4 +1,4 @@
-vim.g.mapmoveleader = " "
+vim.g.maprapidleader = " "
 
 vim.opt.exrc = true
 vim.lsp.config("*", {
