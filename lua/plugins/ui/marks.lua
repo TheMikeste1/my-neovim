@@ -17,6 +17,7 @@ return {
       "dapui_watches",
       "dapui_breakpoints",
       "dap-repl",
+      "OverseerForm",
     },
     excluded_buftypes = { "nofile" },
   },
