@@ -78,7 +78,13 @@ return {
 
         -- Markdown
         null_ls.builtins.diagnostics.markdownlint.with({
-          extra_args = {"--disable", "MD013", "MD041", "--config", vim.fs.joinpath(vim.fn.stdpath("config"), "tool_configs", "markdownlint.json")}
+          extra_args = {
+            "--disable",
+            "MD013",
+            "MD041",
+            "--config",
+            vim.fs.joinpath(vim.fn.stdpath("config"), "tool_configs", "markdownlint.json"),
+          },
         }),
         null_ls.builtins.hover.dictionary,
 
@@ -102,7 +108,7 @@ return {
 
         -- YAML
         null_ls.builtins.diagnostics.yamllint.with({
-          extra_args = {"--config-data", "{extends: default, rules: {line-length: {max: 240}}}"}
+          extra_args = { "--config-data", "{extends: default, rules: {line-length: {max: 240}}}" },
         }),
       },
       should_attach = function(bufnr)
@@ -126,6 +132,7 @@ return {
 
         return true
       end,
+      temp_dir = "/tmp",
     })
   end,
   dependencies = {
