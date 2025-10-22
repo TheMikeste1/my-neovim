@@ -1,7 +1,7 @@
 vim.lsp.config("pyright", {
   settings = {
     python = {
-      venvPath = vim.env.VIRTUAL_ENV or ".venv",
+      venvPath = vim.env.VIRTUAL_ENV or vim.fs.joinpath(vim.fn.getcwd(), ".venv"),
       analysis = {
         autoSearchPaths = true,
         diagnosticMode = "workspace",
