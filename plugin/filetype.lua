@@ -10,5 +10,8 @@ vim.filetype.add({
   filename = {
     [".local.gitconfig"] = "gitconfig",
     [".local.bash_env"] = "bash",
-  }
+  },
+  pattern = {
+    [".*/cmd_tlm/.+%.txt"] = "cosmos",
+  },
 })
