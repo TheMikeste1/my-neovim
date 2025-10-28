@@ -53,6 +53,7 @@ return {
         for p, _ in pairs(require("snacks").picker) do
           table.insert(pickers, p)
         end
+        table.sort(pickers)
         return pickers
       end,
     })
