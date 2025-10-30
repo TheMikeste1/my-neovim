@@ -83,15 +83,21 @@ return {
         },
         lualine_x = {
           {
-            "overseer",
-          },
-          {
-            require("noice").api.status.message.get,
+            function()
+              local value = require("noice").api.status.message.get()
+              if #value > 128 then
+                value = string.sub(value, 1, 125) .. "..."
+              end
+              return value
+            end,
             cond = require("noice").api.status.message.has,
           },
           {
             require("noice").api.status.command.get,
             cond = require("noice").api.status.command.has,
+          },
+          {
+            "overseer",
           },
         },
       },
