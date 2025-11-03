@@ -88,6 +88,7 @@ return {
               if #value > 128 then
                 value = string.sub(value, 1, 125) .. "..."
               end
+              value = string.gsub(value, "\n", "")
               return value
             end,
             cond = require("noice").api.status.message.has,
