@@ -7,7 +7,7 @@ local cached_headers = {}
 ---@param filter snacks.picker.Filter
 ---@return boolean
 local function filter_out_harperls(item, filter)
-  if item.item.source == "Harper" then
+  if item.item.source:sub(1, #"Harper") == "Harper" then
     return false
   end
 
