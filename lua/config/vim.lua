@@ -68,7 +68,7 @@ vim.opt.list = true
 vim.opt.listchars = "tab:!·,trail:·,nbsp:+"
 
 vim.o.timeout = false
-vim.o.sessionoptions = "curdir,folds,help,tabpages,winsize,terminal,options"
+vim.o.sessionoptions = "curdir,folds,help,tabpages,winsize,options"
 
 vim.api.nvim_create_autocmd("QuickFixCmdPost", {
   command = "wa",
