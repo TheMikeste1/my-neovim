@@ -1,3 +1,5 @@
+local leader = require("keymaps").leader
+
 -- TODO
 return {
   "mfussenegger/nvim-dap",
@@ -14,19 +16,19 @@ return {
   end,
   keys = {
     {
-      "<F9>",
+      leader("db"),
       function()
-        require("persistent-breakpoints.api").toggle_breakpoint()
+        require("dap").toggle_breakpoint()
       end,
-      mode = { "v", "n", "i" },
+      mode = { "v", "n" },
       desc = "Toggle breakpoint",
     },
     {
-      "<F5>",
+      leader("dc"),
       function()
         require("dap").continue()
       end,
-      mode = { "v", "n", "i" },
+      mode = { "v", "n" },
       desc = "Continue debug",
     },
     {
@@ -34,7 +36,7 @@ return {
       function()
         require("dap").step_over()
       end,
-      mode = { "v", "n", "i" },
+      mode = { "v", "n" },
       desc = "Step over",
     },
     {
@@ -42,7 +44,7 @@ return {
       function()
         require("dap").step_into()
       end,
-      mode = { "v", "n", "i" },
+      mode = { "v", "n" },
       desc = "Step into",
     },
     {
@@ -50,7 +52,7 @@ return {
       function()
         require("dap").step_out()
       end,
-      mode = { "v", "n", "i" },
+      mode = { "v", "n" },
       desc = "Step out",
     },
     {
@@ -66,7 +68,7 @@ return {
         -- end
         require("persistent-breakpoints.api").set_conditional_breakpoint()
       end,
-      mode = { "v", "n", "i" },
+      mode = { "v", "n" },
       desc = "Set conditional breakpoint",
     },
     {

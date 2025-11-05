@@ -13,14 +13,14 @@ return {
       end,
       desc = "Add file to harpoon",
     },
-    {
-      leader("dh"),
-      function()
-        require("harpoon"):list():remove()
-        vim.notify("Removed file from harpoon")
-      end,
-      desc = "Remove file from harpoon",
-    },
+    -- {
+    --   leader("dh"),
+    --   function()
+    --     require("harpoon"):list():remove()
+    --     vim.notify("Removed file from harpoon")
+    --   end,
+    --   desc = "Remove file from harpoon",
+    -- },
     {
       leader("ch"),
       function()
@@ -100,41 +100,6 @@ return {
         harpoon:list():select(4)
       end,
       desc = "Fourth harpoon file",
-    },
-    {
-      leader("d1"),
-      function()
-        local harpoon = require("harpoon")
-        harpoon:list():remove_at(1)
-        vim.notify("Removed harpoon 2")
-      end,
-      desc = "Remove first harpoon file",
-    },
-    {
-      leader("d2"),
-      function()
-        local harpoon = require("harpoon")
-        harpoon:list():remove_at(2)
-      end,
-      desc = "Remove second harpoon file",
-    },
-    {
-      leader("d3"),
-      function()
-        local harpoon = require("harpoon")
-        harpoon:list():remove_at(3)
-        vim.notify("Removed harpoon 3")
-      end,
-      desc = "Remove third harpoon file",
-    },
-    {
-      leader("d4"),
-      function()
-        local harpoon = require("harpoon")
-        harpoon:list():remove_at(4)
-        vim.notify("Removed harpoon 4")
-      end,
-      desc = "Remove fourth harpoon file",
     },
   },
 }
