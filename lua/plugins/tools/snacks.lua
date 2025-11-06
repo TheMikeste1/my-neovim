@@ -48,10 +48,13 @@ return {
     vim.api.nvim_create_user_command("Snacks", handle_api_command, {
       desc = "Access the Snacks API",
       nargs = "*",
-      complete = function(_, _)
+      complete = function(arg_so_far, full_cmd, cursor_pos)
         local pickers = {}
         for p, _ in pairs(require("snacks").picker) do
-          table.insert(pickers, p)
+          ---@cast p string
+          if #arg_so_far == 0 or p:sub(1, #arg_so_far) == arg_so_far then
+            table.insert(pickers, p)
+          end
         end
         table.sort(pickers)
         return pickers
