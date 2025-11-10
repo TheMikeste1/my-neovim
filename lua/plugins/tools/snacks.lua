@@ -108,7 +108,7 @@ return {
             key = "<C-p>",
             icon = "󰈞",
             desc = "Find file",
-            action = ":lua require('snacks').picker.smart({ hidden = false })",
+            action = ":lua require('snacks').picker.smart({ hidden = false, filter = { cwd = true } })",
           },
           { key = "<M-C-F>", icon = "󰊄", desc = "Live grep", action = ":lua require('snacks').picker.grep()" },
           { key = "s", icon = "", desc = "Open last session", section = "session" },
