@@ -73,18 +73,34 @@ return {
     {
       "mfussenegger/nvim-dap-python",
       config = function()
-        require("dap-python").setup("python")
+        local python_path = vim.fn.exepath("python")
+        python_path = python_path ~= "" and python_path or "python"
+        require("dap-python").setup(python_path)
+
+        require("which-key").add({
+          { leader("d"), group = "Debug" },
+          { leader("db"), group = "Breakpoints" },
+        })
       end,
     },
     -- "cmakeseer.nvim",
     -- "LiadOz/nvim-dap-repl-highlights", -- TODO: Configure
+    {
+      "theHamsta/nvim-dap-virtual-text",
+      opts = { commented = true },
+    },
   },
   config = function()
     vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DapBreakpoint" })
     vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "DapBreakpoint" })
     vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "DapBreakpoint" })
     vim.fn.sign_define("DapLogPoint", { text = "", texthl = "DapLogPoint" })
-    vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped" })
+    vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped", linehl = "CursorLine" })
+    -- vim.fn.sign_define("DapBreakpoint",          { text = "", texthl = "DiagnosticError" })
+    -- vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "DiagnosticWarn" })
+    -- vim.fn.sign_define("DapBreakpointRejected",  { text = "", texthl = "DiagnosticHint" })
+    -- vim.fn.sign_define("DapLogPoint",            { text = "", texthl = "DiagnosticInfo" })
+    -- vim.fn.sign_define("DapStopped",             { text = "", texthl = "DiagnosticOk", linehl = "CursorLine" })
   end,
   keys = {
     -- stylua: ignore start
@@ -95,15 +111,21 @@ return {
     { leader("dc"),      desc = "Debug: Continue or start execution", mode = { "n" }, function() require("dap").continue() end },
     { leader("dC"),      desc = "Debug: Execute to cursor",           mode = { "n" }, function() require("dap").run_to_cursor() end },
     { leader("dp"),      desc = "Debug: Pause execution",             mode = { "n" }, function() require("dap").pause() end },
+
+    -- Breakpoints
+    { "<F9>",            desc = "Debug: Toggle breakpoint",           mode = { "n" }, function() require("dap").toggle_breakpoint() end },
     { leader("dbb"),     desc = "Debug: Toggle breakpoint",           mode = { "n" }, function() require("dap").toggle_breakpoint() end },
     { leader("dbc"),     desc = "Debug: Set conditional breakpoint",  mode = { "n" }, set_conditional_breakpoint },
     { leader("dbh"),     desc = "Debug: Set hit breakpoint",          mode = { "n" }, set_hit_breakpoint },
     { leader("dbl"),     desc = "Debug: Set logpoint",                mode = { "n" }, set_logpoint },
     { leader("dba"),     desc = "Debug: Set advanced breakpoint",     mode = { "n" }, set_advanced_breakpoint },
     { leader("dbe"),     desc = "Debug: Set exception breakpoint",    mode = { "n" }, function() require("dap").set_exception_breakpoints() end },
+
     { leader("dlp"),     desc = "Debug: Preview line execution",      mode = { "n" }, function() require("dap.ui.widgets").preview() end },
     { leader("df"),      desc = "Debug: View current frame stack",    mode = { "n" }, function() require("dap.ui.widgets").centered_float(require("dap.ui.widgets").frames) end },
     { leader("ds"),      desc = "Debug: View scopes",                 mode = { "n" }, function() require("dap.ui.widgets").centered_float(require("dap.ui.widgets").scopes) end },
+    { leader("dbs"),     desc = "Debug: List breakpoints",            mode = { "n" }, function() require("telescope").extensions.dap.list_breakpoints() end },
+    { leader("dco"),     desc = "Debug: Show commands",               mode = { "n" }, function() require("telescope").extensions.dap.commands() end },
     -- stylua: ignore end
   },
 }
