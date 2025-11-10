@@ -108,7 +108,7 @@ return {
     { rapid_leader("n"), desc = "Debug: Step over",                   mode = { "n" }, function() require("dap").step_over() end },
     { rapid_leader("s"), desc = "Debug: Step into",                   mode = { "n" }, function() require("dap").step_into() end },
     { rapid_leader("S"), desc = "Debug: Step out",                    mode = { "n" }, function() require("dap").step_out() end },
-    { leader("dc"),      desc = "Debug: Continue or start execution", mode = { "n" }, function() require("dap").continue() end },
+    { leader("dcc"),     desc = "Debug: Continue or start execution", mode = { "n" }, function() require("dap").continue() end },
     { leader("dC"),      desc = "Debug: Execute to cursor",           mode = { "n" }, function() require("dap").run_to_cursor() end },
     { leader("dp"),      desc = "Debug: Pause execution",             mode = { "n" }, function() require("dap").pause() end },
 
