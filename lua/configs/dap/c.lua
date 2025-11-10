@@ -2,22 +2,27 @@
 local function get_executable_path()
   local cwd = vim.fn.getcwd()
   local candidates = vim.fn.glob(cwd .. "/build/**/*", false, true)
+  local shortest_candidate = nil
+  local shortest_len = math.huge
   local executable_candidates = {}
   for _, candidate in ipairs(candidates) do
-    local file_type = vim.fn.getftype(candidate)
-    if file_type ~= "file" then
+    if vim.fn.getftype(candidate) ~= "file" then
       goto continue
     end
 
     local perms = vim.fn.getfperm(candidate)
-    if string.match(perms, "x") then
+    if string.find(perms, "x") then
+      if #candidate < shortest_len then
+        shortest_len = #candidate
+        shortest_candidate = candidate
+      end
       table.insert(executable_candidates, candidate)
     end
 
     ::continue::
   end
 
-  return vim.fn.input("Executable: ", executable_candidates[1] or (cwd .. "/"), "file")
+  return vim.fn.input("Executable: ", shortest_candidate or (cwd .. "/"), "file")
 end
 
 ---@param target cmakeseer.cmake.api.codemodel.Target The CMakeSeer target.
@@ -66,36 +71,43 @@ function M.adapters()
   return {
     codelldb = {
       type = "executable",
-      command = "codelldb",
+      command = vim.fn.exepath("codelldb") ~= "" and vim.fn.exepath("codelldb") or "codelldb",
+      name = "codelldb",
     },
     cppdbg = {
       id = "cppdbg",
       type = "executable",
       command = vim.fs.joinpath(
         vim.fn.stdpath("data"),
-        "mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7"
+        "mason",
+        "packages",
+        "cpptools",
+        "extension",
+        "debugAdapters",
+        "bin",
+        "OpenDebugAD7"
       ),
     },
     lldb = {
       type = "executable",
       command = function()
         local maybe_path = vim.fn.exepath("lldb-dap")
-        return maybe_path ~= nil and maybe_path or "lldb-dap"
+        return maybe_path ~= "" and maybe_path or "lldb-dap"
       end,
       name = "lldb",
     },
   }
 end
 
----@return dap.Configuration
+---@return dap.Configuration[]
 function M.configurations()
   local configs = {
     {
-      name = "CPPDBG: Launch executable",
+      name = "GDB: Launch executable",
       type = "cppdbg",
       request = "launch",
       MIMode = "gdb",
-      miDebuggerPath = "gdb",
+      miDebuggerPath = vim.fn.exepath("gdb") or "gdb",
       program = get_executable_path,
       cwd = "${workspaceFolder}",
       stopAtEntry = false,

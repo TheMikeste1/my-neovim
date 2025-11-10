@@ -5,5 +5,5 @@ end
 
 local dap = require("dap")
 local dap_config = require("configs.dap.c")
-dap.adapters.c = dap_config.adapters()
+dap.adapters = vim.tbl_extend('error', dap.adapters, dap_config.adapters())
 dap.configurations.c = dap_config.configurations()
