@@ -67,11 +67,16 @@ return {
         lualine_b = {
           {
             "branch",
-            fmt = function(str, context)
-              if #str > 15 then
-                return str:sub(1, 15)
+            fmt = function(branch, context)
+              local maybe_issue = branch:match("[A-Z0-9]+-[A-Z0-9]+")
+              if maybe_issue ~= nil then
+                return maybe_issue
               end
-              return str
+
+              if #branch > 15 then
+                return branch:sub(1, 15)
+              end
+              return branch
             end,
           },
           "diagnostics",
