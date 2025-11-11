@@ -1,9 +1,3 @@
-if vim.g.vscode then
-  return
-end
-
-local theme = "terafox"
-
 vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
 vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
 vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
@@ -28,41 +22,11 @@ vim.diagnostic.config({
   severity_sort = true,
 })
 
-vim.api.nvim_create_autocmd({ "ColorScheme" }, {
-  callback = function()
-    -- Sign column
-    -- We'll steal the background from the number line and use it as our background color
-    -- There might be a better way to do this, but I don't know what that would be.
-    local number_backgroud = vim.api.nvim_get_hl(0, { name = "SignColumn" }).bg
-    local number_background_string = nil
-    if number_backgroud ~= nil then
-      number_background_string = string.format("#%06x", number_backgroud)
-    end
+vim.api.nvim_set_hl(0, "SpellBad", { underline = true })
 
-    vim.api.nvim_set_hl(0, "SpellBad", { underline = true })
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { fg = "#993939" })
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { fg = "#ff942f" })
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { fg = "#00b7e4" })
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { fg = "#54cf3c" })
 
-    vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { fg = "#993939" })
-    vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { fg = "#ff942f" })
-    vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { fg = "#00b7e4" })
-    vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { fg = "#54cf3c" })
-
-    -- DAP
-    vim.api.nvim_set_hl(0, "DapBreakpoint", { fg = "#993939", bg = number_background_string })
-    vim.api.nvim_set_hl(0, "DapConditionalBreakpoint", { fg = "#aa9900", bg = number_background_string })
-    vim.api.nvim_set_hl(0, "DapLogPoint", { fg = "#61afef", bg = number_background_string })
-    vim.api.nvim_set_hl(0, "DapStopped", { fg = "#98c379", bg = number_background_string })
-
-    -- treesitter-context
-    vim.api.nvim_set_hl(0, "TreesitterContext", { fg = "#61afef", bg = number_background_string })
-    vim.api.nvim_set_hl(0, "TreesitterContextBottom", { underline = true })
-    vim.api.nvim_set_hl(0, "TreesitterContextLineNumberBottom", { underline = true })
-
-    -- Marks
-    vim.api.nvim_set_hl(0, "MarkSignHL", { bg = number_background_string })
-
-    -- Cmp
-    vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = "#7E8294", bg = "NONE", strikethrough = true })
-  end,
-})
-
-vim.cmd.colorscheme(theme)
+vim.cmd.colorscheme("terafox")

@@ -190,6 +190,9 @@ end
 
 return {
   "hrsh7th/nvim-cmp",
+  init = function()
+    vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = "#7E8294", bg = "NONE", strikethrough = true })
+  end,
   config = config,
   event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
