@@ -66,7 +66,6 @@ local function set_advanced_breakpoint()
   require("dap").set_breakpoint(condition, hit_condition, message)
 end
 
--- TODO
 return {
   "mfussenegger/nvim-dap",
   dependencies = {
@@ -91,16 +90,11 @@ return {
     },
   },
   config = function()
-    vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DapBreakpoint" })
-    vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "DapBreakpoint" })
-    vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "DapBreakpoint" })
-    vim.fn.sign_define("DapLogPoint", { text = "", texthl = "DapLogPoint" })
-    vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped", linehl = "CursorLine" })
-    -- vim.fn.sign_define("DapBreakpoint",          { text = "", texthl = "DiagnosticError" })
-    -- vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "DiagnosticWarn" })
-    -- vim.fn.sign_define("DapBreakpointRejected",  { text = "", texthl = "DiagnosticHint" })
-    -- vim.fn.sign_define("DapLogPoint",            { text = "", texthl = "DiagnosticInfo" })
-    -- vim.fn.sign_define("DapStopped",             { text = "", texthl = "DiagnosticOk", linehl = "CursorLine" })
+    vim.fn.sign_define("DapBreakpoint",             { text = "", texthl = "DapBreakpoint" })
+    vim.fn.sign_define("DapBreakpointCondition",    { text = "", texthl = "DapConditionalBreakpoint" })
+    vim.fn.sign_define("DapBreakpointRejected",     { text = "", texthl = "DapBreakpoint" })
+    vim.fn.sign_define("DapLogPoint",               { text = "", texthl = "DapLogPoint" })
+    vim.fn.sign_define("DapStopped",                { text = "", texthl = "DapStopped", linehl = "CursorLine" })
   end,
   keys = {
     -- stylua: ignore start

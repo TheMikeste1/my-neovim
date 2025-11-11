@@ -48,6 +48,7 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
 
     -- DAP
     vim.api.nvim_set_hl(0, "DapBreakpoint", { fg = "#993939", bg = number_background_string })
+    vim.api.nvim_set_hl(0, "DapConditionalBreakpoint", { fg = "#aa9900", bg = number_background_string })
     vim.api.nvim_set_hl(0, "DapLogPoint", { fg = "#61afef", bg = number_background_string })
     vim.api.nvim_set_hl(0, "DapStopped", { fg = "#98c379", bg = number_background_string })
 
