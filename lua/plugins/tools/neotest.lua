@@ -20,7 +20,8 @@ return {
           is_test_file = function(file)
             local filename = string.match(file, "([^/]+)$")
             if
-              not (
+              filename == nil
+              or not (
                 filename:endswith(".c")
                 or filename:endswith(".cpp")
                 or filename:endswith(".cppm")
