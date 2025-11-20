@@ -1,6 +1,7 @@
 return {
   "stevearc/overseer.nvim",
-  tag = "v1.6.0",
+  ---@module 'overseer'
+  ---@type overseer.SetupOpts
   opts = {
     task_list = {
       direction = "bottom",
@@ -24,7 +25,7 @@ return {
     {
       "<C-M-t>",
       function()
-        require("overseer").run_template()
+        require("overseer").run_task({})
       end,
       desc = "Run Overseer template",
     },
