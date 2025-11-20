@@ -13,30 +13,9 @@ return {
         -- require("neotest-rust"),
         require("rustaceanvim.neotest"),
         require("cmakeseer.neotest.ctest"),
+        require("cmakeseer.neotest.gtest"),
         require("neotest-dotnet")({
           discovery_root = "solution",
-        }),
-        require("neotest-gtest").setup({
-          is_test_file = function(file)
-            local filename = string.match(file, "([^/]+)$")
-            if
-              filename == nil
-              or not (
-                filename:endswith(".c")
-                or filename:endswith(".cpp")
-                or filename:endswith(".cppm")
-                or filename:endswith(".cc")
-                or filename:endswith(".cxx")
-                or filename:endswith(".c++")
-              )
-            then
-              return false
-            end
-
-            if string.find(filename, "test") ~= nil or string.find(filename, "Test") ~= nil then
-              return true
-            end
-          end,
         }),
         require("neotest-bash"),
         require("neotest-python"),
