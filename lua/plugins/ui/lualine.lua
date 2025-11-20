@@ -104,6 +104,7 @@ return {
           },
           {
             "overseer",
+            colored = false,
           },
         },
       },
