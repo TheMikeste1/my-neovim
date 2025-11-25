@@ -1,7 +1,16 @@
 return {
   "nvim-focus/focus.nvim",
   init = function()
-    local ignore_filetypes = { "neo-tree", "OverseerList" }
+    local ignore_filetypes = {
+      "neo-tree",
+      "OverseerList",
+      "dap-repl",
+      "dapui_console",
+      "dapui_scopes",
+      "dapui_breakpoints",
+      "dapui_stacks",
+      "dapui_watches",
+    }
     local force_enable_filetypes = { "fugitive" } -- Overrides ignore_buftypes
     local ignore_buftypes = { "nofile", "prompt", "popup" }
 
