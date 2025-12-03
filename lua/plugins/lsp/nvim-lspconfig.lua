@@ -27,7 +27,7 @@ local function config()
   -- after the language server attaches to the current buffer
   vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-    callback = function(ev)
+    callback = function(event)
       local Snacks = require("snacks")
       local telescope_builtin = require("telescope.builtin")
 
@@ -36,46 +36,57 @@ local function config()
       vim.keymap.set("n", leader(leader("i")), function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
       end, { desc = "Toggle inlay hints" })
-      vim.keymap.set("n", "K", hover, { buffer = ev.buf, desc = "Hover info" })
-      vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { buffer = ev.buf, desc = "Get signature help" })
+      vim.keymap.set("n", "K", hover, { buffer = event.buf, desc = "Hover info" })
+      vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { buffer = event.buf, desc = "Get signature help" })
       vim.keymap.set(
         "n",
         "<space>D",
         Snacks.picker.lsp_type_definitions,
-        { buffer = ev.buf, desc = "List LSP type definition" }
+        { buffer = event.buf, desc = "List LSP type definition" }
       )
-      vim.keymap.set("n", rapid_leader("rn"), vim.lsp.buf.rename, { buffer = ev.buf, desc = "Rename variable" })
+      vim.keymap.set("n", rapid_leader("rn"), vim.lsp.buf.rename, { buffer = event.buf, desc = "Rename variable" })
 
-      vim.keymap.set("n", "gD", Snacks.picker.lsp_declarations, { buffer = ev.buf, desc = "Go to declaration" })
-      vim.keymap.set("n", "gd", Snacks.picker.lsp_definitions, { buffer = ev.buf, desc = "Go to definition" })
-      vim.keymap.set("n", "gr", Snacks.picker.lsp_references, { buffer = ev.buf, desc = "List LSP references" })
+      vim.keymap.set("n", "gD", Snacks.picker.lsp_declarations, { buffer = event.buf, desc = "Go to declaration" })
+      vim.keymap.set("n", "gd", Snacks.picker.lsp_definitions, { buffer = event.buf, desc = "Go to definition" })
+      vim.keymap.set("n", "gr", Snacks.picker.lsp_references, { buffer = event.buf, desc = "List LSP references" })
       vim.keymap.set(
         "n",
         "gi",
         Snacks.picker.lsp_implementations,
-        { buffer = ev.buf, desc = "List LSP implementations" }
+        { buffer = event.buf, desc = "List LSP implementations" }
       )
       vim.keymap.set("n", "<M-C-O>", function()
         Snacks.picker.lsp_symbols({ filter = { default = true } })
-      end, { buffer = ev.buf, desc = "List LSP current file symbols" })
+      end, { buffer = event.buf, desc = "List LSP current file symbols" })
       vim.keymap.set(
         "n",
         "<M-C-I>",
         Snacks.picker.lsp_workspace_symbols,
-        { buffer = ev.buf, desc = "List LSP workspace symbols" }
+        { buffer = event.buf, desc = "List LSP workspace symbols" }
       )
       vim.keymap.set(
         "n",
         "gli",
         telescope_builtin.lsp_incoming_calls,
-        { buffer = ev.buf, desc = "List LSP incoming calls" }
+        { buffer = event.buf, desc = "List LSP incoming calls" }
       )
       vim.keymap.set(
         "n",
         "glo",
         telescope_builtin.lsp_outgoing_calls,
-        { buffer = ev.buf, desc = "List LSP outgoing calls" }
+        { buffer = event.buf, desc = "List LSP outgoing calls" }
       )
+
+      local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
+      if client:supports_method("textDocument/codeLens") then
+        vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+          group = vim.api.nvim_create_augroup("lsp." .. client.name, { clear = false }),
+          buffer = event.buf,
+          callback = function(args)
+            vim.lsp.codelens.refresh({ bufnr = args.buf })
+          end,
+        })
+      end
     end,
   })
 end
