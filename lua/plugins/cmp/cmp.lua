@@ -92,6 +92,7 @@ local function config()
       return true
     end,
     experimental = {
+      -- TODO: Checkout https://neovim.io/doc/user/lsp.html#lsp-inline_completion
       ghost_text = true,
     },
     formatting = {

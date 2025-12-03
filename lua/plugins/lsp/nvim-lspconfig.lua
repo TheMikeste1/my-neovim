@@ -87,6 +87,7 @@ local function config()
           end,
         })
       end
+      -- TODO: Check out https://neovim.io/doc/user/lsp.html#lsp-linked_editing_range
     end,
   })
 end
