@@ -29,6 +29,71 @@ local function handle_api_command(opts)
   vim.notify("Unknown Snacks command: " .. opts.args)
 end
 
+local function format_diagnostic(item, picker)
+  -- Tweaked from snacks.picker.format.diagnostic
+  -- The only thing I've changed is to put the source before the message
+
+  local format = require("snacks.picker.format")
+
+  local ret = {} ---@type snacks.picker.Highlight[]
+  local diag = item.item ---@type vim.Diagnostic
+  if item.severity then
+    vim.list_extend(ret, format.severity(item, picker))
+  end
+
+  if diag.source then
+    ret[#ret + 1] = { diag.source, "SnacksPickerDiagnosticSource" }
+    ret[#ret + 1] = { " " }
+  end
+
+  local message = diag.message
+  ret[#ret + 1] = { message }
+  Snacks.picker.highlight.markdown(ret)
+  ret[#ret + 1] = { " " }
+
+  if diag.code then
+    ret[#ret + 1] = { ("(%s)"):format(diag.code), "SnacksPickerDiagnosticCode" }
+    ret[#ret + 1] = { " " }
+  end
+
+  vim.list_extend(ret, format.filename(item, picker))
+  return ret
+end
+
+local function generate_select_diagnostics_for_buffer(bufnr)
+  return function()
+    local sources_set = {}
+    for _, diagnostic in ipairs(vim.diagnostic.get(bufnr)) do
+      sources_set[diagnostic.source] = true
+    end
+
+    local sources = {}
+    for key, _ in pairs(sources_set) do
+      table.insert(sources, key)
+    end
+
+    vim.ui.select(sources, {
+      prompt = "Select a source",
+    }, function(chosen_source, idx)
+      if chosen_source == nil then
+        return
+      end
+
+      require("snacks").picker.diagnostics({
+        layout = { preset = "ivy" },
+        format = format_diagnostic,
+        filter = {
+          cwd = true,
+          filter = function(item, filter)
+            local source = item.item.source:lower()
+            return item.item.source == chosen_source
+          end,
+        },
+      })
+    end)
+  end
+end
+
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -340,26 +405,38 @@ return {
       function()
         require("snacks").picker.diagnostics({
           layout = { preset = "ivy" },
+          format = format_diagnostic,
           filter = {
             cwd = true,
             filter = filter_out_harperls,
           },
         })
       end,
-      desc = "Diagnostics",
+      desc = "Diagnostics: all",
     },
     {
       leader("xX"),
       function()
         require("snacks").picker.diagnostics_buffer({
           layout = { preset = "ivy" },
+          format = format_diagnostic,
           filter = {
             buf = true,
             filter = filter_out_harperls,
           },
         })
       end,
-      desc = "Buffer Diagnostics",
+      desc = "Diagnostics: buffer",
+    },
+    {
+      leader("xs"),
+      generate_select_diagnostics_for_buffer(nil),
+      desc = "Diagnostics: specific source",
+    },
+    {
+      leader("xS"),
+      generate_select_diagnostics_for_buffer(0),
+      desc = "Diagnostics: buffer specific source",
     },
   },
 }
