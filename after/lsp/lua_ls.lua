@@ -3,20 +3,25 @@ local function on_nonnvim_init(_client, _path)
 end
 
 local function on_nvim_init(client, _path)
+  -- See nvim-lspconfig/lsp/lua_ls.lua
   client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua or {}, {
     runtime = {
       version = "LuaJIT",
+      -- Tell the language server how to find Lua modules same way as Neovim
+      -- (see `:h lua-module-load`)
+      path = {
+        "lua/?.lua",
+        "lua/?/init.lua",
+      },
     },
     diagnostics = {
       disabled = { "mixed_table" },
-      globals = {
-        "vim",
-        "require",
-      },
     },
     workspace = {
-      checkThirdParty = true,
-      library = vim.api.nvim_get_runtime_file("", true),
+      checkThirdParty = false,
+      library = {
+        vim.env.VIMRUNTIME,
+      },
     },
   })
 
@@ -47,26 +52,8 @@ local function on_init(client)
   -- Load settings
   local luarc_exists = vim.loop.fs_stat(path .. "/.luarc.json")
   local luarc_c_exists = vim.loop.fs_stat(path .. "/.luarc.jsonc")
-  if luarc_exists or luarc_c_exists then
-    local file_path = nil
-    if luarc_exists then
-      file_path = path .. "/.luarc.json"
-    elseif luarc_c_exists then
-      file_path = path .. "/.luarc.jsonc"
-    end
-
-    assert(file_path, "file_path is nil, but one of the configs exists???")
-
-    local file = io.open(file_path, "r")
-    if file == nil then
-      vim.notify("Unable to read luarc file `" .. file_path .. "`", vim.log.levels.ERROR)
-    else
-      local file_contents = file:read("a")
-      file:close()
-
-      local file_settings = vim.json.decode(file_contents)
-      client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, file_settings)
-    end
+  if not luarc_exists and not luarc_c_exists then
+    return true
   end
 
   -- Load additional settings
