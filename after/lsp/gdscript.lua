@@ -1,7 +1,7 @@
 if vim.g.is_wsl then
-  vim.lsp.config("gdscript", {
+  return {
     cmd = { "godot-wsl-lsp", "--useMirroredNetworking" },
-  })
+  }
 end
 
 return {}

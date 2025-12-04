@@ -27,10 +27,9 @@ end
 ---@param path string The path to the project.
 ---@return boolean is_project If the current project is for Neovim or a Neovim plugin.
 local function is_nvim_project(path)
-  -- Sometimes I'm naughty and symlink my config folder 🤐
-  path = vim.fn.resolve(vim.fn.expand(path))
+  path = vim.fn.resolve(assert(vim.fn.expand(path)))
   local config_path = vim.fn.stdpath("config")
-  config_path = vim.fn.resolve(vim.fn.expand(config_path))
+  config_path = vim.fn.resolve(assert(vim.fn.expand(config_path)))
   return path == config_path
 end
 

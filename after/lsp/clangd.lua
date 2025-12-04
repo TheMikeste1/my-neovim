@@ -3,8 +3,7 @@ if nproc == 0 then
   nproc = 8
 end
 
--- Override nvim-lspconfig
-vim.lsp.config("clangd", {
+return {
   cmd = {
     "clangd",
     "--offset-encoding=utf-16",
@@ -13,8 +12,6 @@ vim.lsp.config("clangd", {
     "--import-insertions",
     "--malloc-trim",
     "--all-scopes-completion",
-    string.format("-j=%d", nproc)
+    string.format("-j=%d", nproc),
   },
-})
--- Defaults
-return {}
+}

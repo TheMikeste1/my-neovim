@@ -1,11 +1,9 @@
-vim.lsp.config("pyright", {
+return {
   settings = {
     python = {
-      venvPath = vim.env.VIRTUAL_ENV or vim.fs.joinpath(vim.fn.getcwd(), ".venv"),
       analysis = {
         autoSearchPaths = true,
-        diagnosticMode = "workspace",
-        typeCheckingMode = "strict",
+        typeCheckingMode = "standard",
       },
     },
   },
@@ -38,6 +36,4 @@ vim.lsp.config("pyright", {
       vim.lsp.util.apply_workspace_edit(result, client.offset_encoding)
     end,
   },
-})
-
-return {}
+}
