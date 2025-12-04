@@ -86,7 +86,7 @@ return {
     -- "LiadOz/nvim-dap-repl-highlights", -- TODO: Configure
     {
       "theHamsta/nvim-dap-virtual-text",
-      opts = { commented = true },
+      opts = { commented = false },
     },
   },
   init = function()
