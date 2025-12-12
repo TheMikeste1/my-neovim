@@ -6,6 +6,7 @@ return {
     create_cmp_source = true,
   },
   dependencies = {
-    "rafamadriz/friendly-snippets"
+    "rafamadriz/friendly-snippets",
+    "hrsh7th/nvim-cmp",
   },
 }

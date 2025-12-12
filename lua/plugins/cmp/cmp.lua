@@ -212,7 +212,6 @@ return {
     },
     "rcarriga/cmp-dap",
     "ray-x/cmp-treesitter",
-    "garymjr/nvim-snippets",
     "nvim-tree/nvim-web-devicons",
   },
 }

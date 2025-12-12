@@ -1,0 +1,6 @@
+{
+  "Create a print eval statement": {
+    "prefix": ["p=", "print="],
+    "body": "print(f\"{$1=}\")$0"
+  }
+}
