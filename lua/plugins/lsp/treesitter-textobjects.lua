@@ -35,6 +35,8 @@ return {
             ["ica"] = { query = "@call.inner", desc = "Select inner part of a call" },
             ["acl"] = { query = "@class.outer", desc = "Select outer part of a class" },
             ["icl"] = { query = "@class.inner", desc = "Select inner part of a class" },
+            ["aco"] = { query = "@comment.outer", desc = "Select outer part of a comment" },
+            ["ico"] = { query = "@comment.inner", desc = "Select inner part of a comment" },
             ["af"] = { query = "@function.outer", desc = "Select outer part of a function" },
             ["if"] = { query = "@function.inner", desc = "Select inner part of a function" },
             ["al"] = { query = "@loop.outer", desc = "Select outer part of a loop" },
