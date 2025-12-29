@@ -1,5 +1,6 @@
 return {
   "nvim-focus/focus.nvim",
+  cond = false,
   init = function()
     local ignore_filetypes = {
       "neo-tree",
