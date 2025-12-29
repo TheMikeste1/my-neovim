@@ -1,3 +1,4 @@
+-- TODO: Look at blink.cmp
 local function format(entry, vim_item)
   return require("lspkind").cmp_format({
     ellipsis_char = "...",

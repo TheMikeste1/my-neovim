@@ -82,6 +82,7 @@ return {
             "--disable",
             "MD013",
             "MD041",
+            "MD047",
             "--config",
             vim.fs.joinpath(vim.fn.stdpath("config"), "tool_configs", "markdownlint.json"),
           },
