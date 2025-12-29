@@ -6,6 +6,7 @@
 CMake
 Hegerhorst
 MSVC
+additively
 bitfields
 boolean
 booleans
@@ -18,6 +19,7 @@ cyberharden
 cyberhardening
 data's
 dataflow
+datatypes
 debugability
 defragment
 defragmented
@@ -29,6 +31,7 @@ emissive
 endian
 endianness
 enqueue
+executable's
 executables
 federal
 filepath
@@ -43,6 +46,7 @@ lua
 marshalled
 marshalling
 metadata
+metatable
 mutex
 namespace
 overridable
