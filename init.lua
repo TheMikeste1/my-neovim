@@ -2,8 +2,6 @@ vim.loader.enable()
 
 local FileUtilities = require("utilities.file_utilities")
 
-require("config.env")
-
 -- Set working directory
 if vim.fn.argc() == 1 then
   local arg = vim.fn.argv()[1]
@@ -26,6 +24,7 @@ if vim.fn.argc() == 1 then
   end
 end
 
+require("config.env")
 require("config.vim")
 require("config.lazy")
 require("config.theme")
