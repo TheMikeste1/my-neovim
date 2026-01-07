@@ -10,10 +10,8 @@ return {
       local utils = require("auto-save.utils.data")
 
       if
-        fn.getbufvar(buf_num, "&modifiable") == 1 and utils.not_in(
-          fn.getbufvar(buf_num, "&filetype"),
-          { "OverseerForm" }
-        )
+        fn.getbufvar(buf_num, "&modifiable") == 1
+        and utils.not_in(fn.getbufvar(buf_num, "&filetype"), { "OverseerForm", "oil", "oil_preview" })
       then
         return true -- met condition(s), can save
       end
