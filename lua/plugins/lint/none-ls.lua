@@ -26,10 +26,13 @@ return {
         null_ls.builtins.code_actions.refactoring,
 
         null_ls.builtins.completion.spell,
-        null_ls.builtins.diagnostics.dotenv_linter,
+
         -- null_ls.builtins.diagnostics.editorconfig_checker,
+        null_ls.builtins.diagnostics.dotenv_linter,
+        null_ls.builtins.diagnostics.gitleaks,
         null_ls.builtins.diagnostics.trail_space,
 
+        -- # Language-specific
         -- Ansible
         null_ls.builtins.diagnostics.ansiblelint,
 
