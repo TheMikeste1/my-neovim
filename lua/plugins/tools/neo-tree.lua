@@ -22,6 +22,40 @@ local function harpoon_index(config, node, _)
   return {}
 end
 
+---@type neotree.Config.SortFunction
+--- Idk why, but a and b are definitely not the types SortFunction implies
+local function sort_files(a, b)
+  -- Return true if `a` < `b`
+
+  if a.type == "file" and b.type == "directory" then
+    return false
+  end
+  if a.type == "directory" and b.type == "file" then
+    return true
+  end
+
+  if a.name == nil or b.name == nil or a.parent_path ~= b.parent_path then
+    return a.path:lower() < b.path:lower()
+  end
+
+  -- Parameters are the same type
+  -- Check if one of the parameters starts with a special character
+  local special_chars = {
+    ["."] = true,
+    ["_"] = true,
+    ["~"] = true,
+  }
+
+  if special_chars[a.name:sub(1, 1)] and not special_chars[b.name:sub(1, 1)] then
+    return true
+  end
+  if not special_chars[a.name:sub(1, 1)] and special_chars[b.name:sub(1, 1)] then
+    return false
+  end
+
+  return a.name:lower() < b.name:lower()
+end
+
 return {
   "nvim-neo-tree/neo-tree.nvim",
   dependencies = {
@@ -42,7 +76,11 @@ return {
       leader("<C-e>"),
       function()
         local dir = nil
-        if vim.bo.filetype == "fugitive" or vim.bo.filetype == "snacks_dashboard" or vim.bo.filetype == "checkhealth" then
+        if
+          vim.bo.filetype == "fugitive"
+          or vim.bo.filetype == "snacks_dashboard"
+          or vim.bo.filetype == "checkhealth"
+        then
           dir = vim.fn.getcwd() -- Don't try changing to the fugitive file's dir
         end
 
@@ -60,6 +98,8 @@ return {
   opts = function(_, opts)
     ---@type neotree.Config
     opts = {
+      sort_case_insensitive = true,
+      sort_function = sort_files,
       sources = {
         "filesystem",
         "buffers",
