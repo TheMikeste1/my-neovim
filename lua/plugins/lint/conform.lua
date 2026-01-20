@@ -44,6 +44,7 @@ return {
         typescript = { "biome", "prettier" },
         javascriptreact = { "biome", "prettier" },
         typescriptreact = { "biome", "prettier" },
+        vue = { "biome", "prettier" },
         json = { "biome", "prettier" },
         jsonc = { "biome", "prettier" },
         scss = { "stylelint" },

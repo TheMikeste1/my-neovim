@@ -14,5 +14,6 @@ vim.filetype.add({
   pattern = {
     [".*/cmd_tlm/.+%.txt"] = "cosmos",
     [".*/openc3.*/plugin%.txt"] = "cosmos",
+    [".*/openc3.*/.*%.txt"] = "cosmos",
   },
 })
