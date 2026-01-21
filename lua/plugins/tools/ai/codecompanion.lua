@@ -1,31 +1,37 @@
--- ~/.config/nvim/lua/plugins/codecompanion.lua
+---@module "codecompanion"
 return {
   "olimorris/codecompanion.nvim",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
-    "nvim-telescope/telescope.nvim",
     { "stevearc/dressing.nvim", opts = {} },
   },
   config = function()
     require("codecompanion").setup({
-      strategies = {
+      interactions = {
         chat = {
-          adapter = "ollama",
+          adapter = "sdl_openai",
+          -- adapter = "local_ollama",
         },
         inline = {
-          adapter = "ollama",
+          adapter = "sdl_openai",
+          -- adapter = "local_ollama",
         },
         agent = {
-          adapter = "ollama",
+          adapter = "sdl_openai",
+          -- adapter = "local_ollama",
+        },
+        cmd = {
+          adapter = "sdl_openai",
+          -- adapter = "local_ollama",
         },
       },
       adapters = {
         http = {
-          ollama = function()
+          local_ollama = function()
             return require("codecompanion.adapters").extend("ollama", {
               env = {
-                url = "http://localhost:11435",
+                url = "http://localhost:11434",
               },
               schema = {
                 model = {
@@ -34,12 +40,17 @@ return {
               },
             })
           end,
+          sdl_openai = function()
+            -- See <https://github.com/olimorris/codecompanion.nvim/blob/main/lua/codecompanion/adapters/http/openai.lua> for settings
+            
+          end,
         },
       },
     })
 
     -- Keymaps
-    vim.keymap.set({ "n", "v" }, "<leader>cc", "<cmd>CodeCompanionChat Toggle<cr>")
-    vim.keymap.set("v", "<leader>ca", "<cmd>CodeCompanionChat Add<cr>")
+    vim.keymap.set({ "n", "v" }, "<C-g>cc", "<cmd>CodeCompanionChat Toggle<cr>")
+    vim.keymap.set({ "n", "v" }, "<C-g>ca", "<cmd>CodeCompanionChat Add<cr>")
+    vim.keymap.set({ "n", "v" }, "<C-g>cp", "<cmd>CodeCompanion<cr>")
   end,
 }
