@@ -10,46 +10,24 @@ return {
     require("codecompanion").setup({
       interactions = {
         chat = {
-          adapter = "sdl_openai",
-          -- adapter = "local_ollama",
+          adapter = "gemini_cli",
         },
         inline = {
-          adapter = "sdl_openai",
-          -- adapter = "local_ollama",
+          adapter = "gemini_cli",
         },
         agent = {
-          adapter = "sdl_openai",
-          -- adapter = "local_ollama",
+          adapter = "gemini_cli",
         },
         cmd = {
-          adapter = "sdl_openai",
-          -- adapter = "local_ollama",
+          adapter = "gemini_cli",
         },
       },
-      adapters = {
-        http = {
-          local_ollama = function()
-            return require("codecompanion.adapters").extend("ollama", {
-              env = {
-                url = "http://localhost:11434",
-              },
-              schema = {
-                model = {
-                  default = "gpt-oss:20b",
-                },
-              },
-            })
-          end,
-          sdl_openai = function()
-            -- See <https://github.com/olimorris/codecompanion.nvim/blob/main/lua/codecompanion/adapters/http/openai.lua> for settings
-            
-          end,
-        },
-      },
+      adapters = {},
     })
 
     -- Keymaps
     vim.keymap.set({ "n", "v" }, "<C-g>cc", "<cmd>CodeCompanionChat Toggle<cr>")
+    vim.keymap.set({ "n", "v" }, "<C-g>cn", "<cmd>CodeCompanionChat<cr>")
     vim.keymap.set({ "n", "v" }, "<C-g>ca", "<cmd>CodeCompanionChat Add<cr>")
     vim.keymap.set({ "n", "v" }, "<C-g>cp", "<cmd>CodeCompanion<cr>")
   end,
