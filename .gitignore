@@ -1,3 +1,4 @@
 # They say to add the lock, but I don't like it
 lazy-lock.json
 spell/*.spl
+lua/work

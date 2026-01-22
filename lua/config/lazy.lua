@@ -11,6 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local work_overrides_exist = pcall(require, "work")
 require("lazy").setup({
   spec = {
     { import = "plugins" },
@@ -24,6 +25,7 @@ require("lazy").setup({
     { import = "plugins.ui" },
     { import = "plugins.vim-dev" },
     { import = "themes" },
+    work_overrides_exist and { import = "work" } or {},
   },
   checker = {
     -- Automatically check for plugin updates
