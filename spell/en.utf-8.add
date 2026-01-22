@@ -13,6 +13,7 @@ bitfields
 boolean
 booleans
 centroids
+checkboxes
 clippy
 cmake
 constructible

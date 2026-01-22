@@ -39,6 +39,12 @@ return {
   config = function()
     require("ufo").setup({
       fold_virt_text_handler = fold_virt_text_handler,
+      provider_selector = function(bufnr, filetype, buftype)
+        if filetype == "markdown" then
+          return { "treesitter" }
+        end
+        return { "treesitter", "indent" }
+      end,
     })
     vim.lsp.config("*", {
       capabilities = {
@@ -49,6 +55,18 @@ return {
           },
         },
       },
+    })
+
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = { "markdown", "codecompanion" },
+      callback = function()
+        vim.b.ufo_ft_keywords = {
+          "atx_heading",
+          "setext_heading",
+          "fenced_code_block",
+          "yaml_front_matter",
+        }
+      end,
     })
   end,
   dependencies = {

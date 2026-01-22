@@ -1,5 +1,6 @@
 vim.filetype.add({
   extension = {
+    codecompanion = "markdown",
     godot = "gdresource",
     service = "systemd",
     slice = "systemd",
