@@ -25,6 +25,11 @@ return {
             default_tools = {
               "memory",
             },
+            ["memory"] = {
+              opts = {
+                require_approval_before = false,
+              },
+            },
           },
         },
         variables = {
