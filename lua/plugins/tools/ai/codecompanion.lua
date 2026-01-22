@@ -6,6 +6,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     { "stevearc/dressing.nvim", opts = {} },
     "lalitmee/codecompanion-spinners.nvim",
+    "ravitemer/codecompanion-history.nvim",
   },
   config = function()
     require("codecompanion").setup({
@@ -29,10 +30,13 @@ return {
         spinner = {
           enabled = true,
           opts = {
-            style = "lualine"
-          }
-        }
-      }
+            style = "lualine",
+          },
+        },
+        history = {
+          enabled = true,
+        },
+      },
     })
 
     -- Keymaps
