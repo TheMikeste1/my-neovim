@@ -16,7 +16,27 @@ return {
   end,
   opts = {
     interactions = {
-      chat = { adapter = "gemini_cli" },
+      chat = {
+        adapter = "gemini_cli",
+        tools = {
+          opts = {
+            auto_submit_errors = true,
+            auto_submit_success = true,
+            default_tools = {
+              "memory",
+            },
+          },
+        },
+        variables = {
+          ["buffer"] = {
+            opts = {
+              -- Always sync the buffer by sharing its "diff"
+              -- Or choose "all" to share the entire buffer
+              default_params = "diff",
+            },
+          },
+        },
+      },
       inline = { adapter = "gemini_cli" },
       agent = { adapter = "gemini_cli" },
       cmd = { adapter = "gemini_cli" },
@@ -24,6 +44,12 @@ return {
     display = {
       action_palette = {
         provider = "snacks",
+      },
+      chat = {
+        icons = {
+          chat_context = "📎️",
+        },
+        fold_context = true,
       },
     },
     extensions = {
