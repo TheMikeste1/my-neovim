@@ -26,6 +26,12 @@ return {
       },
       adapters = {},
 
+      display = {
+        action_palette = {
+          provider = "snacks",
+        },
+      },
+
       extensions = {
         spinner = {
           enabled = true,
@@ -35,6 +41,9 @@ return {
         },
         history = {
           enabled = true,
+          opts = {
+            picker = "snacks",
+          },
         },
       },
     })
