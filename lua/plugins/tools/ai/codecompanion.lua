@@ -5,6 +5,7 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
     { "stevearc/dressing.nvim", opts = {} },
+    "lalitmee/codecompanion-spinners.nvim",
   },
   config = function()
     require("codecompanion").setup({
@@ -23,6 +24,15 @@ return {
         },
       },
       adapters = {},
+
+      extensions = {
+        spinner = {
+          enabled = true,
+          opts = {
+            style = "lualine"
+          }
+        }
+      }
     })
 
     -- Keymaps

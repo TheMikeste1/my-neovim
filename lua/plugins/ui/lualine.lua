@@ -90,6 +90,7 @@ return {
         { "filetype", cond = is_enabled_file },
         { eol_type, cond = is_enabled_file },
         { "filename", cond = is_enabled_file },
+        require("codecompanion._extensions.spinner.styles.lualine").get_lualine_component(),
       },
       lualine_x = {
         {
