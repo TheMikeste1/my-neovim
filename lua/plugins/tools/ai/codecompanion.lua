@@ -26,10 +26,16 @@ return {
             default_tools = {
               "memory",
             },
-            ["memory"] = {
-              opts = {
-                require_approval_before = false,
-              },
+          },
+          ["memory"] = {
+            opts = {
+              require_approval_before = false,
+            },
+          },
+          ["grep_search"] = {
+            opts = {
+              require_approval_before = false,
+              respect_gitignore = false,
             },
           },
         },
