@@ -1,30 +1,4 @@
 -- TODO: Look at blink.cmp
-local function format(entry, vim_item)
-  return require("lspkind").cmp_format({
-    ellipsis_char = "...",
-    maxwidth = 50,
-    menu = {
-      copilot = "[Copilot]",
-      async_path = "[Path]",
-      buffer = "[Buffer]",
-      bufferlines = "[BufferLine]",
-      ctags = "[CTags]",
-      doxygen = "[Doxygen]",
-      dynamic = "[Dynamic]",
-      nvim_lsp = "[LSP]",
-      nvim_lsp_document_symbol = "[DocSymbol]",
-      nvim_lua = "[NVim]",
-      omni = "[Omni]",
-      spell = "[Spell]",
-      treesitter = "[Tree]",
-      vsnip = "[Snip]",
-      snippets = "[Snip]",
-    },
-    mode = "symbol",
-    symbol_map = { Copilot = "" },
-  })(entry, vim_item)
-end
-
 -- <https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#safely-select-entries-with-cr>
 local function on_enter(fallback)
   local cmp = require("cmp")
@@ -78,6 +52,27 @@ local function config()
   local cmp = require("cmp")
   cmp.types = require("cmp.types")
 
+  -- Define custom colors for each source
+  local source_colors = {
+    copilot = "#AE81FF", -- Purple
+    async_path = "#E6B05A", -- Orange
+    buffer = "#80CBC4", -- Teal
+    bufferlines = "#80CBC4", -- Teal
+    ctags = "#FFCA28", -- Yellow
+    doxygen = "#C0C0C0", -- Silver
+    dynamic = "#FC7AE9", -- Pink
+    nvim_lsp = "#7CAFC2", -- Light Blue
+    nvim_lsp_document_symbol = "#54A9FF", -- Blue
+    nvim_lua = "#00B0FF", -- Deep Sky Blue
+    omni = "#9E9E9E", -- Grey
+    spell = "#FF5B5B", -- Red
+    treesitter = "#A7CC8C", -- Green
+    vsnip = "#FF7043", -- Coral
+    snippets = "#FF7043", -- Coral
+    minuet = "#BB86FC", -- Light Purple
+    default = "#FFD700", -- Gold
+  }
+
   cmp.setup({
     enabled = function()
       -- If we're in a prompt (but not a DAP prompt)
@@ -98,8 +93,46 @@ local function config()
     },
     formatting = {
       expandable_indicator = true,
-      fields = { "abbr", "kind", "menu" },
-      format = format,
+      fields = { "abbr", "icon", "kind", "menu" },
+      format = require("lspkind").cmp_format({
+        ellipsis_char = "...",
+        maxwidth = {
+          menu = 50,
+          abbr = 50,
+        },
+        show_labelDetails = true,
+        menu = {
+          copilot = "",
+          async_path = "󰉖",
+          buffer = "",
+          bufferlines = "",
+          ctags = "",
+          doxygen = "",
+          dynamic = "",
+          nvim_lsp = "",
+          nvim_lsp_document_symbol = "",
+          nvim_lua = "󰢠",
+          omni = "",
+          spell = "󰓆",
+          treesitter = "",
+          vsnip = "",
+          snippets = "",
+        },
+        before = function(entry, vim_item)
+          local source_name = entry.source.name
+          -- Sanitize the source name for use in highlight group name (e.g., remove non-alphanumeric chars)
+          local hl_group_suffix = source_name:gsub("[^%w_]", "")
+          local hl_group_name = "CmpItemMenu" .. hl_group_suffix
+
+          -- Check if a specific color is defined for this source
+          local color_for_source = source_colors[source_name] or source_colors.default
+          vim.api.nvim_set_hl(0, hl_group_name, { fg = color_for_source })
+
+          vim_item.menu_hl_group = hl_group_name
+
+          return vim_item
+        end,
+      }),
     },
     sorting = {
       comparators = {
@@ -201,7 +234,11 @@ end
 return {
   "hrsh7th/nvim-cmp",
   init = function()
-    vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = "#7E8294", bg = "NONE", strikethrough = true })
+    vim.api.nvim_create_autocmd("ColorScheme", {
+      callback = function()
+        vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = "#7E8294", bg = "NONE", strikethrough = true })
+      end,
+    })
   end,
   config = config,
   event = { "InsertEnter", "CmdlineEnter" },
