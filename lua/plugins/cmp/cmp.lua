@@ -155,6 +155,7 @@ local function config()
     sources = cmp.config.sources({
       { { name = "nvim_lsp_signature_help" } },
       { name = "snippets", max_item_count = 5 },
+      { name = "minuet" },
       {
         name = "nvim_lsp",
         entry_filter = function(entry)
@@ -168,6 +169,13 @@ local function config()
       { name = "path", max_item_count = 5 },
       { name = "buffer", max_item_count = 5 },
     }),
+    performance = {
+      -- It is recommended to increase the timeout duration due to
+      -- the typically slower response speed of LLMs compared to
+      -- other completion sources. This is not needed when you only
+      -- need manual completion.
+      fetching_timeout = 20000,
+    },
   })
 
   -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
@@ -214,5 +222,6 @@ return {
     "rcarriga/cmp-dap",
     "ray-x/cmp-treesitter",
     "nvim-tree/nvim-web-devicons",
+    "milanglacier/minuet-ai.nvim",
   },
 }

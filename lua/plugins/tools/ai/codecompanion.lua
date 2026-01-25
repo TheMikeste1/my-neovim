@@ -18,7 +18,7 @@ return {
   opts = {
     interactions = {
       chat = {
-        adapter = "gemini_cli",
+        adapter = "local_ollama",
         tools = {
           opts = {
             auto_submit_errors = true,
@@ -49,9 +49,25 @@ return {
           },
         },
       },
-      inline = { adapter = "gemini_cli" },
-      agent = { adapter = "gemini_cli" },
-      cmd = { adapter = "gemini_cli" },
+      inline = { adapter = "local_ollama" },
+      agent = { adapter = "local_ollama" },
+      cmd = { adapter = "local_ollama" },
+    },
+    adapters = {
+      http = {
+        local_ollama = function()
+          return require("codecompanion.adapters").extend("ollama", {
+            env = {
+              url = "http://localhost:11434",
+            },
+            schema = {
+              model = {
+                default = "qwen2.5-coder:7b",
+              },
+            },
+          })
+        end,
+      },
     },
     display = {
       action_palette = {
