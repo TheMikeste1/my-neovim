@@ -102,22 +102,22 @@ local function config()
         },
         show_labelDetails = true,
         menu = {
-          async_path = "󰉖",
-          buffer = "",
-          bufferlines = "",
-          copilot = "",
-          omni = "",
-          snippets = "",
-          vsnip = "",
-          ctags = "",
-          doxygen = "",
-          spell = "󰓆",
-          nvim_lsp = "",
-          nvim_lsp_document_symbol = "",
-          nvim_lua = "󰢠",
-          dynamic = "",
-          minuet = "󰞷",
-          treesitter = "",
+          async_path = "󰉖 ",
+          buffer = " ",
+          bufferlines = " ",
+          copilot = " ",
+          omni = " ",
+          snippets = " ",
+          vsnip = " ",
+          ctags = " ",
+          doxygen = " ",
+          spell = "󰓆 ",
+          nvim_lsp = " ",
+          nvim_lsp_document_symbol = " ",
+          nvim_lua = "󰢠 ",
+          dynamic = " ",
+          minuet = "󰞷 ",
+          treesitter = " ",
         },
         before = function(entry, vim_item)
           local source_name = entry.source.name
@@ -208,7 +208,7 @@ local function config()
       -- the typically slower response speed of LLMs compared to
       -- other completion sources. This is not needed when you only
       -- need manual completion.
-      fetching_timeout = 20000,
+      fetching_timeout = 5000,
     },
   })
 
