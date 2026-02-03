@@ -21,6 +21,15 @@ return {
     },
     virtualtext = {
       auto_trigger_ft = { "*" },
+      auto_trigger_ignore_ft = {
+        "OverseerForm",
+        "OverseerList",
+        "OverseerOutput",
+        "TelescopePrompt",
+        "noice",
+        "snacks_input",
+        "snacks_picker_input",
+      },
       show_on_completion_menu = false,
       keymap = {
         accept = "<C-g><CR>",

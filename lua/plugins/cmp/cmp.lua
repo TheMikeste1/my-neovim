@@ -95,10 +95,10 @@ local function config()
       expandable_indicator = true,
       fields = { "abbr", "icon", "kind", "menu" },
       format = require("lspkind").cmp_format({
-        ellipsis_char = "...",
+        ellipsis_char = "…",
         maxwidth = {
           menu = 50,
-          abbr = 50,
+          abbr = 200,
         },
         show_labelDetails = true,
         menu = {
@@ -208,7 +208,7 @@ local function config()
       -- the typically slower response speed of LLMs compared to
       -- other completion sources. This is not needed when you only
       -- need manual completion.
-      fetching_timeout = 5000,
+      fetching_timeout = 2000,
     },
   })
 
@@ -221,7 +221,7 @@ local function config()
     }),
   })
 
-  require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+  cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
     sources = {
       { name = "dap" },
     },

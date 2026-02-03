@@ -401,6 +401,13 @@ return {
       desc = "Open quickfix list",
     },
     {
+      leader(leader("k")),
+      function()
+        require("snacks").picker.keymaps()
+      end,
+      desc = "Show keymaps",
+    },
+    {
       leader("xx"),
       function()
         require("snacks").picker.diagnostics({
