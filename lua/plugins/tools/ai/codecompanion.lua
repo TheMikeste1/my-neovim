@@ -38,6 +38,11 @@ return {
               respect_gitignore = false,
             },
           },
+          ["read_file"] = {
+            opts = {
+              require_approval_before = false,
+            },
+          },
         },
         variables = {
           ["buffer"] = {
