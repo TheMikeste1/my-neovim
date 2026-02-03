@@ -10,6 +10,9 @@ return {
       "builtin",
       "cmakeseer",
     },
+    keymaps = {
+      ["<C-t>"] = false
+    }
   },
   dependencies = {
     "cmakeseer.nvim",
