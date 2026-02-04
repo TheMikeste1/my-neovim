@@ -62,8 +62,6 @@ vim.opt.autowrite = true
 vim.opt.signcolumn = "yes:2"
 vim.opt.statuscolumn = "%=%l%s%C"
 
-vim.cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh({ bufnr = 0 })]])
-
 vim.opt.list = true
 vim.opt.listchars = "tab:!·,trail:·,nbsp:+"
 

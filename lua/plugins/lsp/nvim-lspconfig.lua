@@ -83,7 +83,7 @@ local function config()
           group = vim.api.nvim_create_augroup("lsp." .. client.name, { clear = false }),
           buffer = event.buf,
           callback = function(args)
-            vim.lsp.codelens.refresh({ bufnr = args.buf })
+            vim.lsp.codelens.enable(true, { bufnr = args.buf })
           end,
         })
       end
