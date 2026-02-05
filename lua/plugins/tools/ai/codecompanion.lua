@@ -85,6 +85,13 @@ return {
         fold_context = true,
       },
     },
+    prompt_library = {
+      markdown = {
+        dirs = {
+          vim.fs.joinpath(vim.fn.stdpath("config"), "prompts"),
+        },
+      },
+    },
     extensions = {
       spinner = {
         enabled = true,
