@@ -29,6 +29,7 @@ return {
         "noice",
         "snacks_input",
         "snacks_picker_input",
+        "codecompanion",
       },
       show_on_completion_menu = false,
       keymap = {
