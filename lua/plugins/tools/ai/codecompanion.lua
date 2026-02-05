@@ -19,6 +19,16 @@ return {
     interactions = {
       chat = {
         adapter = "local_ollama",
+        opts = {
+          ---@param ctx CodeCompanion.SystemPrompt.Context
+          ---@return string
+          system_prompt = function(ctx)
+            return ctx.default_system_prompt
+              .. [[User-specific instructions:
+Be wary of markdown tables with long rows or linebreaks. NeoVim does not render these well. Tables with few columns and cells with little content are generally okay. 120 characters per line at the absolute most is reasonable. 80 characters may be better.
+]]
+          end,
+        },
         tools = {
           opts = {
             auto_submit_errors = true,
