@@ -22,6 +22,7 @@ Provide a documentation comment for the following in buffer #{context.bufnr}.
 - Include returns and yields ONLY WHEN IT RETURNS/YIELDS SOMETHING.
     - If it returns or yields void/None/nil, DO NOT add a comment about it.
 - Include usage examples. In Python, these should be doctest-style examples. Others should use their doctest-equivalent. If they do not have one, use Markdown codeblocks.
+    - Examples should be somewhat whimsical and fun. This applies ONLY to the examples, which should still be realistic regardless of their whimsical use cases.
 - Provide warnings, e.g. "Ensure `m_mutex` is locked" ONLY when applicable.
 - Avoid being too wordy except for particularly delicate functions.
 - Include comments for enum variants without comments when documenting an enum.

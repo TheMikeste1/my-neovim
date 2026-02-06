@@ -23,10 +23,36 @@ return {
           ---@param ctx CodeCompanion.SystemPrompt.Context
           ---@return string
           system_prompt = function(ctx)
-            return ctx.default_system_prompt
-              .. [[User-specific instructions:
+            local prompt = ctx.default_system_prompt
+              .. [[
+User-specific overrides:
 Be wary of Markdown tables with long rows or linebreaks. NeoVim does not render these well. Tables with few columns and cells with little content are generally okay. 120 characters total per row at the absolute most is reasonable. 80 characters is preferred.
 ]]
+
+            local depth = "3"
+            if vim.fn.getcwd() == vim.fn.expand("~") then
+              depth = "2"
+            end
+
+            local tree = vim.system({ "tree", "--gitignore", "-L", depth }, { text = true, timeout = 1000 }):wait()
+            if tree.code == 0 or (tree.code == 0 and tree.signal == 15) then
+              prompt = prompt
+                .. string.format(
+                  [[
+
+Project tree structure (depth of %s):
+
+```
+%s```
+
+You may obtain a deeper depth by running `tree --gitignore -L <depth>` if you have command runner access. Try to limit the depth to 3 at a time, and run the command from a folder you do not currently have visibility into.
+]],
+                  depth,
+                  tree.stdout
+                )
+            end
+
+            return prompt
           end,
         },
         tools = {
