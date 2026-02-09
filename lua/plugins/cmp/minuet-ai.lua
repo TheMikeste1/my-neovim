@@ -2,6 +2,9 @@ return {
   "milanglacier/minuet-ai.nvim",
   dependencies = "nvim-lua/plenary.nvim",
   opts = {
+    cmp = {
+      enable_auto_complete = false,
+    },
     provider = "openai_fim_compatible",
     n_completions = 1,
     context_window = 512,
@@ -19,6 +22,7 @@ return {
         },
       },
     },
+    request_timeout = 10,
     virtualtext = {
       auto_trigger_ft = { "*" },
       auto_trigger_ignore_ft = {
