@@ -5,6 +5,7 @@ return {
   opts = {
     code = {
       sign = false,
+      border='thin',
       -- position = "right",
       -- width = "block",
       -- right_pad = 10,
