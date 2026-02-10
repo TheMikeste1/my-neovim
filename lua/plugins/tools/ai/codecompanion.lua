@@ -28,6 +28,8 @@ return {
                 .. [[
 ### User-Specific Overrides
 
+- Do not use excessive comments in your code.
+
 #### Table‑Width Guidelines
 
 Be wary of Markdown tables with long rows or linebreaks. NeoVim does not render these well. Tables with few columns and cells with little content are generally okay.
