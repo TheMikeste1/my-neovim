@@ -5,14 +5,14 @@ return {
   opts = {
     task_list = {
       direction = "bottom",
+      keymaps = {
+        ["<C-t>"] = false,
+      },
     },
     templates = {
       "builtin",
       "cmakeseer",
     },
-    keymaps = {
-      ["<C-t>"] = false
-    }
   },
   dependencies = {
     "cmakeseer.nvim",
