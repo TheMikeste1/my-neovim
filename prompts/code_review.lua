@@ -6,6 +6,14 @@ return {
       return "User canceled request"
     end
 
-    return vim.system({ "git", "diff", ("origin/%s"):format(branch) }):wait().stdout
+    local diff_call = vim.system({ "git", "diff", ("origin/%s"):format(branch) }):wait()
+    local diff = diff_call.stdout
+    if diff == nil then
+      local stderr = vim.inspect(diff_call.stderr)
+      return "Failed to retrieve diff: " .. vim.inspect(stderr)
+    end
+
+    diff = diff:gsub("```", "\\`\\`\\`")
+    return diff
   end,
 }

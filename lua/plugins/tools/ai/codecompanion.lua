@@ -15,6 +15,13 @@ return {
       vim.keymap.set({ "n", "v" }, "<C-g>cn", "<cmd>CodeCompanionChat<cr>")
       vim.keymap.set({ "n", "v" }, "<C-g>ca", "<cmd>CodeCompanionChat Add<cr>")
       vim.keymap.set({ "n", "v" }, "<C-g>cp", "<cmd>CodeCompanion<cr>")
+
+      vim.cmd([[cnoreabbrev <silent> CC        CodeCompanion]])
+      vim.cmd([[xnoremap <silent> CC        :CodeCompanion<CR>]])
+      vim.cmd([[cnoreabbrev <silent> CCChat    CodeCompanionChat]])
+      vim.cmd([[xnoremap <silent> CCChat    :CodeCompanionChat<CR>]])
+      vim.cmd([[cnoreabbrev <silent> CCActions CodeCompanionActions]])
+      vim.cmd([[xnoremap <silent> CCActions :CodeCompanionActions<CR>]])
     end,
     opts = {
       interactions = {
@@ -70,7 +77,11 @@ You may obtain a deeper depth by running `tree --gitignore -L <depth>` if you ha
               auto_submit_errors = true,
               auto_submit_success = true,
               default_tools = {
+                "file_search",
+                "get_changed_files",
+                "grep_search",
                 "memory",
+                "read_file",
               },
             },
             ["memory"] = {
