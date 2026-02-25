@@ -52,7 +52,7 @@ When writing Markdown tables, keep every rendered line ≤ 80 characters (120�
               end
 
               local tree = vim.system({ "tree", "--gitignore", "-L", depth }, { text = true, timeout = 1000 }):wait()
-              if tree.code == 0 or (tree.code == 0 and tree.signal == 15) then
+              if tree.code == 0 then
                 prompt = prompt
                   .. string.format(
                     [[
@@ -61,8 +61,6 @@ Project tree structure (depth of %s):
 
 ```
 %s```
-
-You may obtain a deeper depth by running `tree --gitignore -L <depth>` if you have command runner access. Try to limit the depth to 3 at a time, and run the command from a folder you do not currently have visibility into.
 ]],
                     depth,
                     tree.stdout
