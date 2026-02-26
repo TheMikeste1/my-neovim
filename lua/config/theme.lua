@@ -34,3 +34,12 @@ vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { fg = "#00b7e4" })
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { fg = "#54cf3c" })
 
 vim.cmd.colorscheme("terafox")
+
+vim.api.nvim_set_hl(0, "Whitespace", { fg = "#AD8334", bold = true })
+-- Highlight suspicious invisible characters (Zero-Width Space, etc.)
+vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
+  group = vim.api.nvim_create_augroup("highlight_invisible", { clear = true }),
+  callback = function()
+    vim.fn.matchadd("Whitespace", [[\%u200b\|\%u200c\|\%u200d\|\%u200e\|\%u200f\|\%ufeff\|\%u00ad\|\%u202d\|\%u202e]])
+  end,
+})

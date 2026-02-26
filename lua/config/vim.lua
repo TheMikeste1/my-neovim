@@ -63,7 +63,7 @@ vim.opt.signcolumn = "yes:2"
 vim.opt.statuscolumn = "%=%l%s%C"
 
 vim.opt.list = true
-vim.opt.listchars = "tab:!·,trail:·,nbsp:+"
+vim.opt.listchars = "tab:»·,trail:·,nbsp:␣"
 
 vim.o.timeout = false
 vim.o.sessionoptions = "curdir,folds,help,tabpages,winsize,options"
