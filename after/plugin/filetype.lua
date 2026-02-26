@@ -5,6 +5,7 @@ vim.filetype.add({
     service = "systemd",
     slice = "systemd",
     tpp = "cpp",
+    xtce = "xml",
     xteds = "xml",
     base = "yaml",
   },
