@@ -2,6 +2,8 @@ if vim.g.vscode then
   return
 end
 
+vim.cmd.colorscheme("terafox")
+
 vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
 vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
 vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
@@ -32,8 +34,6 @@ vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { fg = "#993939" })
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { fg = "#ff942f" })
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { fg = "#00b7e4" })
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { fg = "#54cf3c" })
-
-vim.cmd.colorscheme("terafox")
 
 vim.api.nvim_set_hl(0, "Whitespace", { fg = "#AD8334", bold = true })
 -- Highlight suspicious invisible characters (Zero-Width Space, etc.)
