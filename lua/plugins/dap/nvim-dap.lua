@@ -72,14 +72,10 @@ return {
     {
       "mfussenegger/nvim-dap-python",
       config = function()
-        local python_path = vim.fn.exepath("python")
-        python_path = python_path ~= "" and python_path or "python"
-        require("dap-python").setup(python_path)
-
-        require("which-key").add({
-          { leader("d"), group = "Debug" },
-          { leader("db"), group = "Breakpoints" },
-        })
+        -- local python_path = vim.fn.exepath("python")
+        -- python_path = python_path ~= "" and python_path or "python"
+        -- require("dap-python").setup(python_path)
+        require("dap-python").setup("uv")
       end,
     },
     -- "cmakeseer.nvim",
@@ -100,6 +96,11 @@ return {
     vim.api.nvim_set_hl(0, "DapConditionalBreakpoint", { fg = "#aa9900" })
     vim.api.nvim_set_hl(0, "DapLogPoint", { fg = "#61afaf" })
     vim.api.nvim_set_hl(0, "DapStopped", { fg = "#98c379" })
+
+    require("which-key").add({
+      { leader("d"), group = "Debug" },
+      { leader("db"), group = "Breakpoints" },
+    })
   end,
   keys = {
     -- stylua: ignore start
@@ -108,6 +109,7 @@ return {
     { rapid_leader("s"), desc = "Debug: Step into",                   mode = { "n" }, function() require("dap").step_into() end },
     { rapid_leader("S"), desc = "Debug: Step out",                    mode = { "n" }, function() require("dap").step_out() end },
     { leader("dcc"),     desc = "Debug: Continue or start execution", mode = { "n" }, function() require("dap").continue() end },
+    { leader("dcr"),     desc = "Debug: Rerun last execution",        mode = { "n" }, function() require("dap").run_last() end },
     { leader("dC"),      desc = "Debug: Execute to cursor",           mode = { "n" }, function() require("dap").run_to_cursor() end },
     { leader("dp"),      desc = "Debug: Pause execution",             mode = { "n" }, function() require("dap").pause() end },
 
@@ -125,6 +127,10 @@ return {
     { leader("ds"),      desc = "Debug: View scopes",                 mode = { "n" }, function() require("dap.ui.widgets").centered_float(require("dap.ui.widgets").scopes) end },
     { leader("dbs"),     desc = "Debug: List breakpoints",            mode = { "n" }, function() require("telescope").extensions.dap.list_breakpoints() end },
     { leader("dco"),     desc = "Debug: Show commands",               mode = { "n" }, function() require("telescope").extensions.dap.commands() end },
+
+    -- UI
+    { leader("duo"),      desc = "Debug: Open UI",                     mode = { "n" }, function() require("dapui").open() end },
+    { leader("duc"),      desc = "Debug: Close UI",                    mode = { "n" }, function() require("dapui").close() end },
     -- stylua: ignore end
   },
 }
