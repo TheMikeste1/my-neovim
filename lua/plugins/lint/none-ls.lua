@@ -59,7 +59,12 @@ return {
         }),
 
         -- CMake
-        null_ls.builtins.diagnostics.cmake_lint,
+        null_ls.builtins.diagnostics.cmake_lint.with({
+          args = {
+            "-c",
+            vim.fs.joinpath(vim.fn.stdpath("config"), "tool_configs", "cmakelint.py"),
+          },
+        }),
 
         -- CSS
         null_ls.builtins.diagnostics.stylelint,
