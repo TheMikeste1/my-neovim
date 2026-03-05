@@ -1,7 +1,10 @@
 return {
   diff = function(args)
     _ = args
-    local branch = vim.fn.input({ prompt = "To which branch are you merging?", default = "develop" })
+
+    local result = vim.system({ "git", "symbolic-ref", "refs/remotes/origin/HEAD" }, { text = true }):wait()
+    local default_branch = vim.trim(result.stdout or ""):gsub("^refs/remotes/origin/", "")
+    local branch = vim.fn.input({ prompt = "To which branch are you merging?", default = default_branch })
     if branch == "" then
       return "User canceled request"
     end
