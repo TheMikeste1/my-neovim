@@ -8,6 +8,7 @@ return {
         ToDoHyphen = false,
         RepeatedWords = false,
         ExpandArgument = false,
+        ExpandStandardInputAndOutput = false,
       },
       isolateEnglish = false,
     },

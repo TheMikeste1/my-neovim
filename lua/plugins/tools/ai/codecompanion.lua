@@ -36,6 +36,7 @@ return {
 ### User-Specific Overrides
 
 - Do not use excessive comments in your code.
+- Try to answer without tools first, if possible. Use tools only if you need more information.
 
 #### Table‑Width Guidelines
 
