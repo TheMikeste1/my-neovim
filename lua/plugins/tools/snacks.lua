@@ -94,6 +94,121 @@ local function generate_select_diagnostics_for_buffer(bufnr)
   end
 end
 
+local function render_todos()
+  local path = vim.fn.getcwd() .. "/dooing.json"
+  local ok, lines = pcall(vim.fn.readfile, path)
+  if not ok or not lines or #lines == 0 then
+    return { title = "No TODOs file", enabled = false }
+  end
+  local json_str = table.concat(lines, "\n")
+  local success, decoded = pcall(vim.fn.json_decode, json_str)
+  if not success or not decoded or #decoded == 0 then
+    return { title = "No TODOs", enabled = false }
+  end
+
+  -- Build a map of items by id and attach children
+  local items_by_id = {}
+  for _, it in ipairs(decoded) do
+    items_by_id[it.id] = it
+    it.children = {}
+  end
+  local roots = {}
+  for _, it in ipairs(decoded) do
+    if it.parent_id and items_by_id[it.parent_id] then
+      table.insert(items_by_id[it.parent_id].children, it)
+    else
+      table.insert(roots, it)
+    end
+  end
+
+  local function state_indicator(it)
+    if it.done then
+      return "✓"
+    elseif it.in_progress then
+      return "◐"
+    else
+      return "○"
+    end
+  end
+
+  local function get_hl(it)
+    if it.done then
+      return "Comment"
+    end
+
+    local has_urgent = false
+    local has_important = false
+    for _, p in ipairs(it.priorities or {}) do
+      if p == "urgent" then
+        has_urgent = true
+      end
+      if p == "important" then
+        has_important = true
+      end
+    end
+
+    if has_urgent and has_important then
+      return "DiagnosticError"
+    elseif has_urgent then
+      return "DiagnosticInfo"
+    elseif has_important then
+      return "DiagnosticWarn"
+    end
+
+    return nil
+  end
+
+  local function render_item(it, indent)
+    indent = indent or 0
+    local prefix = string.rep("  ", indent)
+    local line = prefix .. state_indicator(it) .. " " .. it.text
+    local result = { text = { { line, hl = get_hl(it) } }, align = "left", pane = 2 }
+    local items = { result }
+    -- Separate children into not-done and done to keep hierarchy
+    local not_done_children = {}
+    local done_children = {}
+    for _, child in ipairs(it.children) do
+      if child.done then
+        table.insert(done_children, child)
+      else
+        table.insert(not_done_children, child)
+      end
+    end
+    for _, child in ipairs(not_done_children) do
+      vim.list_extend(items, render_item(child, indent + 1))
+    end
+    for _, child in ipairs(done_children) do
+      vim.list_extend(items, render_item(child, indent + 1))
+    end
+    return items
+  end
+
+  local result = {}
+  local not_done_roots = {}
+  local done_roots = {}
+  for _, root in ipairs(roots) do
+    if root.done then
+      table.insert(done_roots, root)
+    else
+      table.insert(not_done_roots, root)
+    end
+  end
+  for _, root in ipairs(not_done_roots) do
+    vim.list_extend(result, render_item(root))
+  end
+  for _, root in ipairs(done_roots) do
+    vim.list_extend(result, render_item(root))
+  end
+
+  if #result == 0 then
+    return { title = "No TODOs", enabled = false }
+  end
+
+  -- Header without special highlight, also on pane 2
+  table.insert(result, 1, { title = "TODOs", align = "center", pane = 2 })
+  return result
+end
+
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -274,6 +389,8 @@ return {
             align = "center",
           }
         end,
+        render_todos,
+        { padding = { 1, 0 } },
         { icon = " ", title = "Recent Files", section = "recent_files", cwd = true, indent = 2, padding = 2 },
         { section = "keys", padding = 2 },
         { section = "startup" },
