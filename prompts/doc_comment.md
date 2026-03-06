@@ -11,8 +11,6 @@ opts:
 
 ## user
 
-${context.user_prompt}
-
 Provide a documentation comment for the "To Comment" code.
 
 - If the object already has a comment, update it.
@@ -43,5 +41,7 @@ ${utils.buffer_contents}
 ```
 
 ### To Comment
+
+${context.user_prompt}
 
 Here is the code to document:
