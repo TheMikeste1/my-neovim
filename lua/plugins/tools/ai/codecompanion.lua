@@ -9,6 +9,7 @@ return {
       { "stevearc/dressing.nvim", opts = {} },
       "lalitmee/codecompanion-spinners.nvim",
       "ravitemer/codecompanion-history.nvim",
+      "bahaaza/mcphub.nvim",
     },
     init = function()
       vim.keymap.set({ "n", "v" }, "<C-g>cc", "<cmd>CodeCompanionChat Toggle<cr>")
@@ -76,11 +77,32 @@ Project tree structure (depth of %s):
               auto_submit_errors = true,
               auto_submit_success = true,
               default_tools = {
-                "file_search",
+                -- "file_search",
                 "get_changed_files",
                 "grep_search",
                 "memory",
-                "read_file",
+                -- "read_file",
+                -- "neovim__find_files",
+                -- "neovim__list_directory",
+                "neovim__read_file",
+                -- "neovim__read_multiple_files",
+                "sequentialthinking",
+                "memory",
+                "filesystem__directory_tree",
+                "filesystem__get_file_info",
+                "filesystem__list_allowed_directories",
+                "filesystem__list_directory",
+                "filesystem__list_directory_with_sizes",
+                "filesystem__read_media_file",
+                "filesystem__read_multiple_files",
+                "filesystem__read_text_file",
+                "filesystem__search_files",
+                "git__git_diff",
+                "git__git_diff_staged",
+                "git__git_diff_unstaged",
+                "git__git_log",
+                "git__git_show",
+                "git__git_status",
               },
             },
             ["memory"] = {
@@ -156,6 +178,21 @@ Project tree structure (depth of %s):
         history = {
           enabled = true,
           opts = { picker = "snacks" },
+        },
+        mcphub = {
+          callback = "mcphub.extensions.codecompanion",
+          opts = {
+            -- MCP Tools
+            make_tools = true, -- Make individual tools (@server__tool) and server groups (@server) from MCP servers
+            show_server_tools_in_chat = true, -- Show individual tools in chat completion (when make_tools=true)
+            add_mcp_prefix_to_tool_names = false, -- Add mcp__ prefix (e.g `@mcp__github`, `@mcp__neovim__list_issues`)
+            show_result_in_chat = true, -- Show tool results directly in chat buffer
+            format_tool = nil, -- function(tool_name:string, tool: CodeCompanion.Agent.Tool) : string Function to format tool names to show in the chat buffer
+            -- MCP Resources
+            make_vars = true, -- Convert MCP resources to #variables for prompts
+            -- MCP Prompts
+            make_slash_commands = true, -- Add MCP prompts as /slash commands
+          },
         },
       },
     },
