@@ -56,7 +56,7 @@ local function generate_cmakeseer_configurations()
   local cmakeseer_target = require("cmakeseer.cmake.api.codemodel.target")
 
   local configs = {}
-  for _, target in ipairs(cmakeseer.get_targets()) do
+  for _, target in ipairs(cmakeseer.state.get_targets()) do
     if target.type == cmakeseer_target.TargetType.Executable then
       local config = generate_target_configuration(target)
       table.insert(configs, config)
