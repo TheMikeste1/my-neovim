@@ -61,4 +61,4 @@ Projects should at a minimum have the following, in any order, depending on the 
 
 ### Final Output
 
-Write the complete content to the AGENTS.md file using @{create_file}. The output must be Markdown and ready for AI agent consumption. Since this file is for agents outside of this buffer, you may disregard previous styling requirements for the contents of this file. Use formats and structures easily consumable for AI/LLM agents such as yourself, prefering catering to the agents' informational and format needs rather than the humans'. 
+Write the complete content to the AGENTS.md file using @{create_file}. The output must be Markdown and ready for AI agent consumption. Since this file is for agents outside of this buffer, you may disregard previous styling requirements for the contents of this file. Use formats and structures easily consumable for AI/LLM agents such as yourself, preferring to cater to the agents' informational and format needs rather than the humans'. 
