@@ -1,5 +1,8 @@
 local leader = require("keymaps").leader
 
+--- Checks if the string ends with a given suffix.
+---@param suffix string The suffix
+---@return boolean ends_with True if the string ends with suffix.
 function string:endswith(suffix)
   return self:sub(-#suffix) == suffix
 end
@@ -12,13 +15,16 @@ return {
       adapters = {
         -- require("neotest-rust"),
         require("rustaceanvim.neotest"),
-        require("cmakeseer.neotest.ctest"),
-        require("cmakeseer.neotest.gtest"),
+        require("neotest.cmakeseer.ctest"),
+        require("neotest.cmakeseer.gtest"),
         require("neotest-dotnet")({
           discovery_root = "solution",
         }),
         require("neotest-bash"),
         require("neotest-python"),
+        require("neotest-busted")({
+          busted_command = "/usr/local/bin/busted",
+        }),
       },
     })
   end,
@@ -50,6 +56,7 @@ return {
     { "rcasia/neotest-bash", submodules = false },
     "nvim-neotest/neotest-python",
     "nvim-neotest/nvim-nio",
+    "MisanthropicBit/neotest-busted",
     "stevearc/overseer.nvim",
   },
 }

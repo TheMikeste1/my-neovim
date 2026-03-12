@@ -33,8 +33,7 @@ return {
   -- lazy = false,
   priority = 10,
   dir = "~/projects/cmakeseer",
-  config = function(_, opts)
-    require("cmakeseer").setup(opts)
+  init = function()
     vim.api.nvim_create_user_command("CMakeSeer", handle_api_command, {
       desc = "Access the CMakeSeer API",
       nargs = "*",
