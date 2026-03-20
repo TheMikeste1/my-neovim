@@ -22,4 +22,7 @@ return {
     require("mason-registry").sources:append("github:Crashdummyy/mason-registry")
     require("roslyn").setup(opts)
   end,
+  ft = {
+    "csharp",
+  },
 }

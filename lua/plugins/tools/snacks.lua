@@ -155,7 +155,7 @@ local function render_todos()
       return "DiagnosticWarn"
     end
 
-    return nil
+    return "MoreMsg"
   end
 
   local function render_item(it, indent)
@@ -262,6 +262,10 @@ return {
       animate = {
         enabled = true,
       },
+    },
+    picker = {
+      enabled = true,
+      ui_select = true,
     },
     input = { enabled = true },
     quickfile = { enabled = true },

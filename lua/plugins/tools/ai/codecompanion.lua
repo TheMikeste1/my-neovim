@@ -6,7 +6,7 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      { "stevearc/dressing.nvim", opts = {} },
+      -- { "stevearc/dressing.nvim", opts = {} },
       "lalitmee/codecompanion-spinners.nvim",
       "ravitemer/codecompanion-history.nvim",
       "bahaaza/mcphub.nvim",
@@ -34,15 +34,11 @@ return {
             system_prompt = function(ctx)
               local prompt = ctx.default_system_prompt
                 .. [[
-### User-Specific Overrides
-
 - Do not use excessive comments in your code.
 - Try to answer without tools first, if possible. Use tools only if you need more information.
 
-#### Table‑Width Guidelines
-
 Be wary of Markdown tables with long rows or linebreaks. NeoVim does not render these well. Tables with few columns and cells with little content are generally okay.
-When writing Markdown tables, keep every rendered line ≤ 80 characters (120 max absolute).
+When writing Markdown tables, keep every rendered line ≤ 80 characters.
 ‑ Use only a few narrow columns.
 - Avoid using line break (`<br>`, `\\n`, etc.) in tables; NeoVim cannot render them.
 ‑ If a table would exceed the limit, split it into smaller tables or replace the data with prose.
