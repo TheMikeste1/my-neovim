@@ -56,6 +56,24 @@ local function sort_files(a, b)
   return a.name:lower() < b.name:lower()
 end
 
+local function open_in_new_tab()
+  vim.cmd("tabnew")
+  require("neo-tree.command").execute({
+    source = "filesystem",
+    position = "current",
+    reveal = true,
+    dir = vim.loop.cwd(),
+  })
+end
+local function open_in_float()
+  require("neo-tree.command").execute({
+    source = "filesystem",
+    position = "float",
+    reveal = true,
+    dir = vim.loop.cwd(),
+  })
+end
+
 return {
   "nvim-neo-tree/neo-tree.nvim",
   dependencies = {
@@ -70,6 +88,39 @@ return {
   init = function()
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
+
+    vim.api.nvim_create_user_command("Explore", function()
+      require("neo-tree.command").execute({
+        source = "filesystem",
+        position = "current",
+        reveal = true,
+        dir = vim.loop.cwd(),
+      })
+    end, { desc = "Open NeoTree file explorer" })
+
+    vim.api.nvim_create_user_command("Sexplore", function()
+      require("neo-tree.command").execute({
+        source = "filesystem",
+        position = "bottom",
+        reveal = true,
+        dir = vim.loop.cwd(),
+      })
+    end, { desc = "Open NeoTree file explorer in a horizontal split" })
+
+    vim.api.nvim_create_user_command("Vexplore", function()
+      require("neo-tree.command").execute({
+        source = "filesystem",
+        position = "left",
+        reveal = true,
+        dir = vim.loop.cwd(),
+      })
+    end, { desc = "Open NeoTree file explorer in a vertical split" })
+
+    vim.api.nvim_create_user_command("Tabexplore", open_in_new_tab, { desc = "Open NeoTree file explorer in new tab" })
+    vim.api.nvim_create_user_command("Tex", open_in_new_tab, { desc = "Open NeoTree file explorer in new tab" })
+
+    vim.api.nvim_create_user_command("FloatExplore", open_in_float, { desc = "Open NeoTree file explorer in float" })
+    vim.api.nvim_create_user_command("Fex", open_in_float, { desc = "Open NeoTree file explorer in float" })
   end,
   keys = {
     {
