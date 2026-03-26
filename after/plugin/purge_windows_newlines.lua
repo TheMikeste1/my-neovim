@@ -14,6 +14,10 @@ vim.api.nvim_create_user_command("PurgeWindows", function(opts)
     lines[i] = line:gsub("\r$", "")
   end
 
+  if opts.bang then
+    -- Force the file to UNIX endings
+    vim.bo.fileformat = "unix"
+  end
   vim.api.nvim_buf_set_lines(bufnr, start, finish, false, lines)
   vim.notify("Converted Windows line endings to Unix style", vim.log.levels.INFO)
 end, { range = true, nargs = 0, bang = true, desc = "Purge Windows newlines from the file, replacing them with Unix" })
