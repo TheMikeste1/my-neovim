@@ -32,7 +32,7 @@ return {
         zig = { "zigfmt" },
         -- Scripting
         lua = { "stylua" },
-        python = { "isort", "black" },
+        python = { "isort", "yapf" },
         -- Data
         sql = { "sqlfluff" },
         -- Shell
