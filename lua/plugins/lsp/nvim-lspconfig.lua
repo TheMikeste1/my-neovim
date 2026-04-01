@@ -16,9 +16,11 @@ local function config()
   vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
   vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, { desc = "Set location list" })
 
+  -- TODO: Replace my keymaps with the defaults
   vim.keymap.del("n", "gra")
   vim.keymap.del("n", "gri")
   vim.keymap.del("n", "grn")
+  vim.keymap.del("n", "grx")
   vim.keymap.del("n", "grr")
   vim.keymap.del("n", "grt")
   vim.keymap.del("x", "gra")
