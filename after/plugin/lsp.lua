@@ -28,12 +28,8 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnos
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, { desc = "Set location list" })
 
 vim.keymap.set("n", "gri", Snacks.picker.lsp_implementations, { desc = "List LSP implementations" })
-vim.keymap.set("n", "grr", Snacks.picker.lsp_references, {
-  desc = "List LSP references",
-})
-vim.keymap.set("n", "grt", Snacks.picker.lsp_type_definitions, {
-  desc = "List LSP type definition",
-})
+vim.keymap.set("n", "grr", Snacks.picker.lsp_references, { desc = "List LSP references" })
+vim.keymap.set("n", "grt", Snacks.picker.lsp_type_definitions, { desc = "List LSP type definition" })
 vim.keymap.set("n", "gD", Snacks.picker.lsp_declarations, { desc = "Go to declaration" })
 vim.keymap.set("n", "gd", Snacks.picker.lsp_definitions, { desc = "Go to definition" })
 
