@@ -1,20 +1,20 @@
----@class opts TSConfig
-function config(_, opts)
-  require("nvim-treesitter").setup(opts)
+---@module "nvim-treesitter"
 
+local function config(_, opts)
+  ---@type TSConfig opts
+  require("nvim-treesitter").setup(opts)
   vim.treesitter.language.register("cosmos", { "cosmos" })
 end
 
 return {
   "nvim-treesitter/nvim-treesitter",
   cond = true,
+  lazy = false,
   branch = "main",
   build = ":TSUpdate",
-  cmd = { "TSUpdateSync" },
   dependencies = {
     "nvim-treesitter/nvim-treesitter-context",
   },
-  event = { "BufReadPost", "BufNewFile" },
   opts = {
     auto_install = true,
     highlight = { enable = not vim.g.vscode },
