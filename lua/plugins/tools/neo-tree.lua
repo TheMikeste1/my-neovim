@@ -53,6 +53,16 @@ local function sort_files(a, b)
     return false
   end
 
+  local a_prefix = a.name:match("^(%d+)")
+  local b_prefix = b.name:match("^(%d+)")
+  if a_prefix and b_prefix then
+    local a_num = tonumber(a_prefix)
+    local b_num = tonumber(b_prefix)
+    if a_num ~= b_num then
+      return a_num < b_num
+    end
+  end
+
   return a.name:lower() < b.name:lower()
 end
 
@@ -83,7 +93,7 @@ return {
     "s1n7ax/nvim-window-picker",
     "jackielii/neo-tree-harpoon.nvim",
     "folke/snacks.nvim",
-    "miversen33/netman.nvim",
+    { "miversen33/netman.nvim", config = true },
   },
   init = function()
     vim.g.loaded_netrw = 1
