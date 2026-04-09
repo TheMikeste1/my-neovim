@@ -84,6 +84,12 @@ return {
       "theHamsta/nvim-dap-virtual-text",
       opts = { commented = false },
     },
+    {
+      "nvim-telescope/telescope-dap.nvim",
+      config = function()
+        require("telescope").load_extension("dap")
+      end,
+    },
   },
   init = function()
     vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DapBreakpoint" })
@@ -112,6 +118,8 @@ return {
     { leader("dcr"),     desc = "Debug: Rerun last execution",        mode = { "n" }, function() require("dap").run_last() end },
     { leader("dC"),      desc = "Debug: Execute to cursor",           mode = { "n" }, function() require("dap").run_to_cursor() end },
     { leader("dp"),      desc = "Debug: Pause execution",             mode = { "n" }, function() require("dap").pause() end },
+    { leader("dj"),      desc = "Debug: Go down the stack",           mode = { "n" }, function() require("dap").down() end },
+    { leader("dk"),      desc = "Debug: Go up the stack",             mode = { "n" }, function() require("dap").up() end },
 
     -- Breakpoints
     { "<F9>",            desc = "Debug: Toggle breakpoint",           mode = { "n" }, function() require("dap").toggle_breakpoint() end },

@@ -27,4 +27,9 @@ end
 require("config.env")
 require("config.vim")
 require("config.lazy")
+---@diagnostic disable-next-line: undefined-global
+if init_debug then
+  require("osv").launch({ port = 8086, blocking = true })
+end
+
 require("config.theme")
