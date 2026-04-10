@@ -140,8 +140,14 @@ Project tree structure (depth of %s):
                 url = "http://localhost:11434",
               },
               schema = {
+                num_ctx = {
+                  default = 8192 * 2,
+                },
                 model = {
-                  default = "qwen2.5-coder:7b",
+                  default = "gemma4:e4b",
+                },
+                choices = {
+                  ["gemma4:e4b"] = { opts = { can_reason = true } },
                 },
               },
             })
