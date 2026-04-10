@@ -1,3 +1,5 @@
+local WIDE_HEIGHT = 40
+
 return {
   "folke/noice.nvim",
   event = "VeryLazy",
@@ -21,6 +23,19 @@ return {
         ["vim.lsp.util.stylize_markdown"] = true,
         ["cmp.entry.get_documentation"] = true,
       },
+      hover = { enabled = true },
+      documentation = {
+        view = "hover",
+        ---@type NoiceViewOptions
+        opts = {
+          size = {
+            max_width = math.floor((WIDE_HEIGHT * 2) * (vim.o.columns / (WIDE_HEIGHT * 2 * 16 / 9))),
+          },
+          border = {
+            padding = { 0, 0, 0, 0 },
+          },
+        },
+      },
     },
     -- you can enable a preset for easier configuration
     presets = {
@@ -28,7 +43,7 @@ return {
       command_palette = true, -- position the cmdline and popupmenu together
       long_message_to_split = false, -- long messages will be sent to a split
       inc_rename = false, -- enables an input dialog for inc-rename.nvim
-      lsp_doc_border = false, -- add a border to hover docs and signature help
+      lsp_doc_border = true, -- add a border to hover docs and signature help
     },
     routes = {
       {
@@ -106,6 +121,16 @@ return {
       },
     },
     views = {
+      cmdline_popup = {
+        border = {
+          style = "none",
+          padding = { 1, 2 },
+        },
+        filter_options = {},
+        win_options = {
+          winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+        },
+      },
       mini = {
         position = {
           -- row = 0
