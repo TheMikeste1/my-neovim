@@ -1,6 +1,6 @@
 ---@module "noice"
 
-local WIDE_HEIGHT = 64
+local WIDE_HEIGHT = 40
 
 return {
   "folke/noice.nvim",
@@ -31,6 +31,7 @@ return {
         ---@type NoiceViewOptions
         opts = {
           size = {
+            max_height = WIDE_HEIGHT,
             max_width = math.floor((WIDE_HEIGHT * 2) * (vim.o.columns / (WIDE_HEIGHT * 2 * 16 / 9))),
           },
           border = {
