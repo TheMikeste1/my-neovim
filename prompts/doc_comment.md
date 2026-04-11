@@ -44,4 +44,4 @@ ${utils.buffer_contents}
 
 ${context.user_prompt}
 
-Here is the code to document:
+Here is the code to document. Ensure you include it, unchanged, in your response.
