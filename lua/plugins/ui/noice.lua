@@ -1,4 +1,6 @@
-local WIDE_HEIGHT = 40
+---@module "noice"
+
+local WIDE_HEIGHT = 64
 
 return {
   "folke/noice.nvim",
