@@ -141,7 +141,7 @@ Project tree structure (depth of %s):
               },
               schema = {
                 num_ctx = {
-                  default = 8192 * 2,
+                  default = 8192 * 2 * 2,
                 },
                 model = {
                   default = "gemma4:e4b",
