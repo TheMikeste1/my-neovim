@@ -2,6 +2,20 @@ local leader = require("keymaps").leader
 
 local cached_headers = {}
 
+local function list_filter(where, what)
+  -- Source: https://github.com/folke/snacks.nvim/discussions/1701#discussioncomment-12934844
+  if not vim.islist(what) then
+    what = { what }
+  end
+
+  return vim
+    .iter(where)
+    :filter(function(val)
+      return not vim.list_contains(what, val)
+    end)
+    :totable()
+end
+
 ---Filters out items from harperls.
 ---@param item snacks.picker.finder.Item,
 ---@param filter snacks.picker.Filter
@@ -266,6 +280,35 @@ return {
     picker = {
       enabled = true,
       ui_select = true,
+      sources = {
+        grep = {
+          case_sens = false,
+          toggles = {
+            case_sens = "s",
+          },
+          finder = function(opts, ctx)
+            opts.args = opts.args or {}
+            opts.args = list_filter(opts.args, "--case-sensitive")
+            if opts.case_sens then
+              table.insert(opts.args, "--case-sensitive")
+            end
+            return require("snacks.picker.source.grep").grep(opts, ctx)
+          end,
+          actions = {
+            toggle_live_case_sens = function(picker)
+              picker.opts.case_sens = not picker.opts.case_sens
+              picker:find()
+            end,
+          },
+          win = {
+            input = {
+              keys = {
+                ["<M-s>"] = { "toggle_live_case_sens", mode = { "i", "n" } },
+              },
+            },
+          },
+        },
+      },
     },
     input = { enabled = true },
     quickfile = { enabled = true },
