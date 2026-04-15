@@ -6,6 +6,7 @@
 CMake
 Hegerhorst
 Inductors
+JSON
 MSVC
 additively
 additivity
@@ -38,6 +39,7 @@ executable's
 executables
 federal
 filepath
+frontmatter
 globbed
 iff
 implementers
@@ -50,6 +52,7 @@ marshalled
 marshalling
 metadata
 metatable
+mhegerhorst
 mutex
 namespace
 overridable
