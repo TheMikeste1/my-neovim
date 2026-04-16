@@ -1,0 +1,6 @@
+{
+  "Get the directory for the current script": {
+    "prefix": ["script_dir", "sd"],
+    "body": "script_dir=\"\\$(dirname -- \"\\${BASH_SOURCE[0]:-\\$0}\")\" && readonly script_dir"
+  }
+}
