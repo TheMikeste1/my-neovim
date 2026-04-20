@@ -30,7 +30,7 @@ if not vim.g.vscode and vim.fn.has("termguicolors") then
   vim.opt.termguicolors = true
 end
 
--- Use relative numbers in the gutter
+-- Gutter numbering
 vim.opt.number = true
 vim.opt.relativenumber = true
 

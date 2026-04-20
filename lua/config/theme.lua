@@ -3,6 +3,7 @@ if vim.g.vscode then
 end
 
 vim.cmd.colorscheme("terafox")
+vim.api.nvim_set_hl(0, "WinSeparator", { bg = "NONE", fg = "#505050" })
 
 vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
 vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
