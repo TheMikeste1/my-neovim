@@ -1,5 +1,6 @@
 return {
   "bahaaza/mcphub.nvim",
+  enabled = false,
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
