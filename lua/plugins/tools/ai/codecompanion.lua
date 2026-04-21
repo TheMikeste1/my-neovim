@@ -128,7 +128,17 @@ Project tree structure (depth of %s):
             },
           },
         },
-        inline = { adapter = "local_ollama" },
+        inline = {
+          adapter = "local_ollama",
+          keymaps = {
+            stop = {
+              modes = { n = "<C-q>" },
+              index = 4,
+              callback = "keymaps.stop",
+              description = "Stop request",
+            },
+          },
+        },
         agent = { adapter = "local_ollama" },
         cmd = { adapter = "local_ollama" },
       },
@@ -198,6 +208,14 @@ Project tree structure (depth of %s):
         -- },
       },
     },
+    keys = {
+      {
+        "<C-g>k",
+        function()
+          vim.cmd("CodeCompanion")
+        end,
+        desc = "Inline AI",
+        mode = { "n", "v" },
       },
     },
   },
