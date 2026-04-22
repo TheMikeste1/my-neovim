@@ -7,41 +7,12 @@ local function postconfigure()
   dap.configurations.cpp = new_configurations
 end
 
-local function handle_api_command(opts)
-  vim.notify("CMakeSeer opts: " .. vim.inspect(opts), vim.log.levels.DEBUG)
-  if not opts.fargs then
-    vim.notify("Missing args")
-    return
-  end
-
-  if opts.fargs[1] == "select_kit" then
-    require("cmakeseer").select_kit()
-    return
-  end
-
-  if opts.fargs[1] == "select_variant" then
-    require("cmakeseer").select_variant()
-    return
-  end
-
-  vim.notify("Unknown CMakeSeer command: " .. opts.args)
-end
-
 return {
   "TheMikeste1/cmakeseer.nvim",
   event = "VeryLazy",
   -- lazy = false,
   priority = 10,
   dir = "~/projects/cmakeseer",
-  init = function()
-    vim.api.nvim_create_user_command("CMakeSeer", handle_api_command, {
-      desc = "Access the CMakeSeer API",
-      nargs = "*",
-      complete = function(_, _)
-        return { "select_kit", "select_variant" }
-      end,
-    })
-  end,
   opts = {
     kit_paths = {
       vscode_kit_file,
