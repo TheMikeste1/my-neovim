@@ -277,6 +277,14 @@ return {
         enabled = true,
       },
     },
+    scratch = {
+      win = {
+        keys = {
+          -- Unmap 'q' so it doesn't close the window and instead lets me create macros
+          ["q"] = false,
+        },
+      },
+    },
     picker = {
       enabled = true,
       ui_select = true,
