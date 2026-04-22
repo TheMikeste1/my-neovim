@@ -1,3 +1,7 @@
+if vim.g.vscode then
+  return
+end
+
 local Snacks = require("snacks")
 local leader = require("keymaps").leader
 local rapid_leader = require("keymaps").rapid_leader
