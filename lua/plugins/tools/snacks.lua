@@ -318,7 +318,14 @@ return {
         },
       },
     },
-    input = { enabled = true },
+    input = {
+      enabled = true,
+      win = {
+        max_width = math.floor(vim.o.columns * 0.9),
+        max_height = math.floor(vim.o.lines * 0.6),
+        resize = true,
+      },
+    },
     quickfile = { enabled = true },
     words = { enabled = true },
     statuscolumn = {
