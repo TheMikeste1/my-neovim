@@ -202,6 +202,18 @@ return {
               end)
             end,
           },
+          ["O"] = {
+            desc = "Open path in Oil",
+            function(state)
+              local node = state.tree:get_node()
+              local filepath = node:get_id()
+              local stat = vim.loop.fs_stat(filepath)
+              if stat and stat.type == "file" then
+                filepath = vim.fn.fnamemodify(filepath, ":h")
+              end
+              vim.cmd("Oil " .. filepath)
+            end,
+          },
         },
       },
       sort_case_insensitive = true,
