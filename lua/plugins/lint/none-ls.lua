@@ -104,6 +104,9 @@ return {
         }),
         null_ls.builtins.diagnostics.pydoclint,
 
+        -- Ruby
+        null_ls.builtins.diagnostics.rubocop,
+
         -- Shell/Bash
         null_ls.builtins.hover.printenv,
         null_ls.builtins.diagnostics.zsh,

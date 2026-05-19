@@ -34,6 +34,9 @@ local FT_TOOLS = {
     -- "pyrefly",
     "pyright",
   }),
+  ruby = Set({
+    "rubocop",
+  }),
   sh = Set({
     "bash-language-server",
     "beautysh",

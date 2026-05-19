@@ -28,6 +28,7 @@ return {
         gdscript = { "gdformat" },
         java = { "uncrustify", "clang-format" },
         proto = { "clang-format" },
+        ruby = { "rubocop" },
         rust = { "rustfmt" },
         zig = { "zigfmt" },
         -- Scripting
@@ -78,8 +79,9 @@ return {
           },
         },
         cmake_format = {
-          args = {
-            "-c=" .. vim.fn.expand("~") .. "/.githooks/config/precommit/cmake-format.yaml",
+          prepend_args = {
+            "-c",
+            vim.fn.expand("~") .. "/.githooks/config/precommit/cmake-format.yaml",
           },
         },
         gdformat = {
