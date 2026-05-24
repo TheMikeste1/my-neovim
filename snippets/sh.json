@@ -2,5 +2,17 @@
   "Get the directory for the current script": {
     "prefix": ["script_dir", "sd"],
     "body": "script_dir=\"\\$(dirname -- \"\\${BASH_SOURCE[0]:-\\$0}\")\" && readonly script_dir"
+  },
+  "Add bash shebang": {
+    "prefix": ["#!"],
+    "body": "#!/usr/bin/env bash"
+  },
+  "Common bash flags": {
+    "prefix": ["euo"],
+    "body": "set -euo pipefail"
+  },
+  "Suppress": {
+    "prefix": ["suppress", "disable"],
+    "body": "# [Neo-tree ERROR] Error in event handler for event file_added[lsp-file-operations.did-create.file_added]: ...p-file-operations/lua/lsp-file-operations/did-create.lua:7: attempt to call field 'get_active_clients' (a nil value)shellcheck disable=$1"
   }
 }
