@@ -30,6 +30,7 @@ return {
         proto = { "clang-format" },
         ruby = { "rubocop" },
         rust = { "rustfmt" },
+        vhdl = { "vsg" },
         zig = { "zigfmt" },
         -- Scripting
         lua = { "stylua" },
