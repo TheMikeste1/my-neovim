@@ -10,6 +10,7 @@ Hegerhorst
 Inductors
 JSON
 MSVC
+Uncomment
 additively
 additivity
 assimp
@@ -47,6 +48,7 @@ globbed
 iff
 implementers
 incrementing
+instantiation
 layout
 lexicographically
 lsp
@@ -68,6 +70,7 @@ reflectivity
 snakecase
 stateful
 subcondition
+subdirectories
 symlink
 thruster
 thrusters

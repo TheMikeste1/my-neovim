@@ -184,7 +184,7 @@ local function config()
         c = cmp.config.disable,
         -- c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
       }),
-      ["<C-g><C-g>"] = require("minuet").make_cmp_map(),
+      -- ["<C-g><C-g>"] = require("minuet").make_cmp_map(),
     }),
     preselect = cmp.PreselectMode.None,
     sources = cmp.config.sources({
@@ -261,6 +261,6 @@ return {
     "rcarriga/cmp-dap",
     "ray-x/cmp-treesitter",
     "nvim-tree/nvim-web-devicons",
-    "milanglacier/minuet-ai.nvim",
+    -- "milanglacier/minuet-ai.nvim",
   },
 }
