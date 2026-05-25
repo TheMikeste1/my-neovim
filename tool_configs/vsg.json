@@ -1,0 +1,22 @@
+{
+  "rule": {
+    "constant_004": { "case": "upper", "prefix_exceptions": ["c_"] },
+    "signal_004": { "case": "lower" },
+    "type_004": { "case": "pascal" },
+    "variable_004": { "case": "lower" },
+    "constant_015": { "disable": false, "prefixes": ["c_"] },
+    "generic_020": {
+      "disable": false,
+      "prefixes": ["g_"],
+      "exceptions": ["runner_cfg"]
+    },
+    "signal_008": { "disable": false, "prefixes": ["i_", "o_", "r_", "w_"] },
+    "type_015": { "disable": false, "prefix": "t_" },
+    "instantiation_034": {
+      "method": "entity"
+    },
+    "type_mark_500": {
+      "disable": true
+    }
+  }
+}

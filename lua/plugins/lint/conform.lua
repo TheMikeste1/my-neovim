@@ -110,6 +110,12 @@ return {
             "--eof-newline",
           },
         },
+        vsg = {
+          prepend_args = {
+            "-c",
+            vim.fs.joinpath(vim.fn.stdpath("config"), "tool_configs", "vsg.json"),
+          },
+        },
       },
     })
   end,
