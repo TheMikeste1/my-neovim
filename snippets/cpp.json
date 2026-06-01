@@ -1,0 +1,6 @@
+{
+  "Suppress Include What You Use": {
+    "prefix": ["suppress_iwyu"],
+    "body": "// IWYU pragma: keep"
+  }
+}
