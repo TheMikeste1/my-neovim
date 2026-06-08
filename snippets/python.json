@@ -1,4 +1,8 @@
 {
+  "Add shebang": {
+    "prefix": ["#!", "shebang"],
+    "body": "#!/usr/bin/env python3"
+  },
   "Create a print eval statement": {
     "prefix": ["p=", "print="],
     "body": "print(f\"{$1=}\")$0"
