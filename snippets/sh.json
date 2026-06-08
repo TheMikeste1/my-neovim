@@ -5,7 +5,16 @@
   },
   "Arg parse": {
     "prefix": ["args"],
-    "body": "for arg in \"$@\"; do\ncase $arg in\n*)\necho \"Unknown option: ${arg}\"\nexit 1\n;;\nesac\ndone"
+    "body": [
+      "for arg in \"\\$@\"; do",
+      "  case \\$arg in",
+      "    *)",
+      "      echo \"Unknown option: \\${arg}\"",
+      "      exit 1",
+      "      ;;",
+      "  esac",
+      "done"
+    ]
   },
   "Common bash flags": {
     "prefix": ["euo"],
