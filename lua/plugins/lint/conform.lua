@@ -71,6 +71,9 @@ return {
         black = {
           prepend_args = { "--line-length", "160" },
         },
+        beautysh = {
+          prepend_args = { "--indent-size", "2" },
+        },
         shfmt = {
           prepend_args = { "-i", "2" },
         },
