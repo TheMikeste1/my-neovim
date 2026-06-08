@@ -1,18 +1,22 @@
 {
-  "Get the directory for the current script": {
-    "prefix": ["script_dir", "sd"],
-    "body": "script_dir=\"\\$(dirname -- \"\\${BASH_SOURCE[0]:-\\$0}\")\" && readonly script_dir"
-  },
   "Add bash shebang": {
     "prefix": ["#!"],
     "body": "#!/usr/bin/env bash"
+  },
+  "Arg parse": {
+    "prefix": ["args"],
+    "body": "for arg in \"$@\"; do\ncase $arg in\n*)\necho \"Unknown option: ${arg}\"\nexit 1\n;;\nesac\ndone"
   },
   "Common bash flags": {
     "prefix": ["euo"],
     "body": "set -euo pipefail"
   },
+  "Get the directory for the current script": {
+    "prefix": ["script_dir", "sd"],
+    "body": "script_dir=\"\\$(dirname -- \"\\${BASH_SOURCE[0]:-\\$0}\")\" && readonly script_dir"
+  },
   "Suppress": {
     "prefix": ["suppress", "disable"],
-  }
     "body": "# shellcheck disable=$1"
+  }
 }
