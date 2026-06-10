@@ -24,6 +24,10 @@
     "prefix": ["script_dir", "sd"],
     "body": "script_dir=\"\\$(dirname -- \"\\${BASH_SOURCE[0]:-\\$0}\")\" && readonly script_dir"
   },
+  "Get the directory for the current script (POSIX compliant)": {
+    "prefix": ["script_dir_posix", "sd_posix"],
+    "body": "script_dir=$(CDPATH='' cd -- \"\\$(dirname -- \"\\$0\")\" && pwd) && readonly script_dir"
+  },
   "Suppress": {
     "prefix": ["suppress", "disable"],
     "body": "# shellcheck disable=$1"
