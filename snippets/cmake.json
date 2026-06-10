@@ -1,0 +1,11 @@
+{
+  "Parse args": {
+    "prefix": ["parse_args", "args"],
+    "body": [
+      "set(options $1)",
+      "set(one_value_args $2)",
+      "set(multi_value_args $3)",
+      "cmake_parse_arguments(ARG \"\\${options}\" \"\\${one_value_args}\" \"\\${multi_value_args}\" \\${ARGN})"
+    ]
+  }
+}
