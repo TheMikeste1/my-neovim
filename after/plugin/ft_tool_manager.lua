@@ -52,6 +52,10 @@ local FT_TOOLS = {
     "ansible-lint",
     "taplo",
   }),
+  vhdl = Set({
+    "vsg",
+    "rust_hdl",
+  }),
   yaml = Set({
     "yamlfix",
     "yamlfmt",

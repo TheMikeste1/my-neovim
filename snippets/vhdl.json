@@ -1,0 +1,14 @@
+{
+  "Suppress VSG": {
+    "prefix": ["suppress"],
+    "body": "-- vsg_off $1"
+  },
+  "Unsuppress VSG": {
+    "prefix": ["unsuppress"],
+    "body": "-- vsg_on $1"
+  },
+  "Debug print": {
+    "prefix": ["print=","p="],
+    "body": "report \"DEBUG: \" & INTEGER'image($1);"
+  }
+}
