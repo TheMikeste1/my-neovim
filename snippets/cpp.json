@@ -2,5 +2,14 @@
   "Suppress Include What You Use": {
     "prefix": ["suppress_iwyu"],
     "body": "// IWYU pragma: keep"
+  },
+  "Suppress clang": {
+    "prefix": ["suppress_clang"],
+    "body": "// NOLINT($1)"
+  },
+  "Suppress clang next line": {
+    "prefix": ["suppress_clang_next_line"],
+    "body": "// NOLINTNEXTLINE($1)"
   }
 }
+
