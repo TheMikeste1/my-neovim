@@ -2,6 +2,10 @@ local leader = require("keymaps").leader
 
 local cached_headers = {}
 
+local function simple_search()
+  require("snacks").picker.grep({ regex = false })
+end
+
 local function list_filter(where, what)
   -- Source: https://github.com/folke/snacks.nvim/discussions/1701#discussioncomment-12934844
   if not vim.islist(what) then
@@ -352,7 +356,7 @@ return {
             desc = "Find file",
             action = ":lua require('snacks').picker.smart({ hidden = false, filter = { cwd = true } })",
           },
-          { key = "<M-C-F>", icon = "󰊄", desc = "Live grep", action = ":lua require('snacks').picker.grep()" },
+          { key = "<M-C-F>", icon = "󰊄", desc = "Search", action = simple_search },
           { key = "s", icon = "", desc = "Open last session", section = "session" },
           {
             key = "c",
@@ -496,6 +500,9 @@ return {
           search = function()
             return vim.fn.input("Grep > ")
           end,
+          regex = false,
+          live = true,
+          args = {},
         })
       end,
       desc = "Search for word in files",
@@ -518,9 +525,7 @@ return {
     },
     {
       "<M-C-F>",
-      function()
-        require("snacks").picker.grep()
-      end,
+      simple_search,
       desc = "Search in files",
     },
     {
