@@ -8,10 +8,12 @@ vim.filetype.add({
     xtce = "xml",
     xteds = "xml",
     base = "yaml",
+    core = "yaml",
   },
   filename = {
     [".local.gitconfig"] = "gitconfig",
     [".local.bash_env"] = "bash",
+    ["fusesoc.conf"] = "toml",
   },
   pattern = {
     [".*/cmd_tlm/.+%.txt"] = "cosmos",

@@ -57,6 +57,7 @@ local FT_TOOLS = {
     "rust_hdl",
   }),
   yaml = Set({
+    "yaml-language-server",
     "yamlfix",
     "yamlfmt",
     "yamllint",
