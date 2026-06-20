@@ -116,6 +116,7 @@ return {
         vsg = {
           prepend_args = {
             "-c",
+            -- Rules: <https://vhdl-style-guide.readthedocs.io/en/stable/rules.html>
             vim.fs.joinpath(vim.fn.stdpath("config"), "tool_configs", "vsg.json"),
           },
         },
@@ -125,5 +126,46 @@ return {
   init = function()
     -- If you want the formatexpr, here is the place to set it
     vim.o.formatexpr = "v:lua.require('conform').formatexpr()"
+
+    vim.api.nvim_create_user_command("ConformLog", function()
+      local path = vim.fs.joinpath(vim.fn.stdpath("log"), "conform.log")
+
+      local buf = vim.api.nvim_create_buf(false, true)
+      local width = vim.o.columns - 3
+      local height = vim.o.lines - 2
+      local opts = {
+        relative = "editor",
+        width = width,
+        height = height,
+        col = math.floor((vim.o.columns - width)),
+        row = math.floor((vim.o.lines - height)),
+        style = "minimal",
+        border = "rounded",
+      }
+
+      local _ = vim.api.nvim_open_win(buf, true, opts)
+
+      vim.cmd("edit " .. vim.fn.fnameescape(path))
+
+      local current_buf = vim.api.nvim_get_current_buf()
+      vim.bo[current_buf].readonly = true
+      vim.bo[current_buf].modifiable = false
+    end, {
+      desc = "Open Conform's log file",
+    })
+
+    vim.api.nvim_create_user_command("ConformClearLog", function()
+      local path = vim.fs.joinpath(vim.fn.stdpath("log"), "conform.log")
+      local file = io.open(path, "w")
+
+      if file then
+        file:close()
+        vim.notify("File cleared successfully.")
+      else
+        vim.notify(string.format("Error: Could not open %s.", path))
+      end
+    end, {
+      desc = "Clear Conform's log file",
+    })
   end,
 }
