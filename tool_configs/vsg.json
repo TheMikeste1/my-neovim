@@ -2,7 +2,7 @@
   "rule": {
     "constant_004": { "case": "upper", "prefix_exceptions": ["c_"] },
     "signal_004": { "case": "lower" },
-    "type_004": { "case": "pascal" },
+    "type_004": { "case": "PascalCase" },
     "variable_004": { "case": "lower" },
     "constant_015": { "disable": false, "prefixes": ["c_"] },
     "generic_020": {
