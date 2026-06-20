@@ -1,7 +1,7 @@
 {
-  "Add shebang": {
-    "prefix": ["#!", "shebang"],
-    "body": "#!/usr/bin/env python3"
+  "Add schema": {
+    "prefix": ["$s", "schema"],
+    "body": "# yaml-language-server: \\$schema=$1"
   },
   "Create a print eval statement": {
     "prefix": ["p=", "print="],
