@@ -20,6 +20,9 @@
       "disable": true
     },
 
+    "case_012":           { "disable": true },
+    "if_002" :            { "disable": true },
+
     "architecture_015":           { "disable": true },
     "architecture_016":           { "disable": true },
     "architecture_017":           { "disable": true },

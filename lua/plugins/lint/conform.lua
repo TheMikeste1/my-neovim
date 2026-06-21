@@ -1,3 +1,38 @@
+local function conform_log(opts)
+  local path = vim.fs.joinpath(vim.fn.stdpath("log"), "conform.log")
+  local mode = opts.args ~= "" and opts.args or "float"
+
+  if mode == "float" then
+    -- Create a scratch buffer specifically for the floating window
+    local buf = vim.api.nvim_create_buf(false, true)
+    local width = vim.o.columns - 3
+    local height = vim.o.lines - 2
+    vim.api.nvim_open_win(buf, true, {
+      relative = "editor",
+      width = width,
+      height = height,
+      col = math.floor((vim.o.columns - width)),
+      row = math.floor((vim.o.lines - height)),
+      style = "minimal",
+      border = "rounded",
+    })
+    vim.cmd("edit " .. vim.fn.fnameescape(path))
+  elseif mode == "split" then
+    vim.cmd("split " .. vim.fn.fnameescape(path))
+  elseif mode == "vsplit" then
+    vim.cmd("vsplit " .. vim.fn.fnameescape(path))
+  elseif mode == "current" then
+    vim.cmd("edit " .. vim.fn.fnameescape(path))
+  else
+    vim.notify("Invalid argument for ConformLog. Use: float, split, vsplit, or current", vim.log.levels.ERROR)
+    return
+  end
+
+  -- local current_buf = vim.api.nvim_get_current_buf()
+  -- vim.bo[current_buf].readonly = true
+  -- vim.bo[current_buf].modifiable = false
+end
+
 return {
   "stevearc/conform.nvim",
   event = { "BufWritePre" },
@@ -128,31 +163,12 @@ return {
     -- If you want the formatexpr, here is the place to set it
     vim.o.formatexpr = "v:lua.require('conform').formatexpr()"
 
-    vim.api.nvim_create_user_command("ConformLog", function()
-      local path = vim.fs.joinpath(vim.fn.stdpath("log"), "conform.log")
-
-      local buf = vim.api.nvim_create_buf(false, true)
-      local width = vim.o.columns - 3
-      local height = vim.o.lines - 2
-      local opts = {
-        relative = "editor",
-        width = width,
-        height = height,
-        col = math.floor((vim.o.columns - width)),
-        row = math.floor((vim.o.lines - height)),
-        style = "minimal",
-        border = "rounded",
-      }
-
-      local _ = vim.api.nvim_open_win(buf, true, opts)
-
-      vim.cmd("edit " .. vim.fn.fnameescape(path))
-
-      local current_buf = vim.api.nvim_get_current_buf()
-      vim.bo[current_buf].readonly = true
-      vim.bo[current_buf].modifiable = false
-    end, {
+    vim.api.nvim_create_user_command("ConformLog", conform_log, {
       desc = "Open Conform's log file",
+      nargs = "?",
+      complete = function()
+        return { "float", "split", "vsplit", "current" }
+      end,
     })
 
     vim.api.nvim_create_user_command("ConformClearLog", function()
