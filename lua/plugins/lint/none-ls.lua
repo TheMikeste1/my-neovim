@@ -20,6 +20,45 @@ return {
   config = function()
     -- We'll use conform for formatting and null_ls for other stuff
     local null_ls = require("null-ls")
+    local helpers = require("null-ls.helpers")
+    local vsg_lint = {
+      name = "VSG",
+      method = null_ls.methods.DIAGNOSTICS,
+      filetypes = { "vhdl" },
+      generator = helpers.generator_factory({
+        command = "vsg",
+        args = function(params)
+          local rv = {}
+          table.insert(rv, "-c=" .. vim.fs.joinpath(vim.fn.stdpath("config"), "tool_configs", "vsg.json"))
+          table.insert(rv, "--stdin")
+          table.insert(rv, "-of=syntastic")
+          return rv
+        end,
+        cwd = nil,
+        check_exit_code = { 0, 1 },
+        from_stderr = false,
+        ignore_stderr = true,
+        to_stdin = true,
+        format = "line",
+        multiple_files = false,
+        on_output = helpers.diagnostics.from_patterns({
+          {
+            pattern = [[(%w+).*%((%d+)%)(.*)%s+%-%-%s+(.*)]],
+            groups = { "severity", "row", "code", "message" },
+            overrides = {
+              severities = {
+                -- 2 is for warnings, nvim showing as an error can be obnoxious. Change if desired
+                ["ERROR"] = 2,
+                ["WARNING"] = 3,
+                ["INFORMATION"] = 3,
+                ["HINT"] = 4,
+              },
+            },
+          },
+        }),
+      }),
+    }
+
     null_ls.setup({
       sources = {
         null_ls.builtins.code_actions.gitrebase,
@@ -122,6 +161,8 @@ return {
         null_ls.builtins.diagnostics.yamllint.with({
           extra_args = { "--config-data", "{extends: default, rules: {line-length: {max: 240}}}" },
         }),
+
+        vsg_lint,
       },
       should_attach = function(bufnr)
         local filetype = vim.fn.getbufvar(bufnr, "&filetype")
