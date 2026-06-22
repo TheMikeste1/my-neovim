@@ -149,11 +149,11 @@ return {
           },
         },
         vsg = {
+          exit_codes = { 0, 1 },
           prepend_args = {
             "-c",
             -- Rules: <https://vhdl-style-guide.readthedocs.io/en/stable/rules.html>
             vim.fs.joinpath(vim.fn.stdpath("config"), "tool_configs", "vsg.json"),
-            "--fix",
           },
         },
       },
