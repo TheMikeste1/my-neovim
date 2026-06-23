@@ -20,6 +20,7 @@
       "disable": true
     },
 
+    "use_clause_502":     { "disable": true },
     "case_012":           { "disable": true },
     "if_002" :            { "disable": true },
 
