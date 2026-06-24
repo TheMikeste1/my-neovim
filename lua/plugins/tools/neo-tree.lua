@@ -46,15 +46,19 @@ local function sort_files(a, b)
     ["~"] = true,
   }
 
-  if special_chars[a.name:sub(1, 1)] and not special_chars[b.name:sub(1, 1)] then
+  ---@type string
+  local a_name = a.name
+  ---@type string
+  local b_name = b.name
+  if special_chars[a_name:sub(1, 1)] and not special_chars[b_name:sub(1, 1)] then
     return true
   end
-  if not special_chars[a.name:sub(1, 1)] and special_chars[b.name:sub(1, 1)] then
+  if not special_chars[a_name:sub(1, 1)] and special_chars[b_name:sub(1, 1)] then
     return false
   end
 
-  local a_prefix = a.name:match("^(%d+)")
-  local b_prefix = b.name:match("^(%d+)")
+  local a_prefix = a_name:match("^(%d+)")
+  local b_prefix = b_name:match("^(%d+)")
   if a_prefix and b_prefix then
     local a_num = tonumber(a_prefix)
     local b_num = tonumber(b_prefix)
@@ -63,7 +67,43 @@ local function sort_files(a, b)
     end
   end
 
-  return a.name:lower() < b.name:lower()
+  local max_length = #a_name
+  if #b_name < max_length then
+    max_length = #b_name
+  end
+
+  local i = 1
+  while i <= max_length do
+    local a_char = a_name:sub(i, i):lower()
+    local b_char = b_name:sub(i, i):lower()
+    if a_char:match("%d") and b_char:match("%d") then
+      local a_num_str = a_name:match("(%d+)", i)
+      local b_num_str = b_name:match("(%d+)", i)
+      assert(a_num_str ~= nil)
+      assert(b_num_str ~= nil)
+      local a_num = tonumber(a_num_str)
+      local b_num = tonumber(b_num_str)
+      assert(a_num ~= nil)
+      assert(b_num ~= nil)
+
+      if a_num < b_num then
+        return true
+      elseif a_num > b_num then
+        return false
+      end
+
+      -- a_num == b_num
+      -- Therefore, they are the same length
+      i = i - 1 + #a_num_str -- i - 1 because we will add 1 at the end of the loop
+    elseif a_char < b_char then
+      return true
+    elseif a_char > b_char then
+      return false
+    end
+    i = i + 1
+  end
+
+  return #a_name < #b_name
 end
 
 local function open_in_new_tab()
