@@ -5,6 +5,7 @@ return {
     require("mason").setup(opts)
   end,
   opts = {
+    PATH = "skip",
     ui = {
       icons = {
         package_installed = "✓",
