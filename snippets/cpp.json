@@ -3,13 +3,21 @@
     "prefix": ["suppress_iwyu"],
     "body": "// IWYU pragma: keep"
   },
-  "Suppress clang": {
+  "Suppress clang-tidy": {
     "prefix": ["suppress_clang"],
     "body": "// NOLINT($1)"
   },
-  "Suppress clang next line": {
+  "Suppress clang-tidy next line": {
     "prefix": ["suppress_clang_next_line"],
     "body": "// NOLINTNEXTLINE($1)"
+  },
+  "Suppress clang-tidy block start": {
+    "prefix": ["suppress_clang_block_start"],
+    "body": "// NOLINTBEGIN($1)"
+  },
+  "Suppress clang-tidy block end": {
+    "prefix": ["suppress_clang_block_end"],
+    "body": "// NOLINTEND($1)"
   }
 }
 
