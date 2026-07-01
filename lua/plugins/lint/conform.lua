@@ -118,7 +118,7 @@ return {
           },
         },
         cmake_format = {
-          prepend_args = {
+          append_args = {
             "-c",
             vim.fn.expand("~") .. "/.githooks/config/precommit/cmake-format.yaml",
           },
