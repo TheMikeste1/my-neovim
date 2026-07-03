@@ -19,10 +19,12 @@
     "type_mark_500": {
       "disable": true
     },
+    "type_500" :          { "case": "PascalCase" },
 
     "use_clause_502":     { "disable": true },
     "case_012":           { "disable": true },
     "if_002" :            { "disable": true },
+    "type_010" :          { "disable": true },
 
     "architecture_015":           { "disable": true },
     "architecture_016":           { "disable": true },
