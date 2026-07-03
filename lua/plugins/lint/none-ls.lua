@@ -120,6 +120,9 @@ return {
         -- HTML/XML
         null_ls.builtins.diagnostics.tidy,
 
+        -- Kotlin
+        null_ls.builtins.diagnostics.ktlint,
+
         -- Make
         null_ls.builtins.diagnostics.checkmake,
 

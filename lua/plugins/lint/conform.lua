@@ -62,6 +62,7 @@ return {
         cuda = { "clang-format" },
         gdscript = { "gdformat" },
         java = { "uncrustify", "clang-format" },
+        kotlin = { "ktlint" },
         proto = { "clang-format" },
         ruby = { "rubocop" },
         rust = { "rustfmt" },
@@ -116,6 +117,9 @@ return {
           env = {
             UNCRUSTIFY_CONFIG = vim.fn.expand("~") .. "/.githooks/config/precommit/uncrustify.cfg",
           },
+        },
+        ktlint = {
+          exit_codes = { 0, 1 },
         },
         cmake_format = {
           append_args = {

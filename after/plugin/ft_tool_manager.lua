@@ -20,6 +20,11 @@ local FT_TOOLS = {
   }),
   dockerfile = Set({ "hadolint" }),
   javascript = Set({ "typescript-language-server" }),
+  kotlin = Set({
+    "kotlin-lsp",
+    "ktlint",
+    "jdtls",
+  }),
   lua = Set({
     "lua-language-server",
     "stylua",
