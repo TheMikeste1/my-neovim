@@ -54,7 +54,7 @@ return {
       -- Use a sub-list to run only the first available formatter
       formatters_by_ft = {
         -- Build tools
-        cmake = { "cmake_format" },
+        cmake = { "gersemi" },
         -- Programming
         c = { "uncrustify", "clang-format" },
         cpp = { "uncrustify", "clang-format" },

@@ -14,8 +14,7 @@ local FT_TOOLS = {
     "codelldb",
   }),
   cmake = Set({
-    "cmakelang",
-    "cmakelint",
+    "gersemi",
     "neocmakelsp",
   }),
   dockerfile = Set({ "hadolint" }),

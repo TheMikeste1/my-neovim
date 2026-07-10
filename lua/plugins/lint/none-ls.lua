@@ -59,6 +59,31 @@ return {
       }),
     }
 
+    local gersemi_diagnostics = helpers.make_builtin({
+      name = "gersemi",
+      meta = {
+        description = "A clean, modern CMake formatter used as a linter via its --check flag.",
+      },
+      method = null_ls.methods.DIAGNOSTICS,
+      filetypes = { "cmake" },
+      generator = helpers.generator_factory({
+        command = "gersemi",
+        args = { "--check", "-" }, -- "-" tells gersemi to read from standard input
+        to_stdin = true,
+        from_stderr = true, -- gersemi routes syntax/formatting errors to stderr
+        format = "line", -- Process gersemi output line-by-line
+
+        -- Parse gersemi's standard error format: <stdin>:line:col: message
+        check_exit_code = function(code)
+          return code <= 1 -- Prevent none-ls from crashing on lint errors
+        end,
+        on_output = helpers.diagnostics.from_pattern(
+          "([^:]+):(%d+):(%d+):%s*(.*)",
+          { "filename", "row", "col", "message" }
+        ),
+      }),
+    })
+
     null_ls.setup({
       sources = {
         null_ls.builtins.code_actions.gitrebase,
@@ -98,12 +123,13 @@ return {
         }),
 
         -- CMake
-        null_ls.builtins.diagnostics.cmake_lint.with({
-          args = {
-            "-c",
-            vim.fs.joinpath(vim.fn.stdpath("config"), "tool_configs", "cmakelint.py"),
-          },
-        }),
+        gersemi_diagnostics,
+        -- null_ls.builtins.diagnostics.cmake_lint.with({
+        --   args = {
+        --     "-c",
+        --     vim.fs.joinpath(vim.fn.stdpath("config"), "tool_configs", "cmakelint.py"),
+        --   },
+        -- }),
 
         -- CSS
         null_ls.builtins.diagnostics.stylelint,
