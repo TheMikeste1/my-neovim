@@ -3,6 +3,7 @@ return {
     ["harper-ls"] = {
       linters = {
         -- <https://writewithharper.com/docs/rules>
+        Dashes = false,
         ExpandArgument = false,
         ExpandParameter = false,
         ExpandStandardInputAndOutput = false,

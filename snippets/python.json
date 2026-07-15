@@ -14,5 +14,13 @@
       "",
       "SCRIPT_DIR = Path(__file__).parent.resolve()"
     ]
+  },
+  "Suppress Pylint": {
+    "prefix": ["suppress_pylint"],
+    "body": "# pylint: disable=$1"
+  },
+  "Suppress Pyright": {
+    "prefix": ["suppress_pyright"],
+    "body": "# pyright: ignore[$1]"
   }
 }

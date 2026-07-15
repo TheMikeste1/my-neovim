@@ -79,3 +79,4 @@ toolchain
 unmarshal
 uplink
 verification
+bugprone
