@@ -18,6 +18,10 @@
   "Suppress clang-tidy block end": {
     "prefix": ["suppress_clang_block_end"],
     "body": "// NOLINTEND($1)"
+  },
+  "Suppress cppcheck": {
+    "prefix": ["suppress_cppcheck"],
+    "body": "// cppcheck-suppress $1"
   }
 }
 

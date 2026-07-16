@@ -102,9 +102,8 @@ return {
 
         -- C++
         null_ls.builtins.diagnostics.cppcheck.with({
-          args = {
+          extra_args = {
             "--enable=warning,performance,portability,information",
-            "--template=gcc",
             "--disable=missingInclude",
             "--suppress=unknownMacro",
             "--suppress=checkersReport",
@@ -117,8 +116,6 @@ return {
             "-j",
             "8",
             "--cppcheck-build-dir=./.cache/cppcheck",
-            -- "--project=./build/compile_commands.json",
-            "$FILENAME",
           },
         }),
 
