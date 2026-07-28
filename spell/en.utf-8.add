@@ -17,6 +17,7 @@ assimp
 bitfields
 boolean
 booleans
+bugprone
 centroids
 checkboxes
 clippy
@@ -59,11 +60,13 @@ metadata
 metatable
 mhegerhorst
 microcontrollers
+multilayer
 mutex
 namespace
 overridable
 overwritable
 parameterized
+perceptron
 programmatically
 radians
 reflectivity
@@ -79,4 +82,3 @@ toolchain
 unmarshal
 uplink
 verification
-bugprone

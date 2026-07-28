@@ -75,8 +75,8 @@ return {
         sql = { "sqlfluff" },
         -- Shell
         fish = { "fish_indent" },
-        sh = { "beautysh", "shellharden" },
-        zsh = { "beautysh", "shellharden" },
+        sh = { "beautysh" },
+        zsh = { "beautysh" },
         -- Web
         javascript = { "biome", "prettier" },
         typescript = { "biome", "prettier" },
