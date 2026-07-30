@@ -37,4 +37,8 @@ require("lazy").setup({
   defaults = {
     cond = not vim.g.vscode,
   },
+  git = {
+    timeout = 10,
+    url_format = "git@github.com:%s.git",
+  },
 })
