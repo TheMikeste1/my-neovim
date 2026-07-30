@@ -60,5 +60,9 @@
   "Suppress": {
     "prefix": ["suppress", "disable"],
     "body": "# shellcheck disable=$1"
+  },
+  "Assert": {
+    "prefix": ["assert"],
+    "body": "[[ $1 ]] || { echo 'ASSERT FAILED: $1' 1>&2; exit 1; }"
   }
 }
