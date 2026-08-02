@@ -22,6 +22,14 @@
   "Suppress cppcheck": {
     "prefix": ["suppress_cppcheck"],
     "body": "// cppcheck-suppress $1"
+  },
+  "clang-format off": {
+    "prefix": ["clang-format-off"],
+    "body": "// clang-format off"
+  },
+  "clang-format on": {
+    "prefix": ["clang-format-on"],
+    "body": "// clang-format on"
   }
 }
 
