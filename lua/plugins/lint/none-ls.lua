@@ -1,13 +1,15 @@
 local FILE_NONTYPES = {
-  "alpha",
-  "notify",
-  "noice",
-  "fugitive",
-  "TelescopePrompt",
   "OverseerForm",
   "OverseerList",
-  "neo-tree",
+  "TelescopePrompt",
+  "alpha",
+  "directory",
+  "fugitive",
   "lazy",
+  "neo-tree",
+  "noice",
+  "notify",
+  "snacks_dashboard",
 }
 
 local BUFFER_NONTYPES = {
