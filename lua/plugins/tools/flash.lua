@@ -3,7 +3,6 @@ local leader = require("keymaps").leader
 return {
   "folke/flash.nvim",
   lazy = false,
-  cond = true,
   opts = {
     modes = {
       search = {
