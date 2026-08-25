@@ -6,8 +6,9 @@
   "Arg parse": {
     "prefix": ["args"],
     "body": [
+      "script_name=\"\\$0\" && readonly script_name",
       "usage() {",
-      "  echo \"Usage: $0 [OPTIONS]\"",
+      "  echo \"Usage: \\$script_name [OPTIONS]\"",
       "  echo '  -h, --help         Display this help message'",
       "  exit 1",
       "}",
@@ -28,8 +29,9 @@
   "Arg parse (positional)": {
     "prefix": ["args_pos"],
     "body": [
+      "script_name=\"\\$0\" && readonly script_name",
       "usage() {",
-      "  echo \"Usage: $0 [OPTIONS] [POSITIONAL ARGS]\"",
+      "  echo \"Usage: \\$script_name [OPTIONS] [POSITIONAL ARGS]\"",
       "  echo '  -h, --help         Display this help message'",
       "  exit 1",
       "}",
@@ -44,7 +46,7 @@
       "      usage",
       "      ;;",
       "    *)",
-      "      POSITIONAL_ARGS+=(\"\\$1\")",
+      "      positional_args+=(\"\\$1\")",
       "      shift 1",
       "      ;;",
       "  esac",
