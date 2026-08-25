@@ -56,6 +56,13 @@ vim.api.nvim_create_user_command("ClearLog", function(opts)
   else
     vim.notify(string.format("Error: Could not open %s.", path))
   end
-end, { nargs = "_", desc = "Clear a log file." })
+end, {
+  nargs = "_",
+  desc = "Clear a log file.",
+  complete = function()
+    return get_log_names()
+  end,
+})
 
+-- TODO: Fix completion functions so they take into account what the user has already typed
 -- TODO: Open log  command like ConformLog
