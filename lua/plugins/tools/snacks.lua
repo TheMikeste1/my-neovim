@@ -380,6 +380,17 @@ return {
               require("snacks").dashboard.update()
             end,
           },
+          {
+            key = "l",
+            icon = "",
+            desc = "Logs Folder",
+            action = function()
+              local dir = vim.fn.stdpath("log")
+              vim.cmd.tcd(dir)
+              vim.notify(string.format("Tab changed directory to %s", dir))
+              require("snacks").dashboard.update()
+            end,
+          },
           { key = "t", icon = "", desc = "Open terminal", action = ":terminal" },
           { key = "u", icon = "", desc = "Update plugins", action = ":Lazy sync" },
           { key = "q", icon = "󰅚", desc = "Close", action = ":q" },

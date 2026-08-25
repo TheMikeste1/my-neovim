@@ -174,19 +174,5 @@ return {
         return { "float", "split", "vsplit", "current" }
       end,
     })
-
-    vim.api.nvim_create_user_command("ConformClearLog", function()
-      local path = vim.fs.joinpath(vim.fn.stdpath("log"), "conform.log")
-      local file = io.open(path, "w")
-
-      if file then
-        file:close()
-        vim.notify("File cleared successfully.")
-      else
-        vim.notify(string.format("Error: Could not open %s.", path))
-      end
-    end, {
-      desc = "Clear Conform's log file",
-    })
   end,
 }
