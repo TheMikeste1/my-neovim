@@ -59,10 +59,20 @@ vim.api.nvim_create_user_command("ClearLog", function(opts)
 end, {
   nargs = "_",
   desc = "Clear a log file.",
-  complete = function()
-    return get_log_names()
+  complete = function(ArgLead)
+    local logs = get_log_names()
+    local matches = {}
+    local nonmatches = {}
+    for _, name in ipairs(logs) do
+      if vim.startswith(name, ArgLead) then
+        table.insert(matches, name)
+      else
+        table.insert(nonmatches, name)
+      end
+    end
+
+    return vim.list_extend(matches, nonmatches)
   end,
 })
 
--- TODO: Fix completion functions so they take into account what the user has already typed
--- TODO: Open log  command like ConformLog
+-- TODO: Open log command like ConformLog
