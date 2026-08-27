@@ -40,6 +40,7 @@ local FT_TOOLS = {
   }),
   ruby = Set({
     "rubocop",
+    "ruby-lsp",
   }),
   sh = Set({
     "bash-language-server",
