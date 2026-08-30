@@ -75,7 +75,7 @@ end, {
 })
 
 vim.api.nvim_create_user_command("OpenLog", function(opts)
-  local args = vim.split(opts.args, " ")
+  local args = opts.fargs
   if #args > 2 then
     vim.notify("OpenLog takes one to two parameters:\n\t:OpenLog <log_name> [mode]", vim.log.levels.ERROR)
     return

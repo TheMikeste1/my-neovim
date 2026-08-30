@@ -35,6 +35,7 @@ defragment
 defragmented
 deserialize
 destructor
+destructors
 discriminants
 downlink
 emissive
@@ -50,6 +51,7 @@ globbed
 iff
 implementers
 incrementing
+initializer
 instantiation
 layout
 lexicographically
@@ -80,6 +82,7 @@ symlink
 thruster
 thrusters
 toolchain
+unhandleable
 unmarshal
 uplink
 verification
