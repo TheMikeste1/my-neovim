@@ -1,0 +1,24 @@
+{
+  "Create a Lua class": {
+    "prefix": ["class"],
+    "body": [
+      "---@class $2.$1",
+      "local $1 = {}",
+      "$1.__index = $1",
+      "",
+      "---@class $2.$1",
+      "local _$1Defaults = {",
+      "}",
+      "",
+      "---Creates a new $2.$1 instance.",
+      "---@param o? $2.$1 Optional initial values.",
+      "---@return $2.$1 obj A new instance.",
+      "function $1.new(o)",
+      "  o = o and vim.deepcopy(o) or {}",
+      "  ---@cast o $2.$1",
+      "  local self = vim.tbl_deep_extend(\"keep\", o, vim.deepcopy(_$1Defaults))",
+      "  return setmetatable(self, $1)",
+      "end"
+    ]
+  }
+}
