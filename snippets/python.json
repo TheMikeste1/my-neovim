@@ -3,6 +3,20 @@
     "prefix": ["#!", "shebang"],
     "body": "#!/usr/bin/env python3"
   },
+  "Generate main function": {
+    "prefix": ["main"],
+    "body": [
+      "import sys",
+      "",
+      "",
+      "def main() -> int:",
+      "    \"\"\"Entry point for the program.\"\"\"",
+      "    return 0",
+      "",
+      "if __name__ == \"__main__\":",
+      "    sys.exit(main())"
+    ]
+  },
   "Create a print eval statement": {
     "prefix": ["p=", "print="],
     "body": "print(f\"{$1=}\")$0"
