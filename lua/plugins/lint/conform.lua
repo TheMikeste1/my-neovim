@@ -35,7 +35,7 @@ return {
         zig = { "zigfmt" },
         -- Scripting
         lua = { "stylua" },
-        python = { "isort", "yapf" },
+        python = { "ruff_organize_imports", "ruff_fix", "ruff_format" },
         -- Data
         sql = { "sqlfluff" },
         -- Shell

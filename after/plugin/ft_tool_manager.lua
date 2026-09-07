@@ -32,11 +32,12 @@ local FT_TOOLS = {
   python = Set({
     "black",
     "debugpy",
-    "isort",
+    -- "isort",
     "mypy",
     "pylint",
     -- "pyrefly",
     "pyright",
+    "ruff",
   }),
   ruby = Set({
     "rubocop",
