@@ -11,8 +11,9 @@ vim.filetype.add({
     core = "yaml",
   },
   filename = {
-    [".local.gitconfig"] = "gitconfig",
+    [".gersemirc"] = "yaml",
     [".local.bash_env"] = "bash",
+    [".local.gitconfig"] = "gitconfig",
     ["fusesoc.conf"] = "toml",
   },
   pattern = {
