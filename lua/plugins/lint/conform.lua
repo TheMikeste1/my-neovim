@@ -20,6 +20,7 @@ return {
       formatters_by_ft = {
         -- Build tools
         cmake = { "gersemi" },
+        dockerfile = { "dockerfmt" },
         -- Programming
         c = { "uncrustify", "clang-format" },
         cpp = { "uncrustify", "clang-format" },
