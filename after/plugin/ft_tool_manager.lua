@@ -36,8 +36,9 @@ local FT_TOOLS = {
     "mypy",
     "pylint",
     -- "pyrefly",
-    "pyright",
+    -- "pyright",
     "ruff",
+    "ty",
   }),
   ruby = Set({
     "rubocop",
