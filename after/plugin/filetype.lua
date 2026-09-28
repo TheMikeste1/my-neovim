@@ -1,14 +1,16 @@
 vim.filetype.add({
   extension = {
+    base = "yaml",
     codecompanion = "markdown",
+    core = "yaml",
     godot = "gdresource",
+    plantuml = "plantuml",
+    puml = "plantuml",
     service = "systemd",
     slice = "systemd",
     tpp = "cpp",
     xtce = "xml",
     xteds = "xml",
-    base = "yaml",
-    core = "yaml",
   },
   filename = {
     [".gersemirc"] = "yaml",
