@@ -201,6 +201,14 @@ return {
     opts = {
       window = {
         mappings = {
+          ["E"] = {
+            desc = "Open in file explorer",
+            function(state)
+              local node = state.tree:get_node()
+              local filepath = node:get_id()
+              vim.cmd("Explorer " .. filepath)
+            end,
+          },
           ["Y"] = {
             desc = "Copy file path to clipboard",
             function(state)

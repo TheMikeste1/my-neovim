@@ -2,6 +2,7 @@ local function open_explorer(opts)
   local path = opts.args
 
   if vim.g.is_wsl then
+    path = require("utilities.file_utilities").wsl_path_to_windows(path)
     vim.system({ "/mnt/c/windows/explorer.exe", path })
   else
     vim.system({ "xdg-open", path })
