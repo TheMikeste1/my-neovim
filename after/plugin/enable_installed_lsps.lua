@@ -5,6 +5,7 @@ end
 --- LSPs that should never be enabled directly, even if installed.
 local DISABLED_LSPS = {
   "bacon_ls",
+  "rust-analyzer",
   "rust_analyzer",
 }
 
