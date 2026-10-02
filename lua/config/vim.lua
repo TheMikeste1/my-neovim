@@ -1,8 +1,15 @@
 vim.g.maprapidleader = " "
 
 vim.opt.exrc = true
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.offsetEncoding = { "utf-16" }
+if capabilities.general and capabilities.general.positionEncodings then
+  capabilities.general.positionEncodings = { "utf-16" }
+end
 vim.lsp.config("*", {
-  root_markers = { ".git", ".hg" },
+  -- root_markers = { ".git", ".hg" },
+  capabilities = capabilities
 })
 
 vim.opt.wrap = false -- No word wrap
