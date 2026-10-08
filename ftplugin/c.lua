@@ -5,4 +5,4 @@ end
 
 vim.keymap.set("n", "<M-o>", function()
   require("clangd_extensions.switch_source_header").switch_source_header()
-end, { noremap = true, desc = "Switch between source and header" })
+end, { noremap = true, desc = "Switch between source and header", buf = 0 })
