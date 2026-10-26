@@ -80,3 +80,11 @@ vim.api.nvim_create_autocmd("QuickFixCmdPost", {
 })
 
 vim.o.virtualedit = "block"
+
+vim.api.nvim_create_autocmd("BufNewFile", {
+  callback = function()
+    if vim.fn.isdirectory(vim.fn.expand("<amatch>")) == 1 then
+      vim.bo.buflisted = false
+    end
+  end,
+})
