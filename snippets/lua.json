@@ -1,4 +1,8 @@
 {
+  "Create a print eval statement": {
+    "prefix": ["p=", "print="],
+    "body": "print(\"$1=\" .. vim.inspect($1))$0"
+  },
   "Create a Lua class": {
     "prefix": ["clss"],
     "body": [
