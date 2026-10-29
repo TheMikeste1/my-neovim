@@ -64,6 +64,7 @@ intentionality
 layout
 lexicographically
 linters
+lockfile
 lsp
 lua
 marshalled
