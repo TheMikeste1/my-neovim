@@ -81,7 +81,7 @@ return {
         },
         uncrustify = {
           env = {
-            UNCRUSTIFY_CONFIG = vim.fn.expand("~") .. "/.githooks/config/precommit/uncrustify.cfg",
+            UNCRUSTIFY_CONFIG = vim.fs.joinpath(vim.env["DOTFILES"], "git-galaxy/config/precommit/uncrustify.cfg"),
           },
         },
         ktlint = {
@@ -90,7 +90,7 @@ return {
         cmake_format = {
           append_args = {
             "-c",
-            vim.fn.expand("~") .. "/.githooks/config/precommit/cmake-format.yaml",
+            vim.fs.joinpath(vim.env["DOTFILES"], "git-galaxy/config/precommit/cmake-format.yaml"),
           },
         },
         gdformat = {
