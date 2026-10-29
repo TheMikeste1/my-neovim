@@ -15,7 +15,7 @@ return {
       adapters = {
         -- require("neotest-rust"),
         require("rustaceanvim.neotest"),
-        require("neotest.cmakeseer.ctest"),
+        -- require("neotest.cmakeseer.ctest"),
         require("neotest.cmakeseer.gtest"),
         require("neotest-dotnet")({
           discovery_root = "solution",
