@@ -259,7 +259,7 @@ return {
               if stat and stat.type == "file" then
                 filepath = vim.fn.fnamemodify(filepath, ":h")
               end
-              vim.cmd("Oil " .. filepath)
+              require("oil").open(filepath)
             end,
           },
         },
