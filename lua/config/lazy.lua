@@ -21,7 +21,6 @@ require("lazy").setup({
     { import = "plugins.lint" },
     { import = "plugins.lsp" },
     { import = "plugins.tools" },
-    { import = "plugins.tools.ai" },
     { import = "plugins.ui" },
     { import = "plugins.vim-dev" },
     { import = "themes" },
