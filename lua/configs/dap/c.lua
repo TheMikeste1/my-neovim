@@ -6,30 +6,28 @@ local function get_executable_path()
   local shortest_len = math.huge
   local executable_candidates = {}
   for _, candidate in ipairs(candidates) do
-    if vim.fn.getftype(candidate) ~= "file" then
-      goto continue
-    end
-
-    local perms = vim.fn.getfperm(candidate)
-    if string.find(perms, "x") then
-      if #candidate < shortest_len then
-        shortest_len = #candidate
-        shortest_candidate = candidate
+    if vim.fn.getftype(candidate) == "file" then
+      local perms = vim.fn.getfperm(candidate)
+      if string.find(perms, "x") then
+        if #candidate < shortest_len then
+          shortest_len = #candidate
+          shortest_candidate = candidate
+        end
+        table.insert(executable_candidates, candidate)
       end
-      table.insert(executable_candidates, candidate)
     end
-
-    ::continue::
   end
 
   return vim.fn.input("Executable: ", shortest_candidate or (cwd .. "/"), "file")
 end
 
----@param target cmakeseer.cmake.api.codemodel.Target The CMakeSeer target.
+---@param target cmakeseer.cmake.file_api.object_kind.Codemodel.Target The CMakeSeer target.
 ---@return dap.Configuration config
 local function generate_target_configuration(target)
-  local CmakeseerTarget = require("cmakeseer.cmake.api.codemodel.target")
-  local executable_path = CmakeseerTarget.get_target_path(target)
+  local executable_path = assert(target.artifacts[1])
+  if vim.fn.isabsolutepath(executable_path) == 0 then
+    executable_path = vim.fs.joinpath(require("cmakeseer").resolve_build_directory(), executable_path)
+  end
 
   return {
     name = string.format("CMakeseer: Launch %s", target.name),
@@ -53,11 +51,11 @@ end
 ---@return dap.Configuration[] configurations The configs provided by CMakeSeer.
 local function generate_cmakeseer_configurations()
   local cmakeseer = require("cmakeseer")
-  local cmakeseer_target = require("cmakeseer.cmake.api.codemodel.target")
+  local TargetType = require("cmakeseer.cmake.file_api.object_kind.codemodel.target").Type
 
   local configs = {}
   for _, target in ipairs(cmakeseer.state.get_targets()) do
-    if target.type == cmakeseer_target.TargetType.Executable then
+    if target.type == TargetType.Executable then
       local config = generate_target_configuration(target)
       table.insert(configs, config)
     end
@@ -142,9 +140,10 @@ function M.configurations()
   local cmakeseer_configs = generate_cmakeseer_configurations()
   configs = vim.list_extend(configs, cmakeseer_configs)
 
-  -- table.sort(configs, function(a, b)
-  --   return a.name < b.name
-  -- end)
+  table.sort(configs, function(a, b)
+    return a.name < b.name
+  end)
+
   return configs
 end
 
